@@ -66,20 +66,26 @@ body.dark-mode .trust-badge { background: var(--card-bg); border-color: var(--bo
 /* ---------- Base Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: hidden;       /* prevent horiz overflow at root */
+  max-width: 100%;
+}
 
 body {
   font-family: var(--font-main);
   background: var(--bg-light);
   color: var(--text-dark);
   overflow-x: hidden;
+  max-width: 100%;
   transition: background 0.4s, color 0.4s;
 }
 
 img { max-width: 100%; display: block; }
 a { text-decoration: none; }
 
-section { position: relative; }
+section { position: relative; overflow-x: hidden; }
 
 /* ---------- Top Accent Bar ---------- */
 body::before {
@@ -351,6 +357,12 @@ body::before {
 .stat-icon { font-size: 1.8rem; color: var(--accent1); margin-bottom: 0.5rem; }
 .stat-number { font-size: 1.6rem; font-weight: 900; color: var(--white); line-height: 1; }
 .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
+
+/* Hero row — replaces Bootstrap min-vh-100 */
+.hero-row {
+  padding-top: 5.5rem;   /* clears fixed navbar (≈70px) + breathing room */
+  padding-bottom: 3rem;
+}
 
 /* Scroll Hint */
 .hero-scroll-hint {
@@ -669,12 +681,13 @@ body::before {
   margin-bottom: 2rem;
 }
 .world-map-bg::before {
-  content: '🌍';
+  content: '\1F30D';
   position: absolute;
-  font-size: 20rem;
+  font-size: clamp(8rem, 40vw, 20rem);
   opacity: 0.05;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 .map-dots { position: absolute; inset: 0; }
 .map-dot {
@@ -1441,26 +1454,6 @@ body.dark-mode .pc-price { color: var(--accent1); }
 .back-to-top.visible { opacity: 1; transform: translateY(0); }
 .back-to-top:hover { transform: translateY(-4px) scale(1.08); }
 
-.whatsapp-float {
-  position: fixed;
-  bottom: 1.5rem; right: 1.5rem;
-  width: 56px; height: 56px;
-  background: #25d366;
-  color: var(--white);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem;
-  z-index: 999;
-  box-shadow: 0 6px 20px rgba(37,211,102,0.5);
-  transition: var(--transition);
-  animation: wpFloat 3s ease-in-out infinite;
-}
-@keyframes wpFloat {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-.whatsapp-float:hover { color: var(--white); transform: scale(1.1); box-shadow: 0 10px 30px rgba(37,211,102,0.6); }
-
 /* ============================================================
    VIDEO MODAL
    ============================================================ */
@@ -1506,8 +1499,7 @@ body.dark-mode .pc-price { color: var(--accent1); }
   .btn-nav-cta { display: inline-block; margin-top: 0.5rem; text-align: center; }
 
   /* Hero */
-  .hero-section { padding-top: 80px; }
-  .hero-content .row { flex-direction: column; padding-top: 2rem; }
+  .hero-row { flex-direction: column; padding-top: 5rem; padding-bottom: 2.5rem; }
   .hero-content .col-lg-7 { text-align: center; }
   .hero-cta-group { justify-content: center; }
   .hero-stats-box { max-width: 480px; margin: 2rem auto 0; }
@@ -1559,21 +1551,29 @@ body.dark-mode .pc-price { color: var(--accent1); }
   [class*='section-'] { padding-top: 3rem !important; padding-bottom: 3rem !important; }
 
   /* Hero orbs — shrink to prevent overflow */
-  .orb1 { width: 260px; height: 260px; top: -60px; right: -60px; }
-  .orb2 { width: 200px; height: 200px; bottom: -50px; left: -50px; }
-  .orb3 { width: 160px; height: 160px; }
+  .orb1 { width: 220px; height: 220px; top: -50px; right: -50px; }
+  .orb2 { width: 180px; height: 180px; bottom: -40px; left: -40px; }
+  .orb3 { width: 140px; height: 140px; }
 
   /* Hero */
   .hero-section { min-height: 100svh; }
-  .hero-heading { font-size: clamp(1.4rem, 6vw, 2rem); min-height: 2.5rem; }
+  .hero-row { flex-direction: column; padding-top: 4.5rem; padding-bottom: 2rem; }
+  .hero-heading { font-size: clamp(1.4rem, 6vw, 2rem); min-height: 2rem; }
   .hero-subheading { font-size: clamp(0.9rem, 3vw, 1.1rem); }
-  .hero-vision { font-size: 0.82rem; }
-  .hero-stats-box { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .hero-vision { font-size: 0.82rem; margin-bottom: 1.2rem; }
+  .hero-stats-box { grid-template-columns: 1fr 1fr; gap: 0.75rem; max-width: 100%; }
   .stat-item { padding: 1.1rem 0.7rem; }
   .stat-number { font-size: 1.15rem; }
   .stat-icon { font-size: 1.4rem; }
-  .btn-primary-hero, .btn-outline-hero { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
+  .btn-primary-hero, .btn-outline-hero { padding: 0.75rem 1.5rem; font-size: 0.9rem; width: 100%; justify-content: center; }
+  .hero-cta-group { flex-direction: column; }
   .hero-scroll-hint { display: none; }
+
+  /* Section subheading — remove fixed max-width on mobile */
+  .section-subheading { max-width: 100%; font-size: 0.95rem; }
+
+  /* Diff cards — reduce padding on mobile */
+  .diff-card { padding: 1.5rem 1.2rem; }
 
   /* Problem */
   .agg-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
@@ -1617,11 +1617,13 @@ body.dark-mode .pc-price { color: var(--accent1); }
 
   /* Comparison */
   .comp-bad, .comp-good { padding: 1.5rem 1.2rem; }
+  .comp-vs { letter-spacing: 2px; font-size: 0.95rem; padding: 0.6rem 1.5rem; }
   .comp-list { gap: 0.7rem; }
   .comp-list li { font-size: 0.85rem; }
 
   /* Legacy / family tree */
   .ftv-branches { gap: 1rem; }
+  .family-tree-viz { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .ftv-node { width: 52px; height: 52px; }
   .root-node { width: 60px; height: 60px; }
   .gen3 { width: 36px; height: 36px; font-size: 0.8rem; }
@@ -1700,6 +1702,12 @@ body.dark-mode .pc-price { color: var(--accent1); }
 
   .df-item { padding: 1rem; gap: 0.8rem; }
   .df-item > i { width: 40px; height: 40px; font-size: 1.1rem; }
+
+  /* Time zones — tighter on small phones */
+  .time-zones { gap: 0.4rem; }
+  .tz-item { padding: 0.6rem 0.5rem; font-size: 0.72rem; }
+  .tz-item i { font-size: 1.2rem; }
+  .tz-item small { font-size: 0.62rem; }
 
   .site-footer .col-lg-4,
   .site-footer .col-lg-2 { margin-bottom: 1.5rem; }
