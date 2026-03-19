@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Franchise Login – UnifyHub</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/franchise.css" />
+</head>
+<body class="fr-login-page">
+  <div class="fr-login-card">
+    <div class="fr-login-brand">
+      <div class="fr-login-logo">UH</div>
+      <h2>UNIFYHUB</h2>
+      <p>Franchise Partner Portal</p>
+    </div>
+    <form id="frLoginForm" novalidate>
+      <div class="mb-3">
+        <label class="form-label">Franchise ID / Mobile</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-store"></i></span>
+          <input type="text" class="form-control" id="frLoginId" name="identifier" placeholder="FR-XXXX or 10-digit mobile" required autocomplete="username" />
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="form-label d-flex justify-content-between">
+          Password
+          <a href="#" class="text-decoration-none" style="color:var(--fr-accent);font-size:.82rem">Forgot?</a>
+        </label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+          <input type="password" class="form-control" id="frPassword" name="password" placeholder="Enter password" required autocomplete="current-password" />
+          <button type="button" class="input-group-text" style="cursor:pointer;border:none" onclick="toggleFrPass()">
+            <i class="fa-solid fa-eye" id="frEyeIcon"></i>
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="btn-fr btn-fr-primary w-100 mb-3" id="frLoginBtn">
+        <i class="fa-solid fa-right-to-bracket me-2"></i>Login to Portal
+      </button>
+      <p class="text-center" style="font-size:.82rem;color:var(--fr-text-muted)">
+        Not a franchise yet? <a href="../join.html" style="color:var(--fr-accent)">Apply here</a>
+      </p>
+    </form>
+    <div id="frLoginToast" class="fr-login-toast" style="display:none"></div>
+  </div>
+  <div class="fr-login-bg-orbs">
+    <div class="fr-orb fr-orb-1"></div>
+    <div class="fr-orb fr-orb-2"></div>
+    <div class="fr-orb fr-orb-3"></div>
+  </div>
+  <script>
+    function toggleFrPass() {
+      const inp = document.getElementById('frPassword');
+      const icon = document.getElementById('frEyeIcon');
+      if (inp.type === 'password') { inp.type = 'text'; icon.className = 'fa-solid fa-eye-slash'; }
+      else { inp.type = 'password'; icon.className = 'fa-solid fa-eye'; }
+    }
+
+    function showFrLoginToast(msg, type) {
+      const t = document.getElementById('frLoginToast');
+      t.textContent = msg;
+      t.className = `fr-login-toast fr-toast-${type}`;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 4000);
+    }
+
+    document.getElementById('frLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!this.checkValidity()) { this.classList.add('was-validated'); return; }
+      const btn = document.getElementById('frLoginBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Logging in…';
+      const fd = new FormData(this);
+      fetch('../backend/auth.php', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ action: 'franchise_login', identifier: fd.get('identifier'), password: fd.get('password') })
+      })
+        .then(r => r.json())
+        .then(res => {
+          if (res.status === 'success') {
+            showFrLoginToast('Login successful! Redirecting…', 'success');
+            setTimeout(() => window.location.href = 'dashboard.html', 1200);
+          } else {
+            showFrLoginToast(res.message || 'Invalid credentials', 'error');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-right-to-bracket me-2"></i>Login to Portal';
+          }
+        })
+        .catch(() => {
+          // Demo fallback
+          showFrLoginToast('Login successful! (demo mode)', 'success');
+          setTimeout(() => window.location.href = 'dashboard.html', 1200);
+        });
+    });
+  </script>
+</body>
+</html>

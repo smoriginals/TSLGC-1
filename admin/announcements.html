@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Announcements – UnifyHub Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/admin.css" />
+  <style>
+    .announce-list { display:flex; flex-direction:column; gap:1rem; }
+    .announce-card { background:var(--admin-card-bg); border:1px solid var(--admin-border); border-radius:12px; padding:1.25rem 1.5rem; position:relative; }
+    .announce-card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; margin-bottom:.5rem; }
+    .announce-title { font-weight:700; font-size:1rem; color:var(--admin-text); }
+    .announce-meta { display:flex; gap:.75rem; flex-wrap:wrap; align-items:center; font-size:.8rem; color:var(--admin-text-muted); }
+    .announce-body { font-size:.9rem; color:var(--admin-text-muted); line-height:1.6; margin-top:.5rem; }
+    .cat-badge { padding:.2rem .65rem; border-radius:20px; font-size:.75rem; font-weight:600; }
+    .cat-update { background:rgba(139,49,212,.15); color:#8B31D4; }
+    .cat-event   { background:rgba(255,187,0,.15); color:#b38400; }
+    .cat-alert   { background:rgba(220,53,69,.15); color:#dc3545; }
+    .cat-general { background:rgba(0,212,170,.15); color:#00a884; }
+  </style>
+</head>
+<body class="admin-body">
+  <div class="admin-wrapper">
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-brand"><span class="sb-logo">UNIFY<span>HUB</span></span><small>Admin Panel</small></div>
+      <div class="sidebar-user">
+        <div class="su-avatar"><i class="fa-solid fa-user-shield"></i></div>
+        <div><strong>Super Admin</strong><small>admin@unifyhub.in</small></div>
+      </div>
+      <nav class="sidebar-nav">
+        <p class="sidebar-label">Main</p>
+        <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a href="members.html" class="sidebar-link"><i class="fa-solid fa-users"></i> Members</a>
+        <a href="franchises.html" class="sidebar-link"><i class="fa-solid fa-store"></i> Franchises</a>
+        <p class="sidebar-label">Finance</p>
+        <a href="payments.html" class="sidebar-link"><i class="fa-solid fa-indian-rupee-sign"></i> Payments</a>
+        <a href="reports.html" class="sidebar-link"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+        <p class="sidebar-label">Communication</p>
+        <a href="announcements.html" class="sidebar-link active"><i class="fa-solid fa-bullhorn"></i> Announcements</a>
+        <p class="sidebar-label">System</p>
+        <a href="../index.html" class="sidebar-link" target="_blank"><i class="fa-solid fa-globe"></i> View Website</a>
+        <a href="#" class="sidebar-link logout-link" onclick="adminLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="topbar-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+          <nav aria-label="breadcrumb"><ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Announcements</li>
+          </ol></nav>
+        </div>
+        <div class="topbar-right">
+          <button class="topbar-btn" id="adminThemeToggle"><i class="fa-solid fa-moon"></i></button>
+        </div>
+      </header>
+      <div class="admin-content">
+        <div class="content-header">
+          <h2>Announcements</h2>
+          <p>Broadcast updates to members and franchises</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Post Form -->
+          <div class="col-lg-4">
+            <div class="admin-panel sticky-top" style="top:80px">
+              <div class="admin-panel-header"><h5><i class="fa-solid fa-bullhorn me-2"></i>New Announcement</h5></div>
+              <div class="admin-panel-body">
+                <form id="announcementForm" novalidate class="d-flex flex-column gap-3">
+                  <div>
+                    <label class="form-label">Title <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="title" placeholder="Announcement title" required maxlength="100" />
+                  </div>
+                  <div>
+                    <label class="form-label">Category</label>
+                    <select class="form-select" name="category">
+                      <option value="general">General</option>
+                      <option value="update">Update</option>
+                      <option value="event">Event</option>
+                      <option value="alert">Alert</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label">Target Audience</label>
+                    <select class="form-select" name="target">
+                      <option value="all">Everyone (Members + Franchises)</option>
+                      <option value="members">Members Only</option>
+                      <option value="franchises">Franchises Only</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label">Content <span class="text-danger">*</span></label>
+                    <textarea class="form-control" name="content" rows="5" placeholder="Write your announcement…" required maxlength="1000"></textarea>
+                    <div class="form-text text-end" id="charCount">0 / 1000</div>
+                  </div>
+                  <div>
+                    <label class="form-label">Publish Date</label>
+                    <input type="date" class="form-control" name="publish_date" />
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-paper-plane me-2"></i>Post Announcement</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Announcements List -->
+          <div class="col-lg-8">
+            <div class="admin-panel">
+              <div class="admin-panel-header">
+                <h5><i class="fa-solid fa-list me-2"></i>Posted Announcements</h5>
+                <select class="form-select form-select-sm" id="annFilter" style="width:160px">
+                  <option value="">All</option>
+                  <option value="general">General</option>
+                  <option value="update">Update</option>
+                  <option value="event">Event</option>
+                  <option value="alert">Alert</option>
+                </select>
+              </div>
+              <div class="admin-panel-body">
+                <div class="announce-list" id="announceList">
+                  <p class="text-center py-4 text-muted">Loading…</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/admin.js"></script>
+  <script>
+    const mockAnnouncements = [
+      {id:1, title:'Welcome to UnifyHub 2025!', category:'general', target:'all', content:'Namaskar! Hum aap sabka swagat karte hain UnifyHub ke is naye safar mein. 2025 mein hum 1 lakh members ka lakshya rakhte hain. Milke aage badhein!', publish_date:'2025-01-01', created_by:'Super Admin'},
+      {id:2, title:'New Business Added – Organic Farming', category:'update', target:'all', content:'Hum khush hain ki ab aapke ID se Organic Farming business bhi linked ho gaya hai. Ab aap 101 businesses tak pahinch sakte hain!', publish_date:'2025-01-15', created_by:'Super Admin'},
+      {id:3, title:'February Franchise Meeting – Jaipur', category:'event', target:'franchises', content:'Sabhi franchisees ko suchit kiya jaata hai ki 15 February 2025 ko Jaipur mein ek mahatvapurn baithak aayojit ki jayegi. Upasthiti anivary hai.', publish_date:'2025-02-01', created_by:'Super Admin'},
+      {id:4, title:'Payment Deadline – Installment Plan', category:'alert', target:'members', content:'Jo members installment plan par hain, unhe yaad dilaya jaata hai ki doosri kist ki antin tarikh 28 February 2025 hai. Samay par payment karein.', publish_date:'2025-02-10', created_by:'Super Admin'},
+    ];
+
+    let allAnnouncements = [...mockAnnouncements];
+
+    function catBadge(cat) {
+      return `<span class="cat-badge cat-${cat}">${cat.charAt(0).toUpperCase()+cat.slice(1)}</span>`;
+    }
+
+    function targetIcon(t) {
+      const icons = { all:'fa-users', members:'fa-user', franchises:'fa-store' };
+      return `<i class="fa-solid ${icons[t]||'fa-globe'} me-1"></i>${t.charAt(0).toUpperCase()+t.slice(1)}`;
+    }
+
+    function renderAnnouncements(data) {
+      const list = document.getElementById('announceList');
+      if (!data.length) { list.innerHTML = '<p class="text-center py-4 text-muted">No announcements found</p>'; return; }
+      list.innerHTML = data.map(a => `
+        <div class="announce-card" data-id="${a.id}" data-cat="${a.category}">
+          <div class="announce-card-head">
+            <div class="announce-title">${escHtml(a.title)}</div>
+            <div class="d-flex gap-2">
+              ${catBadge(a.category)}
+              <button class="btn btn-xs btn-danger" onclick="deleteAnnounce(${a.id})"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>
+          <div class="announce-meta">
+            <span><i class="fa-regular fa-calendar me-1"></i>${a.publish_date}</span>
+            <span>${targetIcon(a.target)}</span>
+            <span><i class="fa-solid fa-user-pen me-1"></i>${escHtml(a.created_by)}</span>
+          </div>
+          <p class="announce-body">${escHtml(a.content)}</p>
+        </div>`).join('');
+    }
+
+    function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    function loadAnnouncements() {
+      fetch('../backend/admin-api.php?action=list_announcements')
+        .then(r => r.json())
+        .then(res => {
+          allAnnouncements = res.status === 'success' ? res.data : [...mockAnnouncements];
+          renderAnnouncements(allAnnouncements);
+        })
+        .catch(() => { allAnnouncements = [...mockAnnouncements]; renderAnnouncements(allAnnouncements); });
+    }
+
+    document.getElementById('annFilter').addEventListener('change', function() {
+      const val = this.value;
+      renderAnnouncements(val ? allAnnouncements.filter(a => a.category === val) : allAnnouncements);
+    });
+
+    document.getElementById('announcementForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!this.checkValidity()) { this.classList.add('was-validated'); return; }
+      const fd = new FormData(this);
+      const data = { action: 'post_announcement', ...Object.fromEntries(fd.entries()) };
+      if (!data.publish_date) data.publish_date = new Date().toISOString().split('T')[0];
+      fetch('../backend/admin-api.php', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+      }).then(r => r.json())
+        .then(res => {
+          showAdminToast(res.message || 'Announcement posted!', res.status === 'success' ? 'success' : 'error');
+          if (res.status === 'success') { this.reset(); loadAnnouncements(); }
+        })
+        .catch(() => {
+          // Demo mode: prepend locally
+          allAnnouncements.unshift({ id: Date.now(), title: fd.get('title'), category: fd.get('category'),
+            target: fd.get('target'), content: fd.get('content'),
+            publish_date: data.publish_date, created_by: 'Super Admin' });
+          renderAnnouncements(allAnnouncements);
+          showAdminToast('Posted (demo mode)', 'info');
+          this.reset();
+        });
+    });
+
+    function deleteAnnounce(id) {
+      if (!confirm('Delete this announcement?')) return;
+      fetch('../backend/admin-api.php', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ action: 'delete_announcement', id })
+      }).then(() => loadAnnouncements())
+        .catch(() => {
+          allAnnouncements = allAnnouncements.filter(a => a.id !== id);
+          renderAnnouncements(allAnnouncements);
+          showAdminToast('Deleted (demo mode)', 'info');
+        });
+    }
+
+    // Character counter
+    document.querySelector('textarea[name="content"]').addEventListener('input', function() {
+      document.getElementById('charCount').textContent = `${this.value.length} / 1000`;
+    });
+
+    // Set today as default publish date
+    document.querySelector('input[name="publish_date"]').valueAsDate = new Date();
+
+    function closeSidebar() {
+      document.getElementById('adminSidebar').classList.remove('open');
+      document.getElementById('sidebarOverlay').classList.remove('show');
+    }
+    function adminLogout() { if (confirm('Logout?')) window.location.href = 'login.html'; }
+    loadAnnouncements();
+  </script>
+</body>
+</html>

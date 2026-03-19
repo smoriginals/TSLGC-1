@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Franchises – UnifyHub Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/admin.css" />
+</head>
+<body class="admin-body">
+  <div class="admin-wrapper">
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-brand"><span class="sb-logo">UNIFY<span>HUB</span></span><small>Admin Panel</small></div>
+      <div class="sidebar-user">
+        <div class="su-avatar"><i class="fa-solid fa-user-shield"></i></div>
+        <div><strong>Super Admin</strong><small>admin@unifyhub.in</small></div>
+      </div>
+      <nav class="sidebar-nav">
+        <p class="sidebar-label">Main</p>
+        <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a href="members.html" class="sidebar-link"><i class="fa-solid fa-users"></i> Members</a>
+        <a href="franchises.html" class="sidebar-link active"><i class="fa-solid fa-store"></i> Franchises</a>
+        <p class="sidebar-label">Finance</p>
+        <a href="payments.html" class="sidebar-link"><i class="fa-solid fa-indian-rupee-sign"></i> Payments</a>
+        <a href="reports.html" class="sidebar-link"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+        <p class="sidebar-label">Communication</p>
+        <a href="announcements.html" class="sidebar-link"><i class="fa-solid fa-bullhorn"></i> Announcements</a>
+        <p class="sidebar-label">System</p>
+        <a href="../index.html" class="sidebar-link" target="_blank"><i class="fa-solid fa-globe"></i> View Website</a>
+        <a href="#" class="sidebar-link logout-link" onclick="adminLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="topbar-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+          <nav aria-label="breadcrumb"><ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Franchises</li>
+          </ol></nav>
+        </div>
+        <div class="topbar-right">
+          <button class="topbar-btn" id="adminThemeToggle"><i class="fa-solid fa-moon"></i></button>
+        </div>
+      </header>
+      <div class="admin-content">
+        <div class="content-header">
+          <h2>Franchise Management</h2>
+          <p>Approve, manage and monitor all franchises</p>
+        </div>
+
+        <!-- Add Franchise Form -->
+        <div class="admin-panel mb-4">
+          <div class="admin-panel-header">
+            <h5><i class="fa-solid fa-plus me-2"></i>Add New Franchise</h5>
+            <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#addFranchiseForm">Toggle</button>
+          </div>
+          <div class="collapse" id="addFranchiseForm">
+            <div class="admin-panel-body">
+              <form id="newFranchiseForm" class="row g-3" novalidate>
+                <div class="col-md-4">
+                  <label class="form-label">Member ID</label>
+                  <input type="number" class="form-control" name="member_id" placeholder="Existing Member ID" required />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Franchise Area</label>
+                  <input type="text" class="form-control" name="area" placeholder="City / District" required />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Franchise Type</label>
+                  <select class="form-select" name="type" required>
+                    <option value="">Select</option>
+                    <option>District Franchise</option>
+                    <option>City Franchise</option>
+                    <option>State Franchise</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-sm btn-primary">Create Franchise</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Franchises Table -->
+        <div class="admin-panel">
+          <div class="admin-panel-header">
+            <h5><i class="fa-solid fa-store me-2"></i>All Franchises</h5>
+            <div class="d-flex gap-2">
+              <input type="text" class="form-control form-control-sm" data-table-search="franchisesTable" placeholder="Search..." style="width:200px" />
+              <select class="form-select form-select-sm" data-table-filter="franchisesTable" style="width:150px">
+                <option value="">All Status</option>
+                <option>active</option>
+                <option>pending</option>
+                <option>blocked</option>
+              </select>
+            </div>
+          </div>
+          <div class="admin-panel-body p-0">
+            <table class="admin-table" id="franchisesTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Franchise ID</th>
+                  <th>Owner Name</th>
+                  <th>Area</th>
+                  <th>Type</th>
+                  <th>Team Size</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="franchisesTableBody">
+                <tr><td colspan="8" class="text-center py-4">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/admin.js"></script>
+  <script>
+    function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    function loadFranchises() {
+      fetch('../backend/admin-api.php?action=list_franchises')
+        .then(r => r.json())
+        .then(res => {
+          const tbody = document.getElementById('franchisesTableBody');
+          if (res.status === 'success' && res.data.length) {
+            tbody.innerHTML = res.data.map((f,i) => `
+              <tr data-filter-val="${f.status}">
+                <td>${i+1}</td>
+                <td>FR-${f.id.toString().padStart(4,'0')}</td>
+                <td>${escHtml(f.owner_name)}</td>
+                <td>${escHtml(f.area)}</td>
+                <td>${escHtml(f.type)}</td>
+                <td>${f.team_size||0}</td>
+                <td><span class="badge-status ${f.status}">${f.status}</span></td>
+                <td>
+                  <button class="btn btn-xs btn-success me-1" onclick="updateFranchise(${f.id},'active')">Activate</button>
+                  <button class="btn btn-xs btn-danger" onclick="updateFranchise(${f.id},'blocked')">Block</button>
+                </td>
+              </tr>`).join('');
+          } else {
+            tbody.innerHTML = mockFranchiseRows();
+          }
+        })
+        .catch(() => { document.getElementById('franchisesTableBody').innerHTML = mockFranchiseRows(); });
+    }
+
+    function mockFranchiseRows() {
+      const data = [
+        ['1','Ravi Kumar','Delhi NCR','District Franchise','245','active'],
+        ['2','Priya Sharma','Mumbai West','City Franchise','112','active'],
+        ['3','Ajay Gupta','Jaipur','District Franchise','87','pending'],
+        ['4','Seema Mishra','Patna Central','City Franchise','56','active'],
+      ];
+      return data.map((f,i) => `
+        <tr data-filter-val="${f[5]}">
+          <td>${i+1}</td>
+          <td>FR-000${f[0]}</td>
+          <td>${f[1]}</td><td>${f[2]}</td><td>${f[3]}</td><td>${f[4]}</td>
+          <td><span class="badge-status ${f[5]}">${f[5]}</span></td>
+          <td>
+            <button class="btn btn-xs btn-success me-1" onclick="updateFranchise(${f[0]},'active')">Activate</button>
+            <button class="btn btn-xs btn-danger" onclick="updateFranchise(${f[0]},'blocked')">Block</button>
+          </td>
+        </tr>`).join('');
+    }
+
+    function updateFranchise(id, status) {
+      fetch('../backend/admin-api.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ action: 'update_franchise_status', id, status })
+      }).then(() => loadFranchises()).catch(() => showAdminToast('Updated (demo mode)', 'info'));
+    }
+
+    document.getElementById('newFranchiseForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fd = new FormData(this);
+      const data = Object.fromEntries(fd.entries());
+      fetch('../backend/admin-api.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ action: 'create_franchise', ...data })
+      }).then(r => r.json()).then(res => {
+        showAdminToast(res.message || 'Franchise created!', res.status === 'success' ? 'success' : 'error');
+        if (res.status === 'success') { this.reset(); loadFranchises(); }
+      }).catch(() => showAdminToast('Error creating franchise', 'error'));
+    });
+
+    function adminLogout() { if (confirm('Logout?')) window.location.href = 'login.html'; }
+    loadFranchises();
+  </script>
+</body>
+</html>

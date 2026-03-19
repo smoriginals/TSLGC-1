@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports – UnifyHub Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <style>
+    .report-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.25rem; margin-bottom:1.5rem; }
+    .report-summary-card { background:var(--admin-card-bg); border:1px solid var(--admin-border); border-radius:12px; padding:1.25rem; text-align:center; }
+    .rsc-value { font-size:1.9rem; font-weight:800; color:var(--admin-accent); display:block; }
+    .rsc-label { font-size:.82rem; color:var(--admin-text-muted); margin-top:.2rem; }
+    .rsc-change { font-size:.78rem; margin-top:.35rem; }
+    .rsc-up { color:#16a34a; } .rsc-down { color:#dc2626; }
+    .dl-btn { display:flex; align-items:center; gap:.75rem; background:var(--admin-card-bg); border:1px solid var(--admin-border); border-radius:10px; padding:.9rem 1.2rem; cursor:pointer; transition:all .2s; text-decoration:none; color:var(--admin-text); font-weight:600; font-size:.9rem; }
+    .dl-btn:hover { border-color:var(--admin-accent); color:var(--admin-accent); }
+    .dl-btn i.fa-arrow-down { color:var(--admin-accent); }
+  </style>
+</head>
+<body class="admin-body">
+  <div class="admin-wrapper">
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-brand"><span class="sb-logo">UNIFY<span>HUB</span></span><small>Admin Panel</small></div>
+      <div class="sidebar-user">
+        <div class="su-avatar"><i class="fa-solid fa-user-shield"></i></div>
+        <div><strong>Super Admin</strong><small>admin@unifyhub.in</small></div>
+      </div>
+      <nav class="sidebar-nav">
+        <p class="sidebar-label">Main</p>
+        <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a href="members.html" class="sidebar-link"><i class="fa-solid fa-users"></i> Members</a>
+        <a href="franchises.html" class="sidebar-link"><i class="fa-solid fa-store"></i> Franchises</a>
+        <p class="sidebar-label">Finance</p>
+        <a href="payments.html" class="sidebar-link"><i class="fa-solid fa-indian-rupee-sign"></i> Payments</a>
+        <a href="reports.html" class="sidebar-link active"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+        <p class="sidebar-label">Communication</p>
+        <a href="announcements.html" class="sidebar-link"><i class="fa-solid fa-bullhorn"></i> Announcements</a>
+        <p class="sidebar-label">System</p>
+        <a href="../index.html" class="sidebar-link" target="_blank"><i class="fa-solid fa-globe"></i> View Website</a>
+        <a href="#" class="sidebar-link logout-link" onclick="adminLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="topbar-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+          <nav aria-label="breadcrumb"><ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Reports</li>
+          </ol></nav>
+        </div>
+        <div class="topbar-right">
+          <select class="form-select form-select-sm me-2" id="reportPeriod" style="width:140px">
+            <option value="7">Last 7 Days</option>
+            <option value="30" selected>Last 30 Days</option>
+            <option value="90">Last 3 Months</option>
+            <option value="365">This Year</option>
+          </select>
+          <button class="topbar-btn" id="adminThemeToggle"><i class="fa-solid fa-moon"></i></button>
+        </div>
+      </header>
+      <div class="admin-content">
+        <div class="content-header">
+          <h2>Reports & Analytics</h2>
+          <p>Business performance overview and downloadable reports</p>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="report-grid">
+          <div class="report-summary-card">
+            <span class="rsc-value" id="rscRevenue">₹4,99,900</span>
+            <div class="rsc-label">Total Revenue</div>
+            <div class="rsc-change rsc-up"><i class="fa-solid fa-arrow-trend-up"></i> +18% vs last period</div>
+          </div>
+          <div class="report-summary-card">
+            <span class="rsc-value" id="rscMembers">1,002</span>
+            <div class="rsc-label">Total Members</div>
+            <div class="rsc-change rsc-up"><i class="fa-solid fa-arrow-trend-up"></i> +245 this month</div>
+          </div>
+          <div class="report-summary-card">
+            <span class="rsc-value" id="rscFranchises">47</span>
+            <div class="rsc-label">Active Franchises</div>
+            <div class="rsc-change rsc-up"><i class="fa-solid fa-arrow-trend-up"></i> +8 this month</div>
+          </div>
+          <div class="report-summary-card">
+            <span class="rsc-value" id="rscAvgIncome">₹9,520</span>
+            <div class="rsc-label">Avg Member Income</div>
+            <div class="rsc-change rsc-down"><i class="fa-solid fa-arrow-trend-down"></i> -2% vs last period</div>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+          <!-- Revenue Chart -->
+          <div class="col-lg-8">
+            <div class="admin-panel h-100">
+              <div class="admin-panel-header">
+                <h5><i class="fa-solid fa-chart-area me-2"></i>Revenue Trend</h5>
+              </div>
+              <div class="admin-panel-body">
+                <div class="chart-wrapper" style="height:280px"><canvas id="revenueChart"></canvas></div>
+              </div>
+            </div>
+          </div>
+          <!-- Members by State -->
+          <div class="col-lg-4">
+            <div class="admin-panel h-100">
+              <div class="admin-panel-header"><h5><i class="fa-solid fa-map me-2"></i>Top States</h5></div>
+              <div class="admin-panel-body">
+                <div class="chart-wrapper" style="height:280px"><canvas id="stateChart"></canvas></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan Distribution + Monthly Reg -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-5">
+            <div class="admin-panel h-100">
+              <div class="admin-panel-header"><h5><i class="fa-solid fa-circle-half-stroke me-2"></i>Plan Distribution</h5></div>
+              <div class="admin-panel-body">
+                <div class="chart-wrapper" style="height:240px"><canvas id="planChart"></canvas></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="admin-panel h-100">
+              <div class="admin-panel-header"><h5><i class="fa-solid fa-users me-2"></i>Monthly Registrations</h5></div>
+              <div class="admin-panel-body">
+                <div class="chart-wrapper" style="height:240px"><canvas id="monthlyRegChart"></canvas></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Downloads -->
+        <div class="admin-panel">
+          <div class="admin-panel-header"><h5><i class="fa-solid fa-download me-2"></i>Download Reports</h5></div>
+          <div class="admin-panel-body">
+            <div class="row g-3">
+              <div class="col-sm-6 col-lg-3">
+                <a href="#" class="dl-btn" onclick="downloadReport('members')">
+                  <i class="fa-solid fa-users fa-lg"></i>
+                  <div><div>Members Report</div><small class="fw-normal text-muted">All members data (CSV)</small></div>
+                  <i class="fa-solid fa-arrow-down ms-auto"></i>
+                </a>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <a href="#" class="dl-btn" onclick="downloadReport('payments')">
+                  <i class="fa-solid fa-receipt fa-lg"></i>
+                  <div><div>Payment Report</div><small class="fw-normal text-muted">All transactions (CSV)</small></div>
+                  <i class="fa-solid fa-arrow-down ms-auto"></i>
+                </a>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <a href="#" class="dl-btn" onclick="downloadReport('revenue')">
+                  <i class="fa-solid fa-chart-line fa-lg"></i>
+                  <div><div>Revenue Report</div><small class="fw-normal text-muted">Monthly breakdown (CSV)</small></div>
+                  <i class="fa-solid fa-arrow-down ms-auto"></i>
+                </a>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <a href="#" class="dl-btn" onclick="downloadReport('franchises')">
+                  <i class="fa-solid fa-store fa-lg"></i>
+                  <div><div>Franchise Report</div><small class="fw-normal text-muted">Franchise performance (CSV)</small></div>
+                  <i class="fa-solid fa-arrow-down ms-auto"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/admin.js"></script>
+  <script>
+    const COLORS = ['#8B31D4','#FFBB00','#00D4AA','#e85d04','#3a86ff','#f72585'];
+
+    function buildCharts() {
+      // Revenue Chart
+      const rCtx = document.getElementById('revenueChart').getContext('2d');
+      new Chart(rCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Aug','Sep','Oct','Nov','Dec','Jan','Feb'],
+          datasets: [
+            { label: 'Full Payment', data: [45000,62000,89000,112000,130000,158000,175000], backgroundColor: 'rgba(139,49,212,.8)', borderRadius: 6 },
+            { label: 'Installments', data: [12000,18000,24000,32000,41000,55000,62000], backgroundColor: 'rgba(255,187,0,.8)', borderRadius: 6 }
+          ]
+        },
+        options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom' } }, scales:{ x:{grid:{display:false}}, y:{ticks:{callback:v=>'₹'+v.toLocaleString('en-IN')}} } }
+      });
+
+      // State Doughnut
+      const sCtx = document.getElementById('stateChart').getContext('2d');
+      new Chart(sCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['UP','Delhi','Rajasthan','Bihar','Maharashtra','Others'],
+          datasets: [{ data: [248,187,142,119,98,208], backgroundColor: COLORS, borderWidth: 0 }]
+        },
+        options: { responsive:true, maintainAspectRatio:false, cutout:'65%', plugins:{ legend:{ position:'bottom', labels:{boxWidth:12} } } }
+      });
+
+      // Plan Distribution
+      const pCtx = document.getElementById('planChart').getContext('2d');
+      new Chart(pCtx, {
+        type: 'pie',
+        data: {
+          labels: ['Full Payment (₹4,999)','Installment Plan (2×₹2,500)'],
+          datasets: [{ data: [634,368], backgroundColor: [COLORS[0], COLORS[1]], borderWidth: 0 }]
+        },
+        options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{boxWidth:12} } } }
+      });
+
+      // Monthly Registrations
+      const mCtx = document.getElementById('monthlyRegChart').getContext('2d');
+      new Chart(mCtx, {
+        type: 'line',
+        data: {
+          labels: ['Aug','Sep','Oct','Nov','Dec','Jan','Feb'],
+          datasets: [{ label: 'New Members', data: [48,72,95,128,162,210,245], borderColor: COLORS[2], backgroundColor: 'rgba(0,212,170,.1)', fill: true, tension: 0.4, pointBackgroundColor: COLORS[2] }]
+        },
+        options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom' } }, scales:{ x:{grid:{display:false}} } }
+      });
+    }
+
+    function closeSidebar() {
+      document.getElementById('adminSidebar').classList.remove('open');
+      document.getElementById('sidebarOverlay').classList.remove('show');
+    }
+    function adminLogout() { if (confirm('Logout?')) window.location.href = 'login.html'; }
+
+    buildCharts();
+  </script>
+</body>
+</html>

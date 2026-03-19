@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ – UnifyHub Alliance Market | आपके सवाल, हमारे जवाब</title>
+  <meta name="description" content="UnifyHub FAQ – UnifyHub के बारे में सभी सवालों के पारदर्शी जवाब।" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;900&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="animations.css" />
+  <link rel="stylesheet" href="assets/css/shared.css" />
+</head>
+<body class="light-mode">
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-logo">UNIFY<span class="brand-accent">HUB</span></span>
+        <small class="brand-tagline d-block">Alliance Market</small>
+      </a>
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <button class="btn btn-sm theme-toggle" id="themeToggle" title="Toggle Theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="toggler-icon"><i class="fa-solid fa-bars"></i></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="businesses.html">Businesses</a></li>
+          <li class="nav-item"><a class="nav-link" href="income.html">Income</a></li>
+          <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav-cta" href="join.html">Join Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-orb o1"></div>
+    <div class="page-hero-orb o2"></div>
+    <div class="container" style="position:relative;z-index:2">
+      <span class="section-eyebrow" data-aos="fade-down">Transparent Answers</span>
+      <h1 class="page-hero-title" data-aos="fade-up">आपके सवाल, हमारे पारदर्शी जवाब</h1>
+      <p class="page-hero-subtitle" data-aos="fade-up" data-aos-delay="100">शंका मिटाएं, विश्वास जगाएं</p>
+      <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+        <ol class="breadcrumb justify-content-center">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">FAQ</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="section-faq" id="faq">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <div class="faq-accordion" data-aos="fade-up" data-aos-delay="100">
+
+            <!-- General Questions -->
+            <h4 class="faq-group-heading" data-aos="fade-up">General Questions</h4>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>क्या UnifyHub 100% Legal है?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>हाँ, UnifyHub Service Pvt Ltd भारत सरकार के नियमों के पूर्णतः अनुरूप है। हम Direct Selling Guidelines 2021 का पालन करते हैं और पूरी तरह पारदर्शी हैं।</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>UnifyHub और साधारण MLM में क्या फर्क है?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>साधारण MLM में आप एक company पर निर्भर रहते हैं। UnifyHub में 101 companies का Alliance है — एक बंद हो, बाकी 100 चालू रहती हैं। यही सबसे बड़ा फर्क है।</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>मुझे कितनी मेहनत करनी होगी?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>शुरुआत में team बनाने के लिए मेहनत करनी होती है। एक बार teamएक अच्छी team बन जाए, System खुद काम करता है। Passive income का यही मतलब है।</p>
+              </div>
+            </div>
+
+            <!-- Income Questions -->
+            <h4 class="faq-group-heading" data-aos="fade-up">Income & Business</h4>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>1 ID से 101 Business कैसे काम करता है?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>आपकी एक UnifyHub ID से आप 101 partner companies में automatically enroll होते हैं। जब आपकी team किसी भी company के product/service का उपयोग करती है, आपको commission मिलता है।</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>Income कब और कैसे मिलती है?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Income weekly/monthly basis पर your bank account में transfer होती है। System automated है — आपकी team की हर activity automatically track होती है। Real-time dashboard पर देख सकते हैं।</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>200 लोगों की टीम से कितनी Income होगी?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>200 लोगों की team और 15 active companies के साथ: 200 × ₹50 × 15 = ₹1,50,000/month। यह हमारा Magic of 200 Formula है। Income depends on your effort and team activity।</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>अगर कोई company बंद हो जाए तो?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>यही Alliance का जादू है! अगर 1 company बंद भी हो जाए, आपके पास 100 और companies हैं। आपकी income कभी नहीं रुकती। एकcomp company = total income lose नहीं होती।</p>
+              </div>
+            </div>
+
+            <!-- Pricing Questions -->
+            <h4 class="faq-group-heading" data-aos="fade-up">Pricing & Payment</h4>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>क्या ₹4,999 में सब कुछ मिलता है?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>हाँ! ₹4,999 में आपको Digital Marketing Education (₹10,000), 101 Companies Access (₹1,20,000), VIP Training (₹10,000), और Complete Support System (₹10,000) — कुल ₹1,50,000+ का package मिलता है।</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>क्या Installment option है?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>हाँ! आप ₹4,999 को 2 installments में pay कर सकते हैं: ₹2,500 + ₹2,500। यह आपके लिए और भी आसान बनाता है।</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>Payment कैसे करें?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>UPI, Net Banking, Debit Card, Credit Card सभी accepted हैं। Secure payment gateway के through payment होती है।</p>
+              </div>
+            </div>
+
+            <!-- Technical Questions -->
+            <h4 class="faq-group-heading" data-aos="fade-up">Technical & Support</h4>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>Franchise कैसे लें?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Join करने के बाद, जब आपकी team एक certain size तक पहुंचती है, आपको Franchise Portal का access मिलता है। अपने area का franchise लेकर और ज्यादा कमाई कर सकते हैं।</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>क्या training और support मिलेगा?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>हाँ! Join करने के बाद आपको complete training kit, live sessions, recorded modules, और dedicated mentor मिलता है। 24/7 support helpdesk भी available है।</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFAQ(this)">
+                <span>क्या मोबाइल से काम कर सकते हैं?</span>
+                <i class="fa-solid fa-chevron-down faq-icon"></i>
+              </button>
+              <div class="faq-answer">
+                <p>बिल्कुल! UnifyHub का dashboard और tracking system completely mobile-friendly है। आप कहीं से भी, किसी भी device से अपना business manage कर सकते हैं।</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CTA after FAQ -->
+          <div class="text-center mt-5" data-aos="fade-up">
+            <p class="mb-3" style="font-size:1.1rem;">अभी भी सवाल है? हमसे directly बात करें!</p>
+            <a href="contact.html" class="btn btn-outline-primary me-3"><i class="fa-solid fa-headset me-2"></i>Contact करें</a>
+            <a href="join.html" class="btn btn-primary-hero pulse-btn"><i class="fa-solid fa-rocket me-2"></i>Join Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--primary)"/>
+      </svg>
+    </div>
+    <div class="container">
+      <div class="row g-5 pt-5">
+        <div class="col-lg-4">
+          <div class="footer-brand">
+            <span class="brand-logo">UNIFY<span class="brand-accent">HUB</span></span>
+            <p class="footer-tagline">Service Pvt Ltd</p>
+            <p class="footer-motto"><i class="fa-solid fa-infinity me-2"></i>कभी न रुकने वाली इनकम</p>
+            <p class="footer-desc">भारत का सबसे बड़ा Alliance Market — 1 ID, 101 Businesses, अनंत संभावनाएं।</p>
+          </div>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="businesses.html">Businesses</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h5 class="footer-heading">Platform</h5>
+          <ul class="footer-links">
+            <li><a href="income.html">Alliance Market</a></li>
+            <li><a href="income.html">Rewards</a></li>
+            <li><a href="join.html">Join Now</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h5 class="footer-heading">Connect With Us</h5>
+          <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+          <div class="footer-contact mt-3">
+            <p><i class="fa-solid fa-envelope me-2"></i>info@unifyhub.in</p>
+            <p><i class="fa-solid fa-phone me-2"></i>+91 XXXXX XXXXX</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 UnifyHub Service Pvt Ltd. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" title="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="assets/js/shared.js"></script>
+</body>
+</html>

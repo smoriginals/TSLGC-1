@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile – UnifyHub Franchise</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/franchise.css" />
+</head>
+<body class="fr-body">
+  <div class="fr-wrapper">
+    <aside class="fr-sidebar" id="frSidebar">
+      <div class="fr-sidebar-brand">
+        <span class="fr-sb-logo">UH</span>
+        <div><strong>UnifyHub</strong><small>Franchise Portal</small></div>
+      </div>
+      <div class="fr-sidebar-user">
+        <div class="fr-su-avatar"><i class="fa-solid fa-store"></i></div>
+        <div><strong id="sidebarName">Franchise Partner</strong><small id="sidebarFrId">FR-0000</small></div>
+      </div>
+      <nav class="fr-sidebar-nav">
+        <p class="fr-sidebar-label">Menu</p>
+        <a href="dashboard.html" class="fr-sidebar-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a href="my-team.html" class="fr-sidebar-link"><i class="fa-solid fa-sitemap"></i> My Team</a>
+        <a href="my-income.html" class="fr-sidebar-link"><i class="fa-solid fa-indian-rupee-sign"></i> My Income</a>
+        <a href="my-leads.html" class="fr-sidebar-link"><i class="fa-solid fa-user-plus"></i> My Leads</a>
+        <a href="profile.html" class="fr-sidebar-link active"><i class="fa-solid fa-circle-user"></i> Profile</a>
+        <p class="fr-sidebar-label">System</p>
+        <a href="../index.html" class="fr-sidebar-link" target="_blank"><i class="fa-solid fa-globe"></i> Website</a>
+        <a href="#" class="fr-sidebar-link fr-logout" onclick="frLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </nav>
+    </aside>
+    <div class="fr-sidebar-overlay" id="frSidebarOverlay" onclick="closeFrSidebar()"></div>
+    <main class="fr-main">
+      <header class="fr-topbar">
+        <div class="fr-tb-left">
+          <button class="fr-tb-toggle" id="frSidebarToggle"><i class="fa-solid fa-bars"></i></button>
+          <span class="fr-tb-title">My Profile</span>
+        </div>
+        <div class="fr-tb-right">
+          <button class="fr-tb-btn" id="frThemeToggle"><i class="fa-solid fa-moon"></i></button>
+        </div>
+      </header>
+      <div class="fr-content">
+        <!-- Profile Avatar Section -->
+        <div class="fr-panel mb-4">
+          <div class="fr-panel-body">
+            <div class="profile-avatar-section text-center py-3">
+              <div class="profile-avatar-lg" id="profileAvatarDisplay">
+                <i class="fa-solid fa-user fa-3x"></i>
+              </div>
+              <h4 id="profileNameDisplay" class="mt-3 mb-1">Ravi Kumar</h4>
+              <p class="text-muted mb-2" id="profileIdDisplay">FR-0024</p>
+              <div class="fr-rank-badge fr-rank-gold mx-auto" id="profileRank"><i class="fa-solid fa-star me-1"></i>Gold Partner</div>
+              <div class="d-flex justify-content-center gap-4 mt-3">
+                <div class="text-center"><strong id="pdTeam">124</strong><div class="text-muted" style="font-size:.8rem">Team</div></div>
+                <div class="text-center"><strong id="pdEarnings">₹94,820</strong><div class="text-muted" style="font-size:.8rem">Earned</div></div>
+                <div class="text-center"><strong id="pdLeads">18</strong><div class="text-muted" style="font-size:.8rem">Leads</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Personal Info Form -->
+          <div class="col-lg-6">
+            <div class="fr-panel h-100">
+              <div class="fr-panel-header"><h5><i class="fa-solid fa-user-pen me-2"></i>Personal Information</h5></div>
+              <div class="fr-panel-body">
+                <form id="profileForm" novalidate class="d-flex flex-column gap-3">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Full Name</label>
+                      <input type="text" class="form-control" name="full_name" value="Ravi Kumar" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Mobile</label>
+                      <input type="tel" class="form-control" name="mobile" value="9876543210" disabled />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Email</label>
+                      <input type="email" class="form-control" name="email" value="ravi@example.com" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Date of Birth</label>
+                      <input type="date" class="form-control" name="dob" value="1990-05-15" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">City</label>
+                      <input type="text" class="form-control" name="city" value="Jaipur" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">State</label>
+                      <input type="text" class="form-control" name="state" value="Rajasthan" />
+                    </div>
+                  </div>
+                  <button type="submit" class="btn-fr btn-fr-primary"><i class="fa-solid fa-floppy-disk me-2"></i>Save Changes</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bank Details + Password -->
+          <div class="col-lg-6">
+            <!-- Bank Details -->
+            <div class="fr-panel mb-4">
+              <div class="fr-panel-header"><h5><i class="fa-solid fa-building-columns me-2"></i>Bank / UPI Details</h5></div>
+              <div class="fr-panel-body">
+                <form id="bankForm" novalidate class="d-flex flex-column gap-3">
+                  <div>
+                    <label class="form-label">Bank Account Number</label>
+                    <input type="text" class="form-control" name="account_no" placeholder="Account number" pattern="\d{9,18}" />
+                  </div>
+                  <div>
+                    <label class="form-label">IFSC Code</label>
+                    <input type="text" class="form-control" name="ifsc" placeholder="e.g. SBIN0001234" pattern="[A-Z]{4}0[A-Z0-9]{6}" style="text-transform:uppercase" />
+                  </div>
+                  <div>
+                    <label class="form-label">Account Holder Name</label>
+                    <input type="text" class="form-control" name="account_name" placeholder="As per bank records" />
+                  </div>
+                  <div>
+                    <label class="form-label">UPI ID</label>
+                    <input type="text" class="form-control" name="upi_id" placeholder="yourname@upi" />
+                  </div>
+                  <button type="submit" class="btn-fr btn-fr-outline"><i class="fa-solid fa-floppy-disk me-2"></i>Save Bank Details</button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Change Password -->
+            <div class="fr-panel">
+              <div class="fr-panel-header"><h5><i class="fa-solid fa-lock me-2"></i>Change Password</h5></div>
+              <div class="fr-panel-body">
+                <form id="passwordForm" novalidate class="d-flex flex-column gap-3">
+                  <div>
+                    <label class="form-label">Current Password</label>
+                    <input type="password" class="form-control" name="current_password" required />
+                  </div>
+                  <div>
+                    <label class="form-label">New Password</label>
+                    <input type="password" class="form-control" name="new_password" id="newPass" required minlength="8" />
+                    <div class="form-text">Minimum 8 characters</div>
+                  </div>
+                  <div>
+                    <label class="form-label">Confirm New Password</label>
+                    <input type="password" class="form-control" name="confirm_password" id="confirmPass" required />
+                    <div class="invalid-feedback">Passwords do not match</div>
+                  </div>
+                  <button type="submit" class="btn-fr btn-fr-purple"><i class="fa-solid fa-shield-halved me-2"></i>Update Password</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/franchise.js"></script>
+  <script>
+    function postForm(url, data, successMsg) {
+      return fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) })
+        .then(r => r.json())
+        .then(res => {
+          showFrToast(res.message || successMsg, res.status === 'success' ? 'success' : 'error');
+          return res;
+        });
+    }
+
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!this.checkValidity()) { this.classList.add('was-validated'); return; }
+      const fd = new FormData(this);
+      postForm('../backend/franchise-api.php', { action:'update_profile', ...Object.fromEntries(fd.entries()) }, 'Profile updated!')
+        .catch(() => showFrToast('Saved (demo mode)', 'info'));
+    });
+
+    document.getElementById('bankForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!this.checkValidity()) { this.classList.add('was-validated'); return; }
+      const fd = new FormData(this);
+      postForm('../backend/franchise-api.php', { action:'update_bank', ...Object.fromEntries(fd.entries()) }, 'Bank details saved!')
+        .catch(() => showFrToast('Saved (demo mode)', 'info'));
+    });
+
+    document.getElementById('passwordForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const np = document.getElementById('newPass').value;
+      const cp = document.getElementById('confirmPass');
+      if (np !== cp.value) { cp.classList.add('is-invalid'); return; }
+      cp.classList.remove('is-invalid');
+      if (!this.checkValidity()) { this.classList.add('was-validated'); return; }
+      const fd = new FormData(this);
+      postForm('../backend/franchise-api.php', { action:'change_password', ...Object.fromEntries(fd.entries()) }, 'Password updated!')
+        .then(res => { if (res.status === 'success') this.reset(); })
+        .catch(() => showFrToast('Updated (demo mode)', 'info'));
+    });
+
+    function closeFrSidebar() {
+      document.getElementById('frSidebar').classList.remove('open');
+      document.getElementById('frSidebarOverlay').classList.remove('show');
+    }
+    function frLogout() { if (confirm('Logout?')) window.location.href = 'login.html'; }
+  </script>
+</body>
+</html>

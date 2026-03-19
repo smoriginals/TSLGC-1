@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Leads – UnifyHub Franchise</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/franchise.css" />
+</head>
+<body class="fr-body">
+  <div class="fr-wrapper">
+    <aside class="fr-sidebar" id="frSidebar">
+      <div class="fr-sidebar-brand">
+        <span class="fr-sb-logo">UH</span>
+        <div><strong>UnifyHub</strong><small>Franchise Portal</small></div>
+      </div>
+      <div class="fr-sidebar-user">
+        <div class="fr-su-avatar"><i class="fa-solid fa-store"></i></div>
+        <div><strong>Franchise Partner</strong><small>FR-0000</small></div>
+      </div>
+      <nav class="fr-sidebar-nav">
+        <p class="fr-sidebar-label">Menu</p>
+        <a href="dashboard.html" class="fr-sidebar-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a href="my-team.html" class="fr-sidebar-link"><i class="fa-solid fa-sitemap"></i> My Team</a>
+        <a href="my-income.html" class="fr-sidebar-link"><i class="fa-solid fa-indian-rupee-sign"></i> My Income</a>
+        <a href="my-leads.html" class="fr-sidebar-link active"><i class="fa-solid fa-user-plus"></i> My Leads</a>
+        <a href="profile.html" class="fr-sidebar-link"><i class="fa-solid fa-circle-user"></i> Profile</a>
+        <p class="fr-sidebar-label">System</p>
+        <a href="../index.html" class="fr-sidebar-link" target="_blank"><i class="fa-solid fa-globe"></i> Website</a>
+        <a href="#" class="fr-sidebar-link fr-logout" onclick="frLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </nav>
+    </aside>
+    <div class="fr-sidebar-overlay" id="frSidebarOverlay" onclick="closeFrSidebar()"></div>
+    <main class="fr-main">
+      <header class="fr-topbar">
+        <div class="fr-tb-left">
+          <button class="fr-tb-toggle" id="frSidebarToggle"><i class="fa-solid fa-bars"></i></button>
+          <span class="fr-tb-title">My Leads</span>
+        </div>
+        <div class="fr-tb-right">
+          <button class="fr-tb-btn" id="frThemeToggle"><i class="fa-solid fa-moon"></i></button>
+        </div>
+      </header>
+      <div class="fr-content">
+        <div class="row g-4">
+          <!-- Add Lead Form -->
+          <div class="col-lg-4">
+            <div class="fr-panel lead-form-card sticky-top" style="top:80px">
+              <div class="fr-panel-header"><h5><i class="fa-solid fa-user-plus me-2"></i>Add New Lead</h5></div>
+              <div class="fr-panel-body">
+                <form id="addLeadForm" novalidate class="d-flex flex-column gap-3">
+                  <div>
+                    <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="leadName" placeholder="Prospect's name" required minlength="3" />
+                  </div>
+                  <div>
+                    <label class="form-label">Mobile Number <span class="text-danger">*</span></label>
+                    <input type="tel" class="form-control" name="leadPhone" placeholder="10-digit mobile" required pattern="[6-9]\d{9}" maxlength="10" />
+                    <div class="invalid-feedback">Valid 10-digit Indian mobile required</div>
+                  </div>
+                  <div>
+                    <label class="form-label">City</label>
+                    <input type="text" class="form-control" name="leadCity" placeholder="City" />
+                  </div>
+                  <div>
+                    <label class="form-label">Notes</label>
+                    <textarea class="form-control" name="leadNotes" rows="3" placeholder="Optional notes about this lead…" maxlength="300"></textarea>
+                  </div>
+                  <button type="submit" class="btn-fr btn-fr-primary w-100"><i class="fa-solid fa-plus me-2"></i>Add Lead</button>
+                  <div id="leadFormMsg" style="display:none" class="alert alert-sm mb-0"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Leads Table -->
+          <div class="col-lg-8">
+            <!-- Lead Stats -->
+            <div class="row g-3 mb-4">
+              <div class="col-6 col-md-3">
+                <div class="fr-stat-card"><div class="fr-sc-icon fr-sc-blue"><i class="fa-solid fa-circle-plus"></i></div><div class="fr-sc-info"><span class="fr-sc-value" id="lNew">0</span><span class="fr-sc-label">New</span></div></div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="fr-stat-card"><div class="fr-sc-icon fr-sc-gold"><i class="fa-solid fa-phone"></i></div><div class="fr-sc-info"><span class="fr-sc-value" id="lContacted">0</span><span class="fr-sc-label">Contacted</span></div></div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="fr-stat-card"><div class="fr-sc-icon fr-sc-teal"><i class="fa-solid fa-check-circle"></i></div><div class="fr-sc-info"><span class="fr-sc-value" id="lConverted">0</span><span class="fr-sc-label">Converted</span></div></div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="fr-stat-card"><div class="fr-sc-icon fr-sc-danger"><i class="fa-solid fa-times-circle"></i></div><div class="fr-sc-info"><span class="fr-sc-value" id="lLost">0</span><span class="fr-sc-label">Lost</span></div></div>
+              </div>
+            </div>
+
+            <div class="fr-panel">
+              <div class="fr-panel-header">
+                <h5><i class="fa-solid fa-list me-2"></i>All Leads</h5>
+                <select class="form-select form-select-sm" id="leadStatusFilter" style="width:140px">
+                  <option value="">All Status</option>
+                  <option>new</option>
+                  <option>contacted</option>
+                  <option>converted</option>
+                  <option>lost</option>
+                </select>
+              </div>
+              <div class="fr-panel-body p-0">
+                <table class="fr-table w-100">
+                  <thead>
+                    <tr><th>#</th><th>Name</th><th>Mobile</th><th>City</th><th>Status</th><th>Added On</th><th>Action</th></tr>
+                  </thead>
+                  <tbody id="leadsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/franchise.js"></script>
+  <script>
+    let leads = [
+      {id:1, name:'Kiran Pal', phone:'9876501234', city:'Jaipur', status:'new', added:'2025-02-10'},
+      {id:2, name:'Amit Joshi', phone:'9765401234', city:'Jodhpur', status:'contacted', added:'2025-02-08'},
+      {id:3, name:'Sunita Devi', phone:'9654301234', city:'Ajmer', status:'converted', added:'2025-02-05'},
+      {id:4, name:'Rahul Vyas', phone:'9543201234', city:'Bikaner', status:'lost', added:'2025-02-03'},
+      {id:5, name:'Anita Sharma', phone:'9432101234', city:'Kota', status:'new', added:'2025-02-12'},
+    ];
+
+    function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    const statusColors = { new:'fr-lead-new', contacted:'fr-lead-contacted', converted:'fr-lead-converted', lost:'fr-lead-lost' };
+
+    function renderLeads(data) {
+      const tbody = document.getElementById('leadsTableBody');
+      if (!data.length) { tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3 text-muted">No leads found</td></tr>'; return; }
+      tbody.innerHTML = data.map((l,i) => `
+        <tr>
+          <td>${i+1}</td>
+          <td>${escHtml(l.name)}</td>
+          <td>${escHtml(l.phone)}</td>
+          <td>${escHtml(l.city)}</td>
+          <td><span class="fr-lead-badge ${statusColors[l.status]||''}">${l.status}</span></td>
+          <td>${l.added}</td>
+          <td>
+            <select class="form-select form-select-sm" style="width:130px" onchange="updateLeadStatus(${l.id}, this.value)">
+              <option value="">Change…</option>
+              <option ${l.status==='new'?'selected':''}>new</option>
+              <option ${l.status==='contacted'?'selected':''}>contacted</option>
+              <option ${l.status==='converted'?'selected':''}>converted</option>
+              <option ${l.status==='lost'?'selected':''}>lost</option>
+            </select>
+          </td>
+        </tr>`).join('');
+
+      document.getElementById('lNew').textContent = data.filter(l=>l.status==='new').length;
+      document.getElementById('lContacted').textContent = data.filter(l=>l.status==='contacted').length;
+      document.getElementById('lConverted').textContent = data.filter(l=>l.status==='converted').length;
+      document.getElementById('lLost').textContent = data.filter(l=>l.status==='lost').length;
+    }
+
+    function updateLeadStatus(id, status) {
+      if (!status) return;
+      const lead = leads.find(l => l.id === id);
+      if (lead) { lead.status = status; renderLeads(leads); }
+      fetch('../backend/franchise-api.php', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ action: 'update_lead_status', id, status })
+      }).catch(() => {});
+    }
+
+    document.getElementById('leadStatusFilter').addEventListener('change', function() {
+      const val = this.value;
+      renderLeads(val ? leads.filter(l => l.status === val) : leads);
+    });
+
+    document.getElementById('addLeadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!this.checkValidity()) { this.classList.add('was-validated'); return; }
+      const fd = new FormData(this);
+      const data = { action:'add_lead', leadName:fd.get('leadName'), leadPhone:fd.get('leadPhone'), leadCity:fd.get('leadCity'), leadNotes:fd.get('leadNotes') };
+
+      const phonePat = /^[6-9]\d{9}$/;
+      if (!phonePat.test(data.leadPhone)) {
+        this.querySelector('[name="leadPhone"]').classList.add('is-invalid');
+        return;
+      }
+
+      fetch('../backend/franchise-api.php', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+      }).then(r => r.json())
+        .then(res => {
+          if (res.status === 'success') { this.reset(); loadLeads(); showFrToast('Lead added!', 'success'); }
+          else showFrToast(res.message || 'Error', 'error');
+        })
+        .catch(() => {
+          // Demo mode
+          leads.unshift({ id: Date.now(), name: data.leadName, phone: data.leadPhone, city: data.leadCity||'–', status:'new', added: new Date().toISOString().split('T')[0] });
+          renderLeads(leads);
+          showFrToast('Lead added! (demo mode)', 'info');
+          this.reset();
+        });
+    });
+
+    function loadLeads() {
+      fetch('../backend/franchise-api.php?action=list_leads')
+        .then(r => r.json())
+        .then(res => { if (res.status === 'success') { leads = res.data; renderLeads(leads); } else renderLeads(leads); })
+        .catch(() => renderLeads(leads));
+    }
+
+    function closeFrSidebar() {
+      document.getElementById('frSidebar').classList.remove('open');
+      document.getElementById('frSidebarOverlay').classList.remove('show');
+    }
+    function frLogout() { if (confirm('Logout?')) window.location.href = 'login.html'; }
+
+    renderLeads(leads);
+  </script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+/* ============================================================
+   UNIFYHUB – Franchise Panel Styles
+   ============================================================ */
+:root {
+  --fr-sidebar-w: 260px;
+  --fr-header-h: 64px;
+  --fr-bg: #F0F4FF;
+  --fr-sidebar-bg: linear-gradient(180deg, #1A0050 0%, #2D0875 60%, #4A0E8F 100%);
+  --fr-accent: #00D4AA;
+  --fr-gold: #FFBB00;
+  --fr-purple: #8B31D4;
+  --fr-card: #ffffff;
+  --fr-border: rgba(0,0,0,0.09);
+  --fr-text: #1A1A2E;
+  --fr-muted: #6B7A99;
+  --fr-success: #00D4AA;
+  --fr-danger: #FF3E5E;
+  --fr-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --fr-shadow-md: 0 8px 30px rgba(0,0,0,0.14);
+  --font-main: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+}
+body.dark-mode {
+  --fr-bg: #0D0828;
+  --fr-card: #1A0A3A;
+  --fr-border: rgba(255,255,255,0.09);
+  --fr-text: #E2E8F0;
+  --fr-muted: #94A3B8;
+  --fr-shadow: 0 4px 20px rgba(0,0,0,0.35);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: var(--font-main);
+  background: var(--fr-bg);
+  color: var(--fr-text);
+  overflow-x: hidden;
+}
+a { text-decoration: none; }
+
+body::before {
+  content: '';
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00D4AA, #8B31D4, #FFBB00, #00D4AA);
+  background-size: 300% auto;
+  animation: topBarShine 4s linear infinite;
+  z-index: 9999;
+}
+@keyframes topBarShine {
+  0% { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+/* ============================================================
+   FRANCHISE LAYOUT
+   ============================================================ */
+.fr-wrapper { display: flex; min-height: 100vh; }
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.fr-sidebar {
+  width: var(--fr-sidebar-w);
+  background: linear-gradient(180deg, #1A0050 0%, #2D0875 60%, #4A0E8F 100%);
+  height: 100vh;
+  position: fixed;
+  top: 0; left: 0;
+  display: flex; flex-direction: column;
+  z-index: 1040;
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+.fr-sidebar::-webkit-scrollbar { width: 4px; }
+.fr-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+
+.fr-sidebar-brand {
+  padding: 1.5rem 1.5rem 1.2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+}
+.fr-brand-logo { font-size: 1.4rem; font-weight: 900; color: #fff; letter-spacing: 2px; }
+.fr-brand-logo span { color: #FFBB00; }
+.fr-brand-sub { font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); display: block; margin-top: 4px; }
+
+.fr-user-card {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+}
+.fr-avatar-wrap { position: relative; display: inline-block; margin-bottom: 0.6rem; }
+.fr-avatar {
+  width: 54px; height: 54px;
+  background: linear-gradient(135deg, #00D4AA, #8B31D4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+.fr-rank-badge {
+  position: absolute; bottom: -4px; right: -4px;
+  background: linear-gradient(135deg, #FFBB00, #FF8C00);
+  border-radius: 20px;
+  padding: 2px 6px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #060022;
+}
+.fr-user-name { font-size: 0.9rem; font-weight: 700; color: #fff; }
+.fr-user-id { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+/* Sidebar nav */
+.fr-nav { padding: 1rem 0; flex: 1; list-style: none; }
+.fr-nav-section {
+  padding: 1rem 1.5rem 0.3rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.fr-nav-item a {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 0.7rem 1.5rem;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  border-left: 3px solid transparent;
+}
+.fr-nav-item a:hover { color: #fff; background: rgba(255,255,255,0.06); border-left-color: rgba(0,212,170,0.5); }
+.fr-nav-item.active a { color: #fff; background: rgba(0,212,170,0.12); border-left-color: var(--fr-accent); }
+.fr-nav-item a i { width: 20px; text-align: center; font-size: 0.95rem; flex-shrink: 0; }
+.fr-nav-badge {
+  margin-left: auto;
+  background: var(--fr-accent);
+  color: #060022;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 20px;
+}
+.fr-nav-logout a { color: rgba(255,62,94,0.8) !important; }
+.fr-nav-logout a:hover { color: #ff3e5e !important; background: rgba(255,62,94,0.1) !important; }
+
+/* Mobile sidebar */
+.fr-sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1039; }
+@media (max-width: 991px) {
+  .fr-sidebar { transform: translateX(-100%); }
+  .fr-sidebar.open { transform: translateX(0); }
+  .fr-sidebar-overlay.show { display: block; }
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+.fr-main {
+  margin-left: var(--fr-sidebar-w);
+  flex: 1;
+  display: flex; flex-direction: column;
+  min-height: 100vh;
+}
+@media (max-width: 991px) { .fr-main { margin-left: 0; } }
+
+/* Topbar */
+.fr-topbar {
+  height: var(--fr-header-h);
+  background: var(--fr-card);
+  border-bottom: 1px solid var(--fr-border);
+  display: flex; align-items: center;
+  padding: 0 1.5rem;
+  gap: 1rem;
+  position: sticky; top: 0;
+  z-index: 1030;
+  box-shadow: var(--fr-shadow);
+}
+.fr-topbar-toggle { display: none; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--fr-text); }
+@media (max-width: 991px) { .fr-topbar-toggle { display: flex; } }
+.fr-topbar-title { flex: 1; font-size: 0.92rem; font-weight: 600; color: var(--fr-text); }
+.fr-topbar-btn {
+  width: 36px; height: 36px;
+  background: var(--fr-bg);
+  border: 1px solid var(--fr-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--fr-text); font-size: 0.9rem;
+  transition: all 0.25s; position: relative;
+}
+.fr-topbar-btn:hover { background: var(--fr-accent); color: #fff; border-color: var(--fr-accent); }
+.fr-notif-dot { position: absolute; top: 0; right: 0; width: 8px; height: 8px; background: #FF3E5E; border-radius: 50%; border: 2px solid var(--fr-card); }
+
+/* Content */
+.fr-content { padding: 1.8rem; flex: 1; }
+@media (max-width: 991px) { .fr-content { padding: 1rem; } }
+
+/* ============================================================
+   FRANCHISE STAT CARDS
+   ============================================================ */
+.fr-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 1.8rem; }
+@media (max-width: 1100px) { .fr-stat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 575px) { .fr-stat-grid { grid-template-columns: 1fr; } }
+
+.fr-stat-card {
+  background: var(--fr-card);
+  border-radius: 12px;
+  padding: 1.4rem;
+  box-shadow: var(--fr-shadow);
+  border: 1px solid var(--fr-border);
+  display: flex; align-items: center; gap: 1rem;
+  transition: all 0.25s;
+}
+.fr-stat-card:hover { transform: translateY(-3px); box-shadow: var(--fr-shadow-md); }
+.fr-stat-icon {
+  width: 50px; height: 50px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.fsc-teal   { background: rgba(0,212,170,0.12); color: #00D4AA; }
+.fsc-purple { background: rgba(139,49,212,0.12); color: #8B31D4; }
+.fsc-gold   { background: rgba(255,187,0,0.12); color: #FFBB00; }
+.fsc-blue   { background: rgba(59,130,246,0.12); color: #3B82F6; }
+.fr-stat-num { font-size: 1.7rem; font-weight: 900; color: var(--fr-text); line-height: 1; }
+.fr-stat-label { font-size: 0.79rem; color: var(--fr-muted); margin-top: 3px; }
+
+/* ============================================================
+   FRANCHISE PANEL CARD
+   ============================================================ */
+.fr-card {
+  background: var(--fr-card);
+  border-radius: 12px;
+  box-shadow: var(--fr-shadow);
+  border: 1px solid var(--fr-border);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.fr-card-header {
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--fr-border);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;
+}
+.fr-card-title {
+  font-size: 0.97rem; font-weight: 700; color: var(--fr-text);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.fr-card-title i { color: var(--fr-accent); }
+.fr-card-body { padding: 1.5rem; }
+
+/* ============================================================
+   RANK BADGE SYSTEM
+   ============================================================ */
+.rank-display {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.rank-star    { background: linear-gradient(135deg, #cd7f32, #a0522d); color: #fff; }
+.rank-silver  { background: linear-gradient(135deg, #a8a9ad, #6c6c6c); color: #fff; }
+.rank-gold    { background: linear-gradient(135deg, #FFBB00, #FF8C00); color: #060022; }
+.rank-diamond { background: linear-gradient(135deg, #00bcd4, #0097a7); color: #fff; }
+.rank-legend  { background: linear-gradient(135deg, #8B31D4, #060022); color: #fff; }
+
+/* ============================================================
+   DOWNLINE TREE
+   ============================================================ */
+.team-tree { font-size: 0.85rem; }
+.team-tree-root {
+  display: flex; align-items: center; gap: 0.8rem;
+  background: linear-gradient(135deg, #2D0875, #8B31D4);
+  color: #fff;
+  padding: 0.9rem 1.2rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.tree-member {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: var(--fr-bg);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--fr-border);
+  transition: all 0.2s;
+}
+.tree-member:hover { border-color: var(--fr-accent); transform: translateX(4px); }
+.tree-level-2 { margin-left: 2rem; }
+.tree-level-3 { margin-left: 4rem; }
+.tree-member-avatar {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--fr-accent), var(--fr-purple));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.tree-member-info { flex: 1; }
+.tree-member-name { font-weight: 600; font-size: 0.88rem; }
+.tree-member-id { font-size: 0.72rem; color: var(--fr-muted); }
+
+/* ============================================================
+   INCOME TABLE
+   ============================================================ */
+.income-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.income-table thead th {
+  background: var(--fr-bg);
+  padding: 0.85rem 1rem;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--fr-muted);
+  border-bottom: 2px solid var(--fr-border);
+  text-align: left;
+}
+.income-table tbody td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--fr-border);
+  color: var(--fr-text);
+}
+.income-table tbody tr:hover { background: rgba(0,212,170,0.04); }
+.income-table tbody tr:last-child td { border-bottom: none; }
+.income-positive { color: var(--fr-success); font-weight: 700; }
+
+/* ============================================================
+   LEADS FORM
+   ============================================================ */
+.lead-form-card { max-width: 550px; }
+.lead-status-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: 20px;
+  font-size: 0.72rem; font-weight: 700;
+}
+.lead-new      { background: rgba(59,130,246,0.12); color: #3B82F6; }
+.lead-contacted { background: rgba(255,187,0,0.12); color: #FFBB00; }
+.lead-converted { background: rgba(0,212,170,0.12); color: #00D4AA; }
+.lead-lost     { background: rgba(255,62,94,0.12); color: #FF3E5E; }
+
+/* ============================================================
+   FRANCHISE LOGIN
+   ============================================================ */
+.fr-login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1A0050 0%, #2D0875 50%, #00D4AA 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem; position: relative; overflow: hidden;
+}
+.fr-login-page::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.fr-login-card {
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  width: 100%; max-width: 420px;
+  position: relative; z-index: 2;
+}
+
+/* ============================================================
+   BUTTON SYSTEM
+   ============================================================ */
+.btn-fr {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-main);
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s;
+}
+.btn-fr-primary { background: var(--fr-accent); color: #060022; }
+.btn-fr-primary:hover { background: #00b899; transform: translateY(-1px); }
+.btn-fr-purple { background: var(--fr-purple); color: #fff; }
+.btn-fr-purple:hover { background: #7825c0; transform: translateY(-1px); }
+.btn-fr-outline { background: transparent; border: 1px solid var(--fr-border); color: var(--fr-text); }
+.btn-fr-outline:hover { border-color: var(--fr-accent); color: var(--fr-accent); }
+.btn-fr-sm { padding: 0.3rem 0.8rem; font-size: 0.78rem; }
+
+/* ============================================================
+   ANNOUNCEMENTS
+   ============================================================ */
+.announcement-fr {
+  background: linear-gradient(135deg, rgba(0,212,170,0.05), rgba(139,49,212,0.05));
+  border: 1px solid rgba(0,212,170,0.2);
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+.announcement-fr h6 { font-weight: 700; color: var(--fr-text); margin-bottom: 0.3rem; }
+.announcement-fr p { font-size: 0.83rem; color: var(--fr-muted); margin: 0; }
+
+/* Franchise grid layouts */
+.fr-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 991px) { .fr-grid-2 { grid-template-columns: 1fr; } }
+
+/* Profile form */
+.profile-avatar-section {
+  display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
+  padding: 2rem;
+}
+.profile-avatar-lg {
+  width: 100px; height: 100px;
+  background: linear-gradient(135deg, var(--fr-accent), var(--fr-purple));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700; color: #fff;
+  border: 4px solid var(--fr-border);
+}
+.fr-admin-form-control {
+  background: var(--fr-bg);
+  border: 1px solid var(--fr-border);
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  font-family: var(--font-main);
+  font-size: 0.88rem;
+  color: var(--fr-text);
+  width: 100%;
+  transition: all 0.25s;
+}
+.fr-admin-form-control:focus { border-color: var(--fr-accent); outline: none; box-shadow: 0 0 0 3px rgba(0,212,170,0.12); }
+.fr-form-label { font-size: 0.82rem; font-weight: 600; color: var(--fr-muted); margin-bottom: 4px; display: block; }
+.fr-form-group { margin-bottom: 1rem; }
