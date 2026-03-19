@@ -1,0 +1,128 @@
+/* ============================================================
+   UNIFYHUB – Additional Animations & Keyframes
+   ============================================================ */
+
+/* Stagger animation helpers */
+.stagger-1 { animation-delay: 0.1s !important; }
+.stagger-2 { animation-delay: 0.2s !important; }
+.stagger-3 { animation-delay: 0.3s !important; }
+.stagger-4 { animation-delay: 0.4s !important; }
+.stagger-5 { animation-delay: 0.5s !important; }
+
+/* Loading animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes rotateIn {
+  from { opacity: 0; transform: rotate(-15deg) scale(0.8); }
+  to   { opacity: 1; transform: rotate(0) scale(1); }
+}
+
+/* Gradient border on hover */
+.biz-tile:hover {
+  outline: 2px solid var(--clr, var(--secondary));
+  outline-offset: 2px;
+}
+
+/* Nav active link */
+.nav-link.active-section { color: var(--accent1) !important; }
+.nav-link.active-section::after { width: 60% !important; }
+
+/* AOS overrides for dark mode */
+body.dark-mode [data-aos] { color: inherit; }
+
+/* Floating animation for hero badge */
+.hero-badge { animation: badgeFloat 4s ease-in-out infinite; }
+@keyframes badgeFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Alliance particles overlay */
+.alliance-particles {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: particleMove 20s linear infinite;
+  pointer-events: none;
+}
+@keyframes particleMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+/* Table row entrance */
+.magic-table tbody tr {
+  animation: rowFadeIn 0.5s ease forwards;
+  opacity: 0;
+}
+.magic-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+.magic-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+.magic-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+.magic-table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+@keyframes rowFadeIn {
+  to { opacity: 1; }
+}
+
+/* Dashboard bar animation */
+.mc-bar:nth-child(1) { animation-delay: 0.1s !important; }
+.mc-bar:nth-child(2) { animation-delay: 0.2s !important; }
+.mc-bar:nth-child(3) { animation-delay: 0.3s !important; }
+.mc-bar:nth-child(4) { animation-delay: 0.4s !important; }
+.mc-bar:nth-child(5) { animation-delay: 0.5s !important; }
+.mc-bar:nth-child(6) { animation-delay: 0.6s !important; }
+.mc-bar:nth-child(7) { animation-delay: 0.7s !important; }
+
+/* Glowing border animation for featured card */
+@keyframes gradientBorder {
+  0%   { border-color: var(--primary); }
+  33%  { border-color: var(--secondary); }
+  66%  { border-color: var(--accent1); }
+  100% { border-color: var(--primary); }
+}
+.featured-diff { animation: gradientBorder 4s linear infinite; }
+
+/* Ticker number animation */
+@keyframes tickerBounce {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.ticker-amount { animation: tickerBounce 1s ease-in-out infinite; }
+
+/* Smooth active FAQ */
+.faq-item:has(.faq-question.active) {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 2px rgba(90,79,207,0.15);
+}
+
+/* Vision timeline dot indicator */
+.vt-item::before {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--accent1);
+  box-shadow: 0 0 0 4px rgba(246,174,45,0.25);
+  top: 4px;
+}
+.vt-item.left::before { right: -7px; }
+.vt-item.right::before { left: -7px; }
+
+@media (max-width: 991px) {
+  .vt-item.left::before,
+  .vt-item.right::before { left: 13px; right: auto; }
+}
+
+/* Scrollbar for table on mobile */
+.table-responsive { -webkit-overflow-scrolling: touch; }
+.table-responsive::-webkit-scrollbar { height: 4px; }
+.table-responsive::-webkit-scrollbar-thumb { background: var(--secondary); }

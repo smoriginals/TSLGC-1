@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UnifyHub Service Pvt Ltd – India's Biggest Alliance Market</title>
+  <meta name="description" content="UnifyHub – भारत का सबसे बड़ा Alliance Market. 1 ID, 101 Businesses. विजन 2030." />
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <!-- Google Fonts – Noto Sans Devanagari + Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;900&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="animations.css" />
+</head>
+<body class="light-mode">
+
+  <!-- CURSOR FOLLOWER -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ============================
+       NAVBAR
+  ============================ -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <span class="brand-logo">UNIFY<span class="brand-accent">HUB</span></span>
+        <small class="brand-tagline d-block">Alliance Market</small>
+      </a>
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <button class="btn btn-sm theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="toggler-icon"><i class="fa-solid fa-bars"></i></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#difference">UnifyHub</a></li>
+          <li class="nav-item"><a class="nav-link" href="#businesses">Businesses</a></li>
+          <li class="nav-item"><a class="nav-link" href="#income">Income</a></li>
+          <li class="nav-item"><a class="nav-link" href="#comparison">Comparison</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav-cta" href="#pricing">Join Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================
+       1. HERO SECTION
+  ============================ -->
+  <section class="hero-section" id="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-orb orb3"></div>
+
+    <div class="container hero-content">
+      <div class="row align-items-center min-vh-100">
+        <div class="col-lg-7">
+          <div class="hero-badge mb-3" data-aos="fade-down" data-aos-delay="100">
+            <i class="fa-solid fa-star"></i> India's Biggest Alliance Market
+          </div>
+          <h1 class="hero-heading" data-aos="fade-up" data-aos-delay="200">
+            <span class="typewriter-text" id="heroTypewriter"></span>
+          </h1>
+          <p class="hero-subheading" data-aos="fade-up" data-aos-delay="400">
+            हमारा लक्ष्य: <strong>1 करोड़ परिवार</strong> को आर्थिक सुरक्षा
+          </p>
+          <p class="hero-vision" data-aos="fade-up" data-aos-delay="500">
+            <i class="fa-solid fa-eye me-2"></i>विजन 2030: भारत का सबसे बड़ा एग्रीगेटर प्लेटफॉर्म
+          </p>
+          <div class="hero-cta-group" data-aos="fade-up" data-aos-delay="600">
+            <a href="#pricing" class="btn btn-primary-hero pulse-btn">
+              <i class="fa-solid fa-handshake me-2"></i>Join Alliance
+            </a>
+            <a href="#" class="btn btn-outline-hero" data-bs-toggle="modal" data-bs-target="#videoModal">
+              <span class="play-icon"><i class="fa-solid fa-play"></i></span> Watch Video
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-5" data-aos="zoom-in" data-aos-delay="300">
+          <div class="hero-stats-box">
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fa-solid fa-building"></i></div>
+              <div class="stat-number"><span class="count-up" data-target="101">0</span>+</div>
+              <div class="stat-label">Businesses</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+              <div class="stat-number"><span class="count-up" data-target="1">0</span> करोड़</div>
+              <div class="stat-label">Target Families</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fa-solid fa-flag"></i></div>
+              <div class="stat-number"><span class="count-up" data-target="2030">0</span></div>
+              <div class="stat-label">Vision Year</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+              <div class="stat-number">₹<span class="count-up" data-target="4999">0</span></div>
+              <div class="stat-label">Join @ Just</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll Down</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ============================
+       2. THE MLM PROBLEM
+  ============================ -->
+  <section class="section-problem" id="problem">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <span class="section-eyebrow">The MLM Reality Check</span>
+          <h2 class="section-heading problem-heading">
+            MLM की <span class="text-danger">कड़वी सच्चाई:</span><br/>
+            क्यों <span class="highlight-number">95%</span> लोग हार जाते हैं?
+          </h2>
+          <div class="problem-cards">
+            <div class="problem-card" data-aos="fade-right" data-aos-delay="100">
+              <div class="pc-icon"><i class="fa-solid fa-lock"></i></div>
+              <p>कंपनी आपकी, पर <strong>कंट्रोल किसका?</strong></p>
+            </div>
+            <div class="problem-card" data-aos="fade-right" data-aos-delay="200">
+              <div class="pc-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+              <p>क्या आप <strong>1990 के तरीके</strong> से 2026 में जीतना चाहते हैं?</p>
+            </div>
+            <div class="problem-card" data-aos="fade-right" data-aos-delay="300">
+              <div class="pc-icon"><i class="fa-solid fa-globe"></i></div>
+              <p><strong>दुनिया बदल गई,</strong> क्या आप बदले?</p>
+            </div>
+            <div class="problem-card danger-card" data-aos="fade-right" data-aos-delay="400">
+              <div class="pc-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+              <p>एक कंपनी बंद = <strong>पूरी कमाई चौपट!</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+          <div class="aggregator-showcase">
+            <h3 class="agg-heading">बिना एसेट के दुनिया पर राज</h3>
+            <p class="agg-subheading">देखिए कैसे Aggregators ने बदला खेल:</p>
+            <div class="agg-grid">
+              <div class="agg-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="agg-logo zomato"><i class="fa-solid fa-utensils"></i></div>
+                <span>Zomato</span>
+                <small>No kitchen, ₹80,000 Cr</small>
+              </div>
+              <div class="agg-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="agg-logo ola"><i class="fa-solid fa-car"></i></div>
+                <span>Ola</span>
+                <small>No cars, Millions of rides</small>
+              </div>
+              <div class="agg-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="agg-logo amazon"><i class="fa-brands fa-amazon"></i></div>
+                <span>Amazon</span>
+                <small>No products, World's biggest store</small>
+              </div>
+              <div class="agg-card" data-aos="zoom-in" data-aos-delay="400">
+                <div class="agg-logo airbnb"><i class="fa-solid fa-house"></i></div>
+                <span>Airbnb</span>
+                <small>No hotels, Biggest hospitality</small>
+              </div>
+            </div>
+            <div class="agg-conclusion" data-aos="zoom-in" data-aos-delay="500">
+              <i class="fa-solid fa-lightbulb"></i>
+              <strong>UnifyHub भी यही करता है — MLM की दुनिया में!</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       3. THE UNIFYHUB DIFFERENCE
+  ============================ -->
+  <section class="section-difference" id="difference">
+    <div class="container text-center">
+      <span class="section-eyebrow" data-aos="fade-down">The Revolution</span>
+      <h2 class="section-heading" data-aos="fade-up">
+        UnifyHub: आपका अपना <span class="gradient-text">'Alliance Market'</span>
+      </h2>
+      <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">
+        जहाँ आप सुरक्षित हैं, क्योंकि यहाँ <strong>गठबंधन</strong> है
+      </p>
+      <div class="big-statement" data-aos="zoom-in" data-aos-delay="200">
+        <span class="big-num">1</span>
+        <span class="big-sep">आईडी</span>
+        <span class="big-dash">—</span>
+        <span class="big-num">101</span>
+        <span class="big-sep">बिजनेस साम्राज्य</span>
+      </div>
+      <div class="row mt-5 g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="diff-card">
+            <div class="diff-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h4>100% सुरक्षित</h4>
+            <p>एक बिजनेस बंद हो तो बाकी 100 चालू रहते हैं</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="diff-card featured-diff">
+            <div class="diff-icon"><i class="fa-solid fa-network-wired"></i></div>
+            <h4>Alliance Power</h4>
+            <p>101 Companies का गठबंधन — एक साथ, एक शक्ति</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="diff-card">
+            <div class="diff-icon"><i class="fa-solid fa-robot"></i></div>
+            <h4>Digital System</h4>
+            <p>Automated income, AI-powered growth tools</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       4. 101 BUSINESSES GRID
+  ============================ -->
+  <section class="section-businesses" id="businesses">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-eyebrow" data-aos="fade-down">101 Business Empire</span>
+        <h2 class="section-heading" data-aos="fade-up">1 ID से 101 बिजनेस</h2>
+        <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">
+          हर सेक्टर में मौजूद — हर कदम पर कमाई
+        </p>
+      </div>
+      <div class="business-grid" id="businessGrid">
+        <!-- Row 1 -->
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="0" style="--clr:#6c63ff">
+          <div class="biz-icon"><i class="fa-brands fa-bitcoin"></i></div>
+          <div class="biz-name">Crypto & Blockchain MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="50" style="--clr:#f6ae2d">
+          <div class="biz-icon"><i class="fa-solid fa-coins"></i></div>
+          <div class="biz-name">Digital Gold MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="100" style="--clr:#f6a623">
+          <div class="biz-icon"><i class="fa-solid fa-gem"></i></div>
+          <div class="biz-name">Physical Gold MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="150" style="--clr:#2f9e79">
+          <div class="biz-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+          <div class="biz-name">FMCG Product MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="200" style="--clr:#0a2472">
+          <div class="biz-icon"><i class="fa-solid fa-house-user"></i></div>
+          <div class="biz-name">Daily Use Product MLM</div>
+        </div>
+        <!-- Row 2 -->
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="0" style="--clr:#e84393">
+          <div class="biz-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+          <div class="biz-name">Home Care MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="50" style="--clr:#2f9e79">
+          <div class="biz-icon"><i class="fa-solid fa-leaf"></i></div>
+          <div class="biz-name">Ayurvedic MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="100" style="--clr:#4caf50">
+          <div class="biz-icon"><i class="fa-solid fa-seedling"></i></div>
+          <div class="biz-name">Herbal Product MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="150" style="--clr:#e91e63">
+          <div class="biz-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <div class="biz-name">Health & Wellness MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="200" style="--clr:#ff4081">
+          <div class="biz-icon"><i class="fa-solid fa-face-smile-wink"></i></div>
+          <div class="biz-name">Beauty & Cosmetic MLM</div>
+        </div>
+        <!-- Row 3 -->
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="0" style="--clr:#9c27b0">
+          <div class="biz-icon"><i class="fa-solid fa-droplet"></i></div>
+          <div class="biz-name">Skincare MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="50" style="--clr:#673ab7">
+          <div class="biz-icon"><i class="fa-solid fa-pump-soap"></i></div>
+          <div class="biz-name">Personal Care MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="100" style="--clr:#1565c0">
+          <div class="biz-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="biz-name">Education MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="150" style="--clr:#0288d1">
+          <div class="biz-icon"><i class="fa-solid fa-laptop"></i></div>
+          <div class="biz-name">Online Course MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="200" style="--clr:#00897b">
+          <div class="biz-icon"><i class="fa-solid fa-book-open"></i></div>
+          <div class="biz-name">E-Learning MLM</div>
+        </div>
+        <!-- Row 4 -->
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="0" style="--clr:#e65100">
+          <div class="biz-icon"><i class="fa-solid fa-building-columns"></i></div>
+          <div class="biz-name">Real Estate MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="50" style="--clr:#bf360c">
+          <div class="biz-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <div class="biz-name">Plot Selling MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="100" style="--clr:#6d4c41">
+          <div class="biz-icon"><i class="fa-solid fa-key"></i></div>
+          <div class="biz-name">Property Referral MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="150" style="--clr:#0a2472">
+          <div class="biz-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+          <div class="biz-name">E-Commerce MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="200" style="--clr:#1976d2">
+          <div class="biz-icon"><i class="fa-solid fa-store"></i></div>
+          <div class="biz-name">Online Shopping MLM</div>
+        </div>
+        <!-- Row 5 -->
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="0" style="--clr:#f57f17">
+          <div class="biz-icon"><i class="fa-solid fa-percent"></i></div>
+          <div class="biz-name">Cashback MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="50" style="--clr:#558b2f">
+          <div class="biz-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <div class="biz-name">Mobile Recharge MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="100" style="--clr:#00695c">
+          <div class="biz-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+          <div class="biz-name">Bill Payment MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="150" style="--clr:#37474f">
+          <div class="biz-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <div class="biz-name">Utility Service MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="200" style="--clr:#5a4fcf">
+          <div class="biz-icon"><i class="fa-solid fa-concierge-bell"></i></div>
+          <div class="biz-name">Service Based MLM</div>
+        </div>
+        <!-- Row 6 -->
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="0" style="--clr:#311b92">
+          <div class="biz-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <div class="biz-name">Business Support MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="50" style="--clr:#1a237e">
+          <div class="biz-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="biz-name">Consulting MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="100" style="--clr:#006064">
+          <div class="biz-icon"><i class="fa-solid fa-gears"></i></div>
+          <div class="biz-name">Automation MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="150" style="--clr:#212121">
+          <div class="biz-icon"><i class="fa-solid fa-microchip"></i></div>
+          <div class="biz-name">AI Based MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="200" style="--clr:#b71c1c">
+          <div class="biz-icon"><i class="fa-solid fa-shield-virus"></i></div>
+          <div class="biz-name">Cyber Security MLM</div>
+        </div>
+        <!-- Row 7 -->
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="0" style="--clr:#1565c0">
+          <div class="biz-icon"><i class="fa-solid fa-landmark"></i></div>
+          <div class="biz-name">Finance Service MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="50" style="--clr:#0277bd">
+          <div class="biz-icon"><i class="fa-solid fa-umbrella"></i></div>
+          <div class="biz-name">Insurance MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="100" style="--clr:#00838f">
+          <div class="biz-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+          <div class="biz-name">Loan Assistance MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="150" style="--clr:#ad1457">
+          <div class="biz-icon"><i class="fa-solid fa-bullhorn"></i></div>
+          <div class="biz-name">Advertising MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="200" style="--clr:#6a1b9a">
+          <div class="biz-icon"><i class="fa-solid fa-photo-film"></i></div>
+          <div class="biz-name">Media & Promotion MLM</div>
+        </div>
+        <div class="biz-tile" data-aos="zoom-in" data-aos-delay="250" style="--clr:#e65100">
+          <div class="biz-icon"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="biz-name">Event Management MLM</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       5. ALLIANCE MARKET BANNER
+  ============================ -->
+  <section class="section-alliance" id="alliance">
+    <div class="alliance-particles"></div>
+    <div class="container text-center">
+      <h2 class="alliance-title" data-aos="zoom-in">ALLIANCE MARKET</h2>
+      <p class="alliance-subtitle" data-aos="fade-up" data-aos-delay="100">कभी न रुकने वाली इनकम</p>
+      <p class="alliance-desc" data-aos="fade-up" data-aos-delay="200">
+        हर घर की ज़रूरत, हर सेक्टर से कमीशन
+      </p>
+      <div class="sector-icons" data-aos="fade-up" data-aos-delay="300">
+        <div class="sector-item"><i class="fa-solid fa-heart-pulse"></i><span>Health & Wellness</span></div>
+        <div class="sector-item"><i class="fa-solid fa-handshake"></i><span>Direct Selling</span></div>
+        <div class="sector-item"><i class="fa-solid fa-bullhorn"></i><span>Digital Marketing</span></div>
+        <div class="sector-item"><i class="fa-solid fa-landmark"></i><span>Finance</span></div>
+        <div class="sector-item"><i class="fa-solid fa-graduation-cap"></i><span>Education</span></div>
+        <div class="sector-item"><i class="fa-solid fa-cart-shopping"></i><span>E-Commerce</span></div>
+        <div class="sector-item"><i class="fa-solid fa-wheat-awn"></i><span>Agriculture</span></div>
+        <div class="sector-item"><i class="fa-solid fa-building-columns"></i><span>Real Estate</span></div>
+        <div class="sector-item"><i class="fa-solid fa-plane"></i><span>Travel</span></div>
+        <div class="sector-item"><i class="fa-solid fa-microchip"></i><span>Technology</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       6. PASSIVE INCOME / WORLD MAP
+  ============================ -->
+  <section class="section-income" id="income">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-eyebrow" data-aos="fade-down">Passive Income 24/7</span>
+        <h2 class="section-heading" data-aos="fade-up">
+          जब आप सो रहे होंगे,<br/>तब भी <span class="gradient-text">पैसा बढ़ रहा होगा</span>
+        </h2>
+      </div>
+      <div class="world-map-container" data-aos="zoom-in" data-aos-delay="100">
+        <div class="world-map-bg">
+          <div class="map-dots">
+            <div class="map-dot" style="top:30%;left:20%"><span class="dot-label">USA</span></div>
+            <div class="map-dot" style="top:35%;left:48%"><span class="dot-label">Europe</span></div>
+            <div class="map-dot" style="top:45%;left:65%"><span class="dot-label">India</span></div>
+            <div class="map-dot active" style="top:47%;left:67%"></div>
+            <div class="map-dot" style="top:55%;left:75%"><span class="dot-label">SE Asia</span></div>
+            <div class="map-dot" style="top:60%;left:30%"><span class="dot-label">Brazil</span></div>
+            <div class="map-dot" style="top:50%;left:52%"><span class="dot-label">Africa</span></div>
+          </div>
+          <div class="income-ticker">
+            <span class="ticker-label">Live Income Generated:</span>
+            <span class="ticker-amount" id="incomeTickerAmount">₹0</span>
+          </div>
+        </div>
+        <div class="time-zones" data-aos="fade-up" data-aos-delay="200">
+          <div class="tz-item"><i class="fa-solid fa-sun"></i><span>Morning</span><small>Activity: High</small></div>
+          <div class="tz-item active"><i class="fa-solid fa-cloud-sun"></i><span>Afternoon</span><small>Activity: Peak</small></div>
+          <div class="tz-item"><i class="fa-solid fa-moon"></i><span>Night</span><small>Activity: Active</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       7. MAGIC OF 200 TABLE
+  ============================ -->
+  <section class="section-magic" id="magic">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-eyebrow" data-aos="fade-down">The Magic Formula</span>
+        <h2 class="section-heading" data-aos="fade-up">200 लोगों की टीम का जादू</h2>
+        <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">
+          देखिए कैसे Companies की संख्या बढ़ने से Income Multiply होती है
+        </p>
+      </div>
+      <div class="table-responsive" data-aos="fade-up" data-aos-delay="200">
+        <table class="magic-table">
+          <thead>
+            <tr>
+              <th><i class="fa-solid fa-users me-2"></i>Total Team</th>
+              <th><i class="fa-solid fa-building me-2"></i>Companies</th>
+              <th><i class="fa-solid fa-indian-rupee-sign me-2"></i>Per Person/Month</th>
+              <th><i class="fa-solid fa-chart-bar me-2"></i>Total Income/Month</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row-1">
+              <td><span class="team-badge">200</span></td>
+              <td><span class="co-badge">1</span></td>
+              <td>₹50</td>
+              <td class="income-cell income-1"><span class="income-highlight">₹10,000</span></td>
+            </tr>
+            <tr class="table-row-2">
+              <td><span class="team-badge">200</span></td>
+              <td><span class="co-badge">5</span></td>
+              <td>₹50</td>
+              <td class="income-cell income-2"><span class="income-highlight">₹50,000</span></td>
+            </tr>
+            <tr class="table-row-3">
+              <td><span class="team-badge">200</span></td>
+              <td><span class="co-badge">10</span></td>
+              <td>₹50</td>
+              <td class="income-cell income-3"><span class="income-highlight">₹1,00,000</span></td>
+            </tr>
+            <tr class="table-row-4">
+              <td><span class="team-badge">200</span></td>
+              <td><span class="co-badge best">15</span></td>
+              <td>₹50</td>
+              <td class="income-cell income-4"><span class="income-highlight best-income">₹1,50,000</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-footer-note" data-aos="fade-up">
+        <i class="fa-solid fa-star me-2"></i>200 लोगों की टीम का जादू — सिर्फ ₹50/person से ₹1,50,000 तक!
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================
+       8. COMPARISON SECTION
+  ============================ -->
+  <section class="section-comparison" id="comparison">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-eyebrow" data-aos="fade-down">The Big Difference</span>
+        <h2 class="section-heading" data-aos="fade-up">
+          <span class="text-danger">पिंजरे की गुलामी</span> बनाम <span class="gradient-text">आसमान की आज़ादी</span>
+        </h2>
+      </div>
+      <div class="comparison-wrapper" data-aos="fade-up" data-aos-delay="100">
+        <div class="comp-column comp-bad">
+          <div class="comp-header">
+            <i class="fa-solid fa-lock"></i>
+            <h3>साधारण MLM</h3>
+            <span class="comp-tag bad-tag">Old Way</span>
+          </div>
+          <ul class="comp-list">
+            <li><i class="fa-solid fa-xmark"></i> एक Company पर निर्भर</li>
+            <li><i class="fa-solid fa-xmark"></i> Product + Joining से Income</li>
+            <li><i class="fa-solid fa-xmark"></i> High Risk</li>
+            <li><i class="fa-solid fa-xmark"></i> Team असुरक्षित</li>
+            <li><i class="fa-solid fa-xmark"></i> Leader के हाथ में Control</li>
+            <li><i class="fa-solid fa-xmark"></i> धीमी Growth</li>
+            <li><i class="fa-solid fa-xmark"></i> Basic Technology</li>
+          </ul>
+        </div>
+        <div class="comp-vs">
+          <span>VS</span>
+        </div>
+        <div class="comp-column comp-good">
+          <div class="comp-header">
+            <i class="fa-solid fa-crown"></i>
+            <h3>UnifyHub Alliance</h3>
+            <span class="comp-tag good-tag">New Era</span>
+          </div>
+          <ul class="comp-list">
+            <li><i class="fa-solid fa-check"></i> 101 Companies का Alliance</li>
+            <li><i class="fa-solid fa-check"></i> Services + Support से Income</li>
+            <li><i class="fa-solid fa-check"></i> Very Low Risk</li>
+            <li><i class="fa-solid fa-check"></i> Team सुरक्षित</li>
+            <li><i class="fa-solid fa-check"></i> System के हाथ में Control</li>
+            <li><i class="fa-solid fa-check"></i> Fast & Stable Growth</li>
+            <li><i class="fa-solid fa-check"></i> Advanced Digital System</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       9. LEGAL & TRUST
+  ============================ -->
+  <section class="section-legal" id="legal">
+    <div class="container text-center">
+      <span class="section-eyebrow" data-aos="fade-down">Trust & Transparency</span>
+      <h2 class="section-heading" data-aos="fade-up">100% लीगल, 100% पारदर्शी</h2>
+      <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">
+        भारत सरकार के नियमों के <strong>पूर्णतः अनुरूप</strong>
+      </p>
+      <div class="row g-4 mt-3">
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="100">
+          <div class="trust-badge">
+            <i class="fa-solid fa-certificate"></i>
+            <span>Govt Registered</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="200">
+          <div class="trust-badge">
+            <i class="fa-solid fa-scale-balanced"></i>
+            <span>Legal Compliant</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="300">
+          <div class="trust-badge">
+            <i class="fa-solid fa-eye"></i>
+            <span>Transparent System</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="400">
+          <div class="trust-badge">
+            <i class="fa-solid fa-lock"></i>
+            <span>Secure Platform</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       10. LEGACY SECTION
+  ============================ -->
+  <section class="section-legacy" id="legacy">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <span class="section-eyebrow">Generational Wealth</span>
+          <h2 class="section-heading">
+            आपकी टीम: आपकी अगली पीढ़ी के लिए <span class="gradient-text">'गिफ्ट'</span>
+          </h2>
+          <p class="legacy-desc">
+            <i class="fa-solid fa-quote-left me-2"></i>मेहनत एक बार, लाभ पीढ़ियों तक<i class="fa-solid fa-quote-right ms-2"></i>
+          </p>
+          <div class="legacy-points">
+            <div class="lp-item" data-aos="fade-right" data-aos-delay="100">
+              <i class="fa-solid fa-person"></i><span>आप (Generation 1)</span>
+            </div>
+            <div class="lp-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+            <div class="lp-item" data-aos="fade-right" data-aos-delay="200">
+              <i class="fa-solid fa-people-group"></i><span>आपके बच्चे (Generation 2)</span>
+            </div>
+            <div class="lp-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+            <div class="lp-item" data-aos="fade-right" data-aos-delay="300">
+              <i class="fa-solid fa-users"></i><span>आपके पोते (Generation 3+)</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="200">
+          <div class="family-tree-viz">
+            <div class="ftv-root">
+              <div class="ftv-node root-node"><i class="fa-solid fa-crown"></i><span>आप</span></div>
+              <div class="ftv-branches">
+                <div class="ftv-branch">
+                  <div class="ftv-node gen2"><i class="fa-solid fa-user"></i><span>Child 1</span></div>
+                  <div class="ftv-sub-branches">
+                    <div class="ftv-node gen3"><i class="fa-solid fa-baby"></i></div>
+                    <div class="ftv-node gen3"><i class="fa-solid fa-baby"></i></div>
+                  </div>
+                </div>
+                <div class="ftv-branch">
+                  <div class="ftv-node gen2"><i class="fa-solid fa-user"></i><span>Child 2</span></div>
+                  <div class="ftv-sub-branches">
+                    <div class="ftv-node gen3"><i class="fa-solid fa-baby"></i></div>
+                    <div class="ftv-node gen3"><i class="fa-solid fa-baby"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       11. DIGITAL LEADER
+  ============================ -->
+  <section class="section-digital" id="digital">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 order-lg-2" data-aos="fade-left">
+          <span class="section-eyebrow">Digital Leadership</span>
+          <h2 class="section-heading">
+            हम आपको <span class="gradient-text">'डिजिटल लीडर'</span> बनाएंगे
+          </h2>
+          <p class="section-subheading">ऑटोमेटेड लीड जनरेशन और हाई-टेक ट्रेनिंग</p>
+          <div class="digital-features">
+            <div class="df-item" data-aos="fade-left" data-aos-delay="100">
+              <i class="fa-solid fa-robot"></i>
+              <div>
+                <h5>AI-Powered Tools</h5>
+                <p>Automated lead generation, smart analytics</p>
+              </div>
+            </div>
+            <div class="df-item" data-aos="fade-left" data-aos-delay="200">
+              <i class="fa-solid fa-chalkboard-user"></i>
+              <div>
+                <h5>High-Tech Training</h5>
+                <p>Live sessions, recorded modules, mentorship</p>
+              </div>
+            </div>
+            <div class="df-item" data-aos="fade-left" data-aos-delay="300">
+              <i class="fa-solid fa-chart-pie"></i>
+              <div>
+                <h5>Smart Dashboard</h5>
+                <p>Real-time income tracking & team analytics</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1" data-aos="zoom-in" data-aos-delay="200">
+          <div class="dashboard-preview">
+            <div class="dp-header">
+              <div class="dp-dot red"></div>
+              <div class="dp-dot yellow"></div>
+              <div class="dp-dot green"></div>
+              <span>UnifyHub Dashboard</span>
+            </div>
+            <div class="dp-body">
+              <div class="dp-metric">
+                <span class="dm-label">Monthly Income</span>
+                <span class="dm-value up">₹ 1,20,000<i class="fa-solid fa-arrow-trend-up ms-2"></i></span>
+              </div>
+              <div class="dp-metric">
+                <span class="dm-label">Team Size</span>
+                <span class="dm-value">342 Members</span>
+              </div>
+              <div class="dp-metric">
+                <span class="dm-label">Active Companies</span>
+                <span class="dm-value">67 / 101</span>
+              </div>
+              <div class="dp-bar-wrapper">
+                <div class="dp-bar" style="width:67%"></div>
+                <small>67% Portfolio Active</small>
+              </div>
+              <div class="dp-mini-chart">
+                <div class="mc-bar" style="height:40%"></div>
+                <div class="mc-bar" style="height:55%"></div>
+                <div class="mc-bar" style="height:45%"></div>
+                <div class="mc-bar" style="height:70%"></div>
+                <div class="mc-bar" style="height:60%"></div>
+                <div class="mc-bar" style="height:85%"></div>
+                <div class="mc-bar" style="height:90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       12. REWARDS JOURNEY
+  ============================ -->
+  <section class="section-rewards" id="rewards">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-eyebrow" data-aos="fade-down">Rewards & Recognition</span>
+        <h2 class="section-heading" data-aos="fade-up">
+          UNIFYHUB रिवॉर्ड्स: सिर्फ पैसा नहीं, <span class="gradient-text">पहचान भी!</span>
+        </h2>
+      </div>
+      <div class="rewards-path" data-aos="fade-up" data-aos-delay="100">
+        <div class="rp-item" data-aos="zoom-in" data-aos-delay="50">
+          <div class="rp-badge bronze"><i class="fa-solid fa-star"></i></div>
+          <span class="rp-title">Alliance Star</span>
+          <small>Starting rank</small>
+        </div>
+        <div class="rp-line"></div>
+        <div class="rp-item" data-aos="zoom-in" data-aos-delay="150">
+          <div class="rp-badge silver"><i class="fa-solid fa-shield-halved"></i></div>
+          <span class="rp-title">Silver Alliance</span>
+          <small>50 Members</small>
+        </div>
+        <div class="rp-line"></div>
+        <div class="rp-item" data-aos="zoom-in" data-aos-delay="250">
+          <div class="rp-badge gold"><i class="fa-solid fa-crown"></i></div>
+          <span class="rp-title">Gold Alliance</span>
+          <small>200 Members</small>
+        </div>
+        <div class="rp-line"></div>
+        <div class="rp-item" data-aos="zoom-in" data-aos-delay="350">
+          <div class="rp-badge diamond"><i class="fa-solid fa-gem"></i></div>
+          <span class="rp-title">Diamond Elite</span>
+          <small>500 Members</small>
+        </div>
+        <div class="rp-line"></div>
+        <div class="rp-item" data-aos="zoom-in" data-aos-delay="450">
+          <div class="rp-badge legend"><i class="fa-solid fa-trophy"></i></div>
+          <span class="rp-title">Global Legend</span>
+          <small>1000+ Members</small>
+        </div>
+      </div>
+      <div class="rewards-progress" data-aos="fade-up" data-aos-delay="300">
+        <div class="rp-progress-track">
+          <div class="rp-progress-fill" id="rewardsProgress"></div>
+        </div>
+        <p class="text-center mt-2 text-muted small">Alliance Star &nbsp;→&nbsp; Global Legend</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       13. VISION 2030
+  ============================ -->
+  <section class="section-vision" id="vision">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-eyebrow" data-aos="fade-down">The Roadmap</span>
+        <h2 class="section-heading" data-aos="fade-up">
+          विजन 2030: हमारा सफर, <span class="gradient-text">आपकी तरक्की</span>
+        </h2>
+        <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">हम कहाँ जा रहे हैं?</p>
+      </div>
+      <div class="vision-timeline" data-aos="fade-up" data-aos-delay="200">
+        <div class="vt-item left" data-aos="fade-right" data-aos-delay="100">
+          <div class="vt-year">2025</div>
+          <div class="vt-content">
+            <h4>Foundation</h4>
+            <ul>
+              <li>101 Business Alliance Launch</li>
+              <li>10 Lakh Families Enrolled</li>
+              <li>Advanced Digital Platform</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vt-item right" data-aos="fade-left" data-aos-delay="200">
+          <div class="vt-year">2027</div>
+          <div class="vt-content">
+            <h4>Expansion</h4>
+            <ul>
+              <li>50 Lakh Families Target</li>
+              <li>200+ Business Partners</li>
+              <li>International Presence</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vt-item left" data-aos="fade-right" data-aos-delay="300">
+          <div class="vt-year">2030</div>
+          <div class="vt-content">
+            <h4>Dominance</h4>
+            <ul>
+              <li>1 करोड़ Families</li>
+              <li>India's #1 Aggregator Platform</li>
+              <li>₹10,000 Crore+ Economy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       14. FAQ SECTION
+  ============================ -->
+  <section class="section-faq" id="faq">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-eyebrow" data-aos="fade-down">Transparent Answers</span>
+        <h2 class="section-heading" data-aos="fade-up">आपके सवाल, हमारे पारदर्शी जवाब</h2>
+        <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">शंका मिटाएं, विश्वास जगाएं</p>
+      </div>
+      <div class="faq-accordion" data-aos="fade-up" data-aos-delay="100">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>क्या UnifyHub 100% Legal है?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>हाँ, UnifyHub Service Pvt Ltd भारत सरकार के नियमों के पूर्णतः अनुरूप है। हम Direct Selling Guidelines 2021 का पालन करते हैं और पूरी तरह पारदर्शी हैं।</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>1 ID से 101 Business कैसे काम करता है?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>आपकी एक UnifyHub ID से आप 101 partner companies में automatically enroll होते हैं। जब आपकी team किसी भी company के product/service का उपयोग करती है, आपको commission मिलता है।</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>क्या ₹4,999 में सब कुछ मिलता है?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>हाँ! ₹4,999 में आपको Digital Marketing Education, 101 Companies Access, VIP Training, और Complete Support System मिलता है। यह normally ₹1,50,000+ का package है।</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Income कब और कैसे मिलती है?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Income weekly/monthly basis पर your bank account में transfer होती है। System automated है — आपकी team की हर activity automatically track होती है।</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>अगर कोई company बंद हो जाए तो?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>यही Alliance का जादू है! अगर 1 company बंद भी हो जाए, आपके पास 100 और companies हैं। आपकी income कभी नहीं रुकती।</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>क्या team building mandatory है?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Team building से आपकी income exponentially बढ़ती है, लेकिन आप personal consumption से भी income generate कर सकते हैं। Team building recommended है growth के लिए।</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       15. PRICING SECTION
+  ============================ -->
+  <section class="section-pricing" id="pricing">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-eyebrow" data-aos="fade-down">Investment Plans</span>
+        <h2 class="section-heading" data-aos="fade-up">एक बार निवेश, जीवन भर कमाई</h2>
+        <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">
+          देखिए आप क्या पाएंगे और कितना बचाएंगे
+        </p>
+      </div>
+
+      <!-- Normal Pricing Cards -->
+      <div class="row g-4 mb-5">
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="price-card">
+            <div class="pc-top">
+              <i class="fa-solid fa-bullhorn"></i>
+              <h4>Digital Marketing Education</h4>
+            </div>
+            <div class="pc-price">₹10,000</div>
+            <ul class="pc-features">
+              <li><i class="fa-solid fa-check"></i> Complete Digital Marketing Course</li>
+              <li><i class="fa-solid fa-check"></i> Social Media Marketing</li>
+              <li><i class="fa-solid fa-check"></i> Lead Generation Techniques</li>
+              <li><i class="fa-solid fa-check"></i> Personal Branding</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="price-card">
+            <div class="pc-top">
+              <i class="fa-solid fa-building"></i>
+              <h4>101 Companies Charges</h4>
+            </div>
+            <div class="pc-price">₹1,20,000</div>
+            <ul class="pc-features">
+              <li><i class="fa-solid fa-check"></i> Access to All 101 Companies</li>
+              <li><i class="fa-solid fa-check"></i> Commission from Each Company</li>
+              <li><i class="fa-solid fa-check"></i> Multi-sector Portfolio</li>
+              <li><i class="fa-solid fa-check"></i> Lifetime Access</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="price-card">
+            <div class="pc-top">
+              <i class="fa-solid fa-crown"></i>
+              <h4>V.I.P Training Charge</h4>
+            </div>
+            <div class="pc-price">₹10,000</div>
+            <ul class="pc-features">
+              <li><i class="fa-solid fa-check"></i> 1-on-1 Mentorship</li>
+              <li><i class="fa-solid fa-check"></i> Advanced Leadership Training</li>
+              <li><i class="fa-solid fa-check"></i> Business Strategy Workshop</li>
+              <li><i class="fa-solid fa-check"></i> Success Blueprint</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="price-card">
+            <div class="pc-top">
+              <i class="fa-solid fa-headset"></i>
+              <h4>Tslgc Service Charges</h4>
+            </div>
+            <div class="pc-price">₹10,000</div>
+            <ul class="pc-features">
+              <li><i class="fa-solid fa-check"></i> 24/7 Support Access</li>
+              <li><i class="fa-solid fa-check"></i> Technical Assistance</li>
+              <li><i class="fa-solid fa-check"></i> Account Management</li>
+              <li><i class="fa-solid fa-check"></i> Priority Helpdesk</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Pricing Card -->
+      <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="200">
+        <div class="col-lg-6 col-md-8">
+          <div class="hero-price-card pulse-card">
+            <div class="hpc-badge">BEST VALUE</div>
+            <h3 class="hpc-title">TOTAL SERVICE CHARGE</h3>
+            <div class="hpc-original">
+              <span>Normal Price: </span><del>₹1,50,000</del>
+            </div>
+            <div class="hpc-price">₹4,999</div>
+            <div class="hpc-savings">
+              <i class="fa-solid fa-tag me-2"></i>आप बचा रहे हैं: <strong>₹1,45,001</strong>
+            </div>
+            <p class="hpc-small">TOTAL SERVICE CHARGE ₹2500 × 2 installments</p>
+            <div class="hpc-features">
+              <div class="hpcf-item"><i class="fa-solid fa-check-circle"></i> Digital Marketing Education</div>
+              <div class="hpcf-item"><i class="fa-solid fa-check-circle"></i> 101 Companies Access</div>
+              <div class="hpcf-item"><i class="fa-solid fa-check-circle"></i> VIP Training</div>
+              <div class="hpcf-item"><i class="fa-solid fa-check-circle"></i> TSLGC Support</div>
+            </div>
+            <a href="#" class="btn hpc-cta pulse-btn">
+              <i class="fa-solid fa-rocket me-2"></i>अभी Join करें — सिर्फ ₹4,999
+            </a>
+            <p class="hpc-note">Limited Time Offer • Seats Filling Fast</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       16. FOOTER
+  ============================ -->
+  <footer class="site-footer">
+    <div class="footer-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--primary)"/>
+      </svg>
+    </div>
+    <div class="container">
+      <div class="row g-5 pt-5">
+        <div class="col-lg-4">
+          <div class="footer-brand">
+            <span class="brand-logo">UNIFY<span class="brand-accent">HUB</span></span>
+            <p class="footer-tagline">Service Pvt Ltd</p>
+            <p class="footer-motto"><i class="fa-solid fa-infinity me-2"></i>कभी न रुकने वाली इनकम</p>
+            <p class="footer-desc">भारत का सबसे बड़ा Alliance Market — 1 ID, 101 Businesses, अनंत संभावनाएं।</p>
+          </div>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#difference">About</a></li>
+            <li><a href="#businesses">Businesses</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h5 class="footer-heading">Platform</h5>
+          <ul class="footer-links">
+            <li><a href="#">Alliance Market</a></li>
+            <li><a href="#">Digital Training</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Rewards</a></li>
+            <li><a href="#">Vision 2030</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h5 class="footer-heading">Connect With Us</h5>
+          <div class="social-icons">
+            <a href="#" class="social-icon" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="social-icon" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" class="social-icon" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+          <div class="footer-contact mt-3">
+            <p><i class="fa-solid fa-envelope me-2"></i>info@unifyhub.in</p>
+            <p><i class="fa-solid fa-phone me-2"></i>+91 XXXXX XXXXX</p>
+            <p><i class="fa-solid fa-location-dot me-2"></i>India</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 UnifyHub Service Pvt Ltd. All Rights Reserved. | Designed with <i class="fa-solid fa-heart text-danger"></i> for India's Alliance Market</p>
+        <p class="footer-legal-note">UnifyHub is a legal direct selling company. Income depends on individual effort and team performance.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- VIDEO MODAL -->
+  <div class="modal fade" id="videoModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content modal-dark">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">UnifyHub – Alliance Market</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="video-placeholder">
+            <i class="fa-solid fa-play-circle"></i>
+            <p>Coming Soon — Our Story Video</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" title="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
