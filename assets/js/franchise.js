@@ -1,5 +1,5 @@
 /* ============================================================
-   UNIFYHUB – Franchise Panel JavaScript
+   TSLGC – Franchise Panel JavaScript
    ============================================================ */
 'use strict';
 

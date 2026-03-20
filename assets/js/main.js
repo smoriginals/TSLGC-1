@@ -1,5 +1,5 @@
 /* ============================================================
-   UNIFYHUB – Landing Page JS (Particles, Typewriter, CountUp etc.)
+   TSLGC – Landing Page JS (Particles, Typewriter, CountUp etc.)
    ============================================================ */
 'use strict';
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * UnifyHub – Member Registration
+ * TSLGC – Member Registration
  * POST body (JSON): registration form fields
  *
  * Returns: { "status": "success|error", "message": "...", "data": { "member_id": ... } }
@@ -108,3 +108,4 @@ try {
 } catch (PDOException $e) {
     jsonResponse('error', 'Registration failed. Please try again.');
 }
+

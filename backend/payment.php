@@ -1,6 +1,6 @@
 <?php
 /**
- * UnifyHub – Payment Handler
+ * TSLGC – Payment Handler
  * Records new payment submissions and tracks installments.
  *
  * POST body (JSON): { action, member_id, amount, plan, installment_no, payment_method, upi_ref }
@@ -97,3 +97,4 @@ switch ($action) {
         http_response_code(400);
         jsonResponse('error', 'Unknown action');
 }
+

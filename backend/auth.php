@@ -1,6 +1,6 @@
 <?php
 /**
- * UnifyHub – Authentication Handler
+ * TSLGC – Authentication Handler
  * Handles: admin_login, franchise_login, logout
  *
  * POST body (JSON): { "action": "...", ... }
@@ -106,3 +106,4 @@ switch ($action) {
         http_response_code(400);
         jsonResponse('error', 'Invalid action');
 }
+

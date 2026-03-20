@@ -1,5 +1,5 @@
-/* ============================================================
-   UNIFYHUB Alliance Market – Main JavaScript
+﻿/* ============================================================
+   TSLGC Alliance Market – Main JavaScript
    ============================================================ */
 
 'use strict';
@@ -158,20 +158,7 @@ AOS.init({
   highlight();
 })();
 
-// ============================================================
-// BACK TO TOP
-// ============================================================
-(function initBackToTop() {
-  const btn = document.getElementById('backToTop');
-  if (!btn) return;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) btn.classList.add('visible');
-    else btn.classList.remove('visible');
-  }, { passive: true });
-
-  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-})();
 
 // ============================================================
 // TYPEWRITER EFFECT (Hero)

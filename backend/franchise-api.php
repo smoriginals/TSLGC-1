@@ -1,6 +1,6 @@
 <?php
 /**
- * UnifyHub – Franchise API
+ * TSLGC – Franchise API
  * Handles all franchise portal data operations.
  *
  * GET  actions: franchise_dashboard, my_team, my_income, list_leads, get_announcements
@@ -259,3 +259,4 @@ switch ($action) {
         http_response_code(400);
         jsonResponse('error', 'Unknown action');
 }
+

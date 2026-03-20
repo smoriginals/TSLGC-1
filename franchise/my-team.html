@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Team – UnifyHub Franchise</title>
+  <title>My Team – TSLGC Franchise</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,7 +15,7 @@
     <aside class="fr-sidebar" id="frSidebar">
       <div class="fr-sidebar-brand">
         <span class="fr-sb-logo">UH</span>
-        <div><strong>UnifyHub</strong><small>Franchise Portal</small></div>
+        <div><strong>TSLGC</strong><small>Franchise Portal</small></div>
       </div>
       <div class="fr-sidebar-user">
         <div class="fr-su-avatar"><i class="fa-solid fa-store"></i></div>
@@ -198,6 +198,32 @@
 
     renderTeamTree();
     loadTeam();
+  </script>
+
+  <!-- FLOATING LANG TOGGLE -->
+  <div class="floating-lang" id="floatingLang" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:1050;display:flex;flex-direction:column-reverse;align-items:flex-end;gap:0.5rem;">
+    <div class="floating-lang-dropdown" id="floatingLangDropdown" style="display:flex;flex-direction:column;gap:0.4rem;align-items:flex-end;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .18s,transform .18s;">
+      <button onclick="switchLangOption('hi')" style="background:#fff;color:#060022;border:1px solid rgba(139,49,212,.25);border-radius:2rem;padding:.35rem 1rem;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.1);">🇮🇳 हिन्दी</button>
+      <button onclick="switchLangOption('en')" style="background:#fff;color:#060022;border:1px solid rgba(139,49,212,.25);border-radius:2rem;padding:.35rem 1rem;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.1);">🇬🇧 English</button>
+    </div>
+    <button onclick="toggleLangDropdown()" title="Language" style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#8B31D4,#060022);color:#fff;border:none;cursor:pointer;font-size:.8rem;font-weight:700;box-shadow:0 4px 16px rgba(139,49,212,.45);display:flex;align-items:center;justify-content:center;">
+      <span id="floatingLangLabel">हि</span>
+    </button>
+  </div>
+  <script>
+    (function(){
+      var KEY='uh-lang';
+      var drop=document.getElementById('floatingLangDropdown');
+      var lbl=document.getElementById('floatingLangLabel');
+      var isOpen=false;
+      function syncLabel(){var l=localStorage.getItem(KEY)||'en';if(lbl)lbl.textContent=l==='hi'?'हि':'EN';}
+      function toggleLangDropdown(){isOpen=!isOpen;drop.style.opacity=isOpen?'1':'0';drop.style.pointerEvents=isOpen?'all':'none';drop.style.transform=isOpen?'translateY(0)':'translateY(8px)';}
+      function switchLangOption(l){localStorage.setItem(KEY,l);document.documentElement.lang=l;syncLabel();toggleLangDropdown();}
+      window.toggleLangDropdown=toggleLangDropdown;
+      window.switchLangOption=switchLangOption;
+      document.addEventListener('click',function(e){if(isOpen&&!e.target.closest('#floatingLang')){toggleLangDropdown();}});
+      syncLabel();
+    })();
   </script>
 </body>
 </html>

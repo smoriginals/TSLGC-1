@@ -1,6 +1,6 @@
 /* ============================================================
-   UNIFYHUB – Shared JavaScript (All Public Pages)
-   theme toggle, navbar scroll, AOS init, cursor, back-to-top,
+   TSLGC – Shared JavaScript (All Public Pages)
+   theme toggle, navbar scroll, AOS init, cursor, floating lang toggle,
    active nav link (page-based), toast helper
    ============================================================ */
 'use strict';
@@ -93,17 +93,7 @@ if (typeof AOS !== 'undefined') {
   animateRing();
 })();
 
-// ============================================================
-// BACK TO TOP
-// ============================================================
-(function initBackToTop() {
-  const btn = document.getElementById('backToTop');
-  if (!btn) return;
-  window.addEventListener('scroll', () => {
-    btn.classList.toggle('visible', window.scrollY > 400);
-  }, { passive: true });
-  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-})();
+
 
 // ============================================================
 // FAQ ACCORDION (shared across pages)
@@ -149,6 +139,86 @@ function showToast(message, type = 'success', title = '') {
     setTimeout(() => toast.remove(), 400);
   }, 4000);
 }
+
+// ============================================================
+// LANGUAGE TOGGLE (EN ↔ HI, localStorage key: uh-lang)
+// ============================================================
+(function initLang() {
+  const LANG_KEY = 'uh-lang';
+  const saved = localStorage.getItem(LANG_KEY) || 'en';
+
+  const PAGE_TITLES = {
+    'index.html':      { en: "TSLGC – India's Biggest Alliance Market",    hi: 'TSLGC – भारत का सबसे बड़ा एलायंस मार्केट' },
+    'about.html':      { en: 'About TSLGC',                                 hi: 'TSLGC के बारे में' },
+    'businesses.html': { en: '101 Businesses – TSLGC',                      hi: '101 व्यवसाय – TSLGC' },
+    'income.html':     { en: 'Income Plans – TSLGC',                        hi: 'इनकम योजनाएं – TSLGC' },
+    'pricing.html':    { en: 'Pricing – TSLGC',                             hi: 'मूल्य – TSLGC' },
+    'faq.html':        { en: 'FAQ – TSLGC',                                 hi: 'सामान्य प्रश्न – TSLGC' },
+    'contact.html':    { en: 'Contact – TSLGC',                             hi: 'संपर्क – TSLGC' },
+    'join.html':       { en: 'Join Now – TSLGC',                            hi: 'अभी जुड़ें – TSLGC' },
+  };
+
+  function applyLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+      el.textContent = lang === 'hi' ? el.dataset.hi : el.dataset.en;
+    });
+    const lbl = document.querySelector('.lang-btn-label');
+    if (lbl) lbl.textContent = lang === 'en' ? 'हि' : 'EN';
+    const page = (window.location.pathname.split('/').pop() || 'index.html').replace(/\?.*$/, '');
+    if (PAGE_TITLES[page]) document.title = PAGE_TITLES[page][lang];
+    localStorage.setItem(LANG_KEY, lang);
+  }
+
+  // Apply on page load
+  applyLang(saved);
+
+  const btn = document.getElementById('langToggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const current = document.documentElement.lang || 'en';
+    applyLang(current === 'en' ? 'hi' : 'en');
+  });
+
+  // Expose globally for the floating lang dropdown
+  window.switchLang = applyLang;
+})();
+
+// ============================================================
+// FLOATING LANG TOGGLE — dropdown logic
+// ============================================================
+(function initFloatingLang() {
+  const LANG_KEY = 'uh-lang';
+  const wrap = document.getElementById('floatingLang');
+  if (!wrap) return;
+  const dropdown = document.getElementById('floatingLangDropdown');
+  const label    = wrap.querySelector('.floating-lang-label');
+
+  function syncLabel() {
+    const lang = localStorage.getItem(LANG_KEY) || 'en';
+    if (label) label.textContent = lang === 'hi' ? 'हि' : 'EN';
+    wrap.querySelectorAll('.lang-option').forEach(opt => {
+      opt.classList.toggle('active-lang', opt.dataset.lang === lang);
+    });
+  }
+
+  window.toggleLangDropdown = function () {
+    dropdown.classList.toggle('open');
+  };
+
+  window.switchLangOption = function (lang) {
+    dropdown.classList.remove('open');
+    if (typeof window.switchLang === 'function') window.switchLang(lang);
+    else { localStorage.setItem(LANG_KEY, lang); document.documentElement.lang = lang; }
+    syncLabel();
+  };
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('#floatingLang')) dropdown.classList.remove('open');
+  });
+
+  syncLabel();
+})();
 
 // ============================================================
 // MOBILE NAVBAR CLOSE ON LINK CLICK

@@ -1,6 +1,6 @@
 <?php
 /**
- * UnifyHub – Admin API
+ * TSLGC – Admin API
  * Handles all admin panel data operations.
  *
  * GET  actions: dashboard_stats, list_members, list_franchises, list_payments, list_announcements, recent_members
@@ -240,7 +240,7 @@ switch ($action) {
     // -------------------------------------------------------
         // Override content type to CSV
         header('Content-Type: text/csv; charset=utf-8');
-        header('Content-Disposition: attachment; filename="unifyhub_members_' . date('Ymd') . '.csv"');
+        header('Content-Disposition: attachment; filename="tslgc_members_' . date('Ymd') . '.csv"');
 
         $stmt = $pdo->query('SELECT member_code, full_name, mobile, email, city, state, plan, status, created_at FROM members ORDER BY created_at DESC');
         $rows = $stmt->fetchAll();
@@ -255,3 +255,4 @@ switch ($action) {
         http_response_code(400);
         jsonResponse('error', 'Unknown action');
 }
+

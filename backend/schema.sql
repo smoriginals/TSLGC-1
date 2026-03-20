@@ -1,14 +1,14 @@
--- =====================================================
--- UnifyHub Database Schema
--- Database: unifyhub_db
+﻿-- =====================================================
+-- TSLGC Database Schema
+-- Database: tslgc_db
 -- Charset: utf8mb4 (supports Hindi/Devanagari)
 -- =====================================================
 
-CREATE DATABASE IF NOT EXISTS unifyhub_db
+CREATE DATABASE IF NOT EXISTS tslgc_db
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
-USE unifyhub_db;
+USE tslgc_db;
 
 -- -----------------------------------------------------
 -- admins
@@ -163,3 +163,4 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   INDEX idx_cm_email (email),
   INDEX idx_cm_ip    (ip_address)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

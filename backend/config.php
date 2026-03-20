@@ -1,16 +1,16 @@
-<?php
+﻿<?php
 /**
- * UnifyHub – Database Configuration
+ * TSLGC – Database Configuration
  * Update DB_USER and DB_PASS before deploying on Hostinger.
  */
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'unifyhub_db');
+define('DB_NAME', 'tslgc_db');
 define('DB_USER', 'your_db_user');       // ← Change this
 define('DB_PASS', 'your_db_password');   // ← Change this
 define('DB_CHARSET', 'utf8mb4');
 
-define('APP_NAME', 'UnifyHub');
+define('APP_NAME', 'TSLGC');
 define('APP_URL', 'https://yourdomain.com'); // ← Change this
 
 /**

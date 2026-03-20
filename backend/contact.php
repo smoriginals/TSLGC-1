@@ -1,6 +1,6 @@
 <?php
 /**
- * UnifyHub – Contact Form Handler
+ * TSLGC – Contact Form Handler
  * Records contact form submissions to the database and optionally sends an email.
  *
  * POST body (JSON): { name, phone, email, subject, message }
@@ -66,10 +66,11 @@ try {
     $stmt->execute([$name, $phone, $email, $subject, $message, $ip]);
 
     // Optional: send notification email to admin
-    // mail('admin@unifyhub.in', "[UnifyHub Contact] $subject", "From: $name\nPhone: $phone\nEmail: $email\n\n$message");
+    // mail('admin@tslgc.in', "[TSLGC Contact] $subject", "From: $name\nPhone: $phone\nEmail: $email\n\n$message");
 
     jsonResponse('success', 'Aapka message mil gaya! Hum jald hi aapse contact karenge.');
 
 } catch (PDOException $e) {
     jsonResponse('error', 'Message send karne mein error aaya. Please try again.');
 }
+

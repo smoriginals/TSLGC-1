@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Join Now – UnifyHub Alliance Market | ₹4,999 में शुरू करें</title>
-  <meta name="description" content="UnifyHub Join Now – आज ही Join करें और अपना Alliance Market Business शुरू करें।" />
+  <title>Login / Sign Up — TSLGC Member Portal</title>
+  <meta name="description" content="TSLGC Member Portal — Login or Sign Up to start your Alliance Market journey." />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
@@ -22,210 +22,171 @@
 
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-    <div class="container">
+    <div class="container d-flex align-items-center justify-content-between">
       <a class="navbar-brand" href="index.html">
-        <span class="brand-logo">UNIFY<span class="brand-accent">HUB</span></span>
-        <small class="brand-tagline d-block">Alliance Market</small>
+        <img src="assets/logo.png" alt="TSLGC" class="nav-logo">
       </a>
-      <div class="ms-auto d-flex align-items-center gap-2">
-        <button class="btn btn-sm theme-toggle" id="themeToggle" title="Toggle Theme">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="index.html"><span data-en="Home" data-hi="होम">Home</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html"><span data-en="About" data-hi="हमारे बारे में">About</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="businesses.html"><span data-en="Businesses" data-hi="व्यवसाय">Businesses</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="income.html"><span data-en="Income" data-hi="आय">Income</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="pricing.html"><span data-en="Pricing" data-hi="मूल्य">Pricing</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html"><span data-en="FAQ" data-hi="सामान्य प्रश्न">FAQ</span></a></li>
+          <li class="nav-item"><a class="nav-link btn-nav-cta" href="join.html"><span data-en="Join Now" data-hi="अभी जुड़ें">Join Now</span></a></li>
+        </ul>
+      </div>
+      <div class="d-flex align-items-center gap-2 flex-shrink-0">
+        <button class="btn btn-sm theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
           <i class="fa-solid fa-moon" id="themeIcon"></i>
         </button>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false">
           <span class="toggler-icon"><i class="fa-solid fa-bars"></i></span>
         </button>
-      </div>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="businesses.html">Businesses</a></li>
-          <li class="nav-item"><a class="nav-link" href="income.html">Income</a></li>
-          <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
-          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
-          <li class="nav-item"><a class="nav-link btn-nav-cta active" href="join.html">Join Now</a></li>
-        </ul>
       </div>
     </div>
   </nav>
 
-  <!-- PAGE HERO -->
-  <section class="page-hero">
-    <div class="page-hero-orb o1"></div>
-    <div class="page-hero-orb o2"></div>
-    <div class="container" style="position:relative;z-index:2">
-      <span class="section-eyebrow" data-aos="fade-down">Start Your Journey</span>
-      <h1 class="page-hero-title" data-aos="fade-up">UnifyHub में Join करें</h1>
-      <p class="page-hero-subtitle" data-aos="fade-up" data-aos-delay="100">सिर्फ ₹4,999 में 101 Businesses का Alliance Market — आज ही शुरू करें!</p>
-      <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
-        <ol class="breadcrumb justify-content-center">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Join Now</li>
-        </ol>
-      </nav>
-    </div>
-  </section>
+  <!-- AUTH PAGE -->
+  <div class="auth-page-bg">
+    <div class="auth-card" data-aos="zoom-in" data-aos-duration="450">
 
-  <!-- JOIN SECTION -->
-  <section class="section-join" id="join">
-    <div class="container">
-      <div class="row g-5 align-items-start justify-content-center">
-
-        <!-- Benefits Sidebar -->
-        <div class="col-lg-4" data-aos="fade-right">
-          <div class="join-benefits-card">
-            <h4 class="jb-title"><i class="fa-solid fa-gift me-2"></i>आपको क्या मिलेगा?</h4>
-            <ul class="jb-list">
-              <li><i class="fa-solid fa-check-circle"></i> 101 Companies Alliance Access</li>
-              <li><i class="fa-solid fa-check-circle"></i> Digital Marketing Education</li>
-              <li><i class="fa-solid fa-check-circle"></i> VIP Training & Mentorship</li>
-              <li><i class="fa-solid fa-check-circle"></i> Smart Dashboard</li>
-              <li><i class="fa-solid fa-check-circle"></i> AI-Powered Lead Tools</li>
-              <li><i class="fa-solid fa-check-circle"></i> 24/7 Support Team</li>
-              <li><i class="fa-solid fa-check-circle"></i> Franchise Eligibility</li>
-              <li><i class="fa-solid fa-check-circle"></i> Lifetime Passive Income</li>
-            </ul>
-            <div class="jb-price-box">
-              <p class="jb-old-price"><del>₹1,50,000</del> की value</p>
-              <p class="jb-new-price">सिर्फ <strong>₹4,999</strong></p>
-              <p class="jb-installment">या <strong>₹2,500 × 2</strong> Installments</p>
-            </div>
-            <div class="jb-trust">
-              <i class="fa-solid fa-shield-halved"></i> 100% Secure & Legal
-            </div>
-          </div>
-        </div>
-
-        <!-- Registration Form -->
-        <div class="col-lg-8" data-aos="fade-left">
-          <div class="join-form-wrap">
-            <h3 class="join-form-title">Registration Form</h3>
-            <p class="join-form-sub">सभी जानकारी सही और सच्ची भरें</p>
-            <div id="joinToast" class="toast-custom" style="display:none"></div>
-            <form id="joinForm" novalidate autocomplete="off">
-              <div class="row g-3">
-                <!-- Personal Info -->
-                <div class="col-12">
-                  <h5 class="form-section-heading"><i class="fa-solid fa-user me-2"></i>Personal Information</h5>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Full Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name="full_name" id="joinName" placeholder="Your Full Name" required minlength="2" maxlength="100" />
-                  <div class="invalid-feedback">Name required (2–100 chars).</div>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Mobile Number <span class="text-danger">*</span></label>
-                  <input type="tel" class="form-control" name="mobile" id="joinMobile" placeholder="10-digit mobile" required pattern="[6-9][0-9]{9}" maxlength="10" />
-                  <div class="invalid-feedback">Valid 10-digit Indian mobile required.</div>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Email Address</label>
-                  <input type="email" class="form-control" name="email" id="joinEmail" placeholder="yourname@example.com" maxlength="200" />
-                  <div class="invalid-feedback">Valid email required.</div>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Date of Birth</label>
-                  <input type="date" class="form-control" name="dob" id="joinDob" max="" />
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">City <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name="city" id="joinCity" placeholder="Your City" required maxlength="100" />
-                  <div class="invalid-feedback">City required.</div>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">State <span class="text-danger">*</span></label>
-                  <select class="form-control" name="state" id="joinState" required>
-                    <option value="">-- State Select करें --</option>
-                    <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option>
-                    <option>Bihar</option><option>Chhattisgarh</option><option>Goa</option>
-                    <option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option>
-                    <option>Jharkhand</option><option>Karnataka</option><option>Kerala</option>
-                    <option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option>
-                    <option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option>
-                    <option>Odisha</option><option>Punjab</option><option>Rajasthan</option>
-                    <option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option>
-                    <option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option>
-                    <option>West Bengal</option><option>Delhi</option><option>Other</option>
-                  </select>
-                  <div class="invalid-feedback">State required.</div>
-                </div>
-
-                <!-- Referral -->
-                <div class="col-12 mt-2">
-                  <h5 class="form-section-heading"><i class="fa-solid fa-users me-2"></i>Referral (Optional)</h5>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Referral ID / Sponsor ID</label>
-                  <input type="text" class="form-control" name="referral_id" id="joinReferral" placeholder="Referral ID (if any)" maxlength="50" />
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Referral Name</label>
-                  <input type="text" class="form-control" name="referral_name" id="joinReferralName" placeholder="Referral Person Name" maxlength="100" />
-                </div>
-
-                <!-- Plan Selection -->
-                <div class="col-12 mt-2">
-                  <h5 class="form-section-heading"><i class="fa-solid fa-tag me-2"></i>Plan Selection</h5>
-                </div>
-                <div class="col-12">
-                  <label class="form-label">Choose Payment Plan <span class="text-danger">*</span></label>
-                  <div class="plan-options">
-                    <label class="plan-option">
-                      <input type="radio" name="plan" value="full" id="planFull" required />
-                      <div class="plan-option-body">
-                        <div class="plan-option-icon"><i class="fa-solid fa-rocket"></i></div>
-                        <div>
-                          <strong>Full Payment</strong>
-                          <p>₹4,999 एक बार में — Instant Activation!</p>
-                        </div>
-                        <div class="plan-option-badge best">Best</div>
-                      </div>
-                    </label>
-                    <label class="plan-option">
-                      <input type="radio" name="plan" value="installment" />
-                      <div class="plan-option-body">
-                        <div class="plan-option-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                        <div>
-                          <strong>2 Installments</strong>
-                          <p>₹2,500 + ₹2,500 (Second within 30 days)</p>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                  <div class="invalid-feedback d-block" id="planError" style="display:none!important"></div>
-                </div>
-
-                <!-- Terms -->
-                <div class="col-12 mt-2">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="termsCheck" name="terms" required />
-                    <label class="form-check-label" for="termsCheck">
-                      मैं <a href="#" class="text-secondary">Terms &amp; Conditions</a> और
-                      <a href="#" class="text-secondary">Income Disclaimer</a> से सहमत हूँ।
-                      <strong>Income depends on individual effort and team performance.</strong>
-                    </label>
-                    <div class="invalid-feedback">Terms accept करना अनिवार्य है।</div>
-                  </div>
-                </div>
-
-                <div class="col-12">
-                  <button type="submit" class="btn btn-submit w-100" id="joinSubmitBtn">
-                    <i class="fa-solid fa-rocket me-2"></i>Join UnifyHub — ₹4,999 से शुरू करें
-                  </button>
-                </div>
-                <div class="col-12">
-                  <p class="form-security-note">
-                    <i class="fa-solid fa-shield-halved me-1"></i>
-                    आपकी जानकारी 100% सुरक्षित है। हम कभी भी आपकी details share नहीं करते।
-                  </p>
-                </div>
-              </div>
-            </form>
-          </div>
+      <!-- Header: logo + brand -->
+      <div class="auth-header">
+        <img src="assets/logo.png" alt="TSLGC" class="auth-logo-img">
+        <div class="auth-header-text">
+          <p class="auth-brand-name">TSLGC <span class="auth-brand-pvt">Pvt.Ltd.</span></p>
+          <p class="auth-brand-sub">Alliance Market — Member Portal</p>
         </div>
       </div>
+
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tabLogin" onclick="switchAuthTab('login')">
+          <i class="fa-solid fa-right-to-bracket"></i> Login
+        </button>
+        <button class="auth-tab-btn" id="tabSignup" onclick="switchAuthTab('signup')">
+          <i class="fa-solid fa-user-plus"></i> Sign Up
+        </button>
+      </div>
+
+      <!-- Toast -->
+      <div id="joinToast" class="auth-toast" style="display:none;margin:0.65rem 1.8rem 0"></div>
+
+      <!-- ── LOGIN PANEL ── -->
+      <div id="panelLogin" class="auth-form-body">
+        <form id="loginForm" novalidate autocomplete="off">
+          <div class="auth-field-wrap">
+            <i class="auth-icon fa-solid fa-envelope"></i>
+            <input class="auth-input" type="email" id="loginEmail" name="email"
+              placeholder="Email Address" required maxlength="200" />
+          </div>
+          <div class="auth-field-wrap">
+            <i class="auth-icon fa-solid fa-lock"></i>
+            <input class="auth-input" type="password" id="loginPassword" name="password"
+              placeholder="Password" required minlength="6" style="padding-right:2.6rem" />
+            <button type="button" class="auth-field-action" onclick="togglePwd()">
+              <i class="fa-solid fa-eye" id="pwdEyeIcon"></i>
+            </button>
+          </div>
+          <div class="auth-meta-row">
+            <label class="auth-meta-label">
+              <input type="checkbox" id="rememberMe" /> Remember me
+            </label>
+            <a href="#" onclick="showForgotPwd();return false">Forgot Password?</a>
+          </div>
+          <button type="submit" class="auth-submit" id="loginSubmitBtn">
+            <i class="fa-solid fa-right-to-bracket"></i> Login to Dashboard
+          </button>
+          <p class="auth-security"><i class="fa-solid fa-shield-halved"></i> SSL Encrypted &mdash; Secure Login</p>
+          <p class="auth-switch-link">New member? <a href="#" onclick="switchAuthTab('signup');return false">Sign Up →</a></p>
+        </form>
+      </div>
+
+      <!-- ── SIGNUP PANEL ── -->
+      <div id="panelSignup" class="auth-form-body" style="display:none">
+        <form id="joinForm" novalidate autocomplete="off">
+          <div class="auth-fields-grid">
+            <div class="auth-field-wrap">
+              <i class="auth-icon fa-solid fa-user"></i>
+              <input class="auth-input" type="text" id="joinName" name="full_name"
+                placeholder="Full Name *" required minlength="2" maxlength="100" />
+            </div>
+            <div class="auth-field-wrap">
+              <i class="auth-icon fa-solid fa-mobile-screen-button"></i>
+              <input class="auth-input" type="tel" id="joinMobile" name="mobile"
+                placeholder="Mobile *" required pattern="[6-9][0-9]{9}" maxlength="10" />
+            </div>
+            <div class="auth-field-wrap" style="grid-column:1/-1">
+              <i class="auth-icon fa-solid fa-envelope"></i>
+              <input class="auth-input" type="email" id="joinEmail" name="email"
+                placeholder="Email *" required maxlength="200" />
+            </div>
+            <div class="auth-field-wrap" style="position:relative;grid-column:1/-1">
+              <i class="auth-icon fa-solid fa-lock"></i>
+              <input class="auth-input" type="password" id="joinPassword" name="password"
+                placeholder="Password *" required minlength="6" maxlength="100"
+                style="padding-right:2.6rem" />
+              <button type="button" onclick="toggleSignupPwd()"
+                style="position:absolute;right:.7rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted,#7c7c9c);font-size:.85rem;cursor:pointer;padding:0;line-height:1" tabindex="-1">
+                <i id="signupPwdEye" class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+            <div class="auth-field-wrap">
+              <i class="auth-icon fa-solid fa-city"></i>
+              <input class="auth-input" type="text" id="joinCity" name="city"
+                placeholder="City *" required maxlength="100" />
+            </div>
+            <div class="auth-field-wrap">
+              <i class="auth-icon fa-solid fa-map-location-dot"></i>
+              <select class="auth-input" id="joinState" name="state" required style="padding-left:2.3rem">
+                <option value="">— State *</option>
+                <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option>
+                <option>Bihar</option><option>Chhattisgarh</option><option>Goa</option>
+                <option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option>
+                <option>Jharkhand</option><option>Karnataka</option><option>Kerala</option>
+                <option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option>
+                <option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option>
+                <option>Odisha</option><option>Punjab</option><option>Rajasthan</option>
+                <option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option>
+                <option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option>
+                <option>West Bengal</option><option>Delhi</option><option>Other</option>
+              </select>
+            </div>
+            <div class="auth-field-wrap" style="grid-column:1/-1">
+              <i class="auth-icon fa-solid fa-id-card"></i>
+              <input class="auth-input" type="text" id="joinReferral" name="referral_id"
+                placeholder="Referral ID (opt.)" maxlength="50" />
+            </div>
+          </div>
+          <div class="auth-plan-pills">
+            <label class="auth-plan-pill">
+              <input type="radio" name="plan" value="full" id="planFull" required />
+              <span><strong>₹4,999</strong> Full Pay</span>
+              <span class="auth-plan-badge">BEST</span>
+            </label>
+            <label class="auth-plan-pill">
+              <input type="radio" name="plan" value="installment" />
+              <span><strong>₹2,500×2</strong> EMI</span>
+            </label>
+          </div>
+          <div id="planError" style="display:none!important;font-size:.73rem;color:#dc3545;margin-bottom:.5rem"></div>
+          <label class="auth-terms-row">
+            <input type="checkbox" id="termsCheck" name="terms" required />
+            I agree to <a href="#" class="text-secondary" onclick="return false">Terms &amp; Conditions</a>
+            &amp; <a href="#" class="text-secondary" onclick="return false">Income Disclaimer</a>
+          </label>
+          <button type="submit" class="auth-submit" id="joinSubmitBtn">
+            <i class="fa-solid fa-rocket"></i> Join TSLGC — ₹4,999
+          </button>
+          <p class="auth-security"><i class="fa-solid fa-shield-halved"></i> 100% Secure — Your data is safe</p>
+          <p class="auth-switch-link">Already a member? <a href="#" onclick="switchAuthTab('login');return false">Login →</a></p>
+        </form>
+      </div>
+
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer class="site-footer">
@@ -238,33 +199,33 @@
       <div class="row g-5 pt-5">
         <div class="col-lg-4">
           <div class="footer-brand">
-            <span class="brand-logo">UNIFY<span class="brand-accent">HUB</span></span>
-            <p class="footer-tagline">Service Pvt Ltd</p>
-            <p class="footer-motto"><i class="fa-solid fa-infinity me-2"></i>कभी न रुकने वाली इनकम</p>
-            <p class="footer-desc">भारत का सबसे बड़ा Alliance Market — 1 ID, 101 Businesses, अनंत संभावनाएं।</p>
+            <span class="brand-logo">TSLGC<span class="brand-accent"> Pvt.Ltd.</span></span>
+            <p class="footer-tagline">Pvt.Ltd.</p>
+            <p class="footer-motto"><i class="fa-solid fa-infinity me-2"></i><span data-en="Unstoppable Income" data-hi="कभी न रुकने वाली इनकम">कभी न रुकने वाली इनकम</span></p>
+            <p class="footer-desc"><span data-en="India's Biggest Alliance Market — 1 ID, 101 Businesses, Infinite Possibilities." data-hi="भारत का सबसे बड़ा Alliance Market — 1 ID, 101 Businesses, अनंत संभावनाएं।">भारत का सबसे बड़ा Alliance Market — 1 ID, 101 Businesses, अनंत संभावनाएं।</span></p>
           </div>
         </div>
         <div class="col-lg-2 col-6">
-          <h5 class="footer-heading">Quick Links</h5>
+          <h5 class="footer-heading" data-en="Quick Links" data-hi="त्वरित लिंक">Quick Links</h5>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="businesses.html">Businesses</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="index.html" data-en="Home" data-hi="होम">Home</a></li>
+            <li><a href="about.html" data-en="About" data-hi="हमारे बारे में">About</a></li>
+            <li><a href="businesses.html" data-en="Businesses" data-hi="व्यवसाय">Businesses</a></li>
+            <li><a href="pricing.html" data-en="Pricing" data-hi="मूल्य">Pricing</a></li>
+            <li><a href="faq.html" data-en="FAQ" data-hi="सामान्य प्रश्न">FAQ</a></li>
           </ul>
         </div>
         <div class="col-lg-2 col-6">
-          <h5 class="footer-heading">Platform</h5>
+          <h5 class="footer-heading" data-en="Platform" data-hi="प्लेटफॉर्म">Platform</h5>
           <ul class="footer-links">
-            <li><a href="income.html">Alliance Market</a></li>
-            <li><a href="income.html">Rewards</a></li>
-            <li><a href="join.html">Join Now</a></li>
+            <li><a href="income.html" data-en="Alliance Market" data-hi="एलायंस मार्केट">Alliance Market</a></li>
+            <li><a href="income.html" data-en="Rewards" data-hi="पुरस्कार">Rewards</a></li>
+            <li><a href="join.html" data-en="Join Now" data-hi="अभी जुड़ें">Join Now</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="col-lg-4">
-          <h5 class="footer-heading">Connect With Us</h5>
+          <h5 class="footer-heading" data-en="Connect With Us" data-hi="हमसे संपर्क करें">Connect With Us</h5>
           <div class="social-icons">
             <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
@@ -273,95 +234,407 @@
             <a href="#" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
           <div class="footer-contact mt-3">
-            <p><i class="fa-solid fa-envelope me-2"></i>info@unifyhub.in</p>
+            <p><i class="fa-solid fa-envelope me-2"></i>info@tslgc.in</p>
             <p><i class="fa-solid fa-phone me-2"></i>+91 XXXXX XXXXX</p>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 UnifyHub Service Pvt Ltd. All Rights Reserved.</p>
-        <p class="footer-legal-note">UnifyHub is a legal direct selling company. Income depends on individual effort.</p>
+        <p>© 2026 TSLGC Pvt.Ltd. All Rights Reserved.</p>
+        <p class="footer-legal-note">TSLGC is a legal direct selling company. Income depends on individual effort.</p>
       </div>
     </div>
   </footer>
 
-  <button class="back-to-top" id="backToTop" title="Back to Top">
-    <i class="fa-solid fa-arrow-up"></i>
-  </button>
+  <!-- FLOATING LANG TOGGLE -->
+  <div class="floating-lang" id="floatingLang">
+    <div class="floating-lang-dropdown" id="floatingLangDropdown">
+      <button class="lang-option" data-lang="hi" onclick="window.switchLangOption('hi')">🇮🇳 हिन्दी</button>
+      <button class="lang-option" data-lang="en" onclick="window.switchLangOption('en')">🇬🇧 English</button>
+    </div>
+    <button class="floating-lang-btn" id="floatingLangBtn" onclick="window.toggleLangDropdown()" title="भाषा बदलें / Change Language">
+      <span class="floating-lang-label">हि</span>
+    </button>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="assets/js/shared.js"></script>
   <script>
-    // Set max date for DOB (must be 18+)
-    const dobInput = document.getElementById('joinDob');
-    const maxDate = new Date();
-    maxDate.setFullYear(maxDate.getFullYear() - 18);
-    dobInput.setAttribute('max', maxDate.toISOString().split('T')[0]);
+(function () {
+  'use strict';
 
-    document.getElementById('joinForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const planSelected = document.querySelector('input[name="plan"]:checked');
-      if (!planSelected) {
-        document.getElementById('planError').style.setProperty('display', 'block', 'important');
-        document.getElementById('planError').textContent = 'Payment plan select करें।';
-      } else {
-        document.getElementById('planError').style.setProperty('display', 'none', 'important');
-      }
-      if (!this.checkValidity() || !planSelected) {
-        this.classList.add('was-validated');
-        return;
-      }
-      const btn = document.getElementById('joinSubmitBtn');
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Processing...';
+  /* ── POPUP SYSTEM ──────────────────────────────────────────────────────────── */
+  function _ensurePopup() {
+    if (document.getElementById('tslgcPopup')) return;
+    var d = document.createElement('div');
+    d.id = 'tslgcPopup';
+    d.className = 'tslgc-overlay';
+    d.style.display = 'none';
+    d.setAttribute('role', 'dialog');
+    d.setAttribute('aria-modal', 'true');
+    d.innerHTML =
+      '<div class="tslgc-popup-card" id="tslgcCard">' +
+      '  <div class="tslgc-popup-icon" id="tslgcIcon"></div>' +
+      '  <p class="tslgc-popup-title" id="tslgcTitle"></p>' +
+      '  <p class="tslgc-popup-msg" id="tslgcMsg"></p>' +
+      '  <div id="tslgcExtra"></div>' +
+      '  <div class="tslgc-popup-actions" id="tslgcActions"></div>' +
+      '</div>';
+    document.body.appendChild(d);
+  }
 
-      const data = {
-        full_name: document.getElementById('joinName').value.trim(),
-        mobile: document.getElementById('joinMobile').value.trim(),
-        email: document.getElementById('joinEmail').value.trim(),
-        dob: document.getElementById('joinDob').value,
-        city: document.getElementById('joinCity').value.trim(),
-        state: document.getElementById('joinState').value,
-        referral_id: document.getElementById('joinReferral').value.trim(),
-        referral_name: document.getElementById('joinReferralName').value.trim(),
-        plan: planSelected.value
-      };
-
-      fetch('backend/register.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-      .then(r => r.json())
-      .then(res => {
-        const toast = document.getElementById('joinToast');
-        if (res.status === 'success') {
-          toast.className = 'toast-custom';
-          toast.textContent = '🎉 Registration Successful! हमारी team जल्द contact करेगी।';
-          toast.style.display = 'block';
-          document.getElementById('joinForm').reset();
-          document.getElementById('joinForm').classList.remove('was-validated');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          toast.className = 'toast-custom error';
-          toast.textContent = res.message || 'Something went wrong. Please try again.';
-          toast.style.display = 'block';
-        }
-        setTimeout(() => { toast.style.display = 'none'; }, 7000);
-      })
-      .catch(() => {
-        const toast = document.getElementById('joinToast');
-        toast.className = 'toast-custom error';
-        toast.textContent = 'Network error. Please check your connection and try again.';
-        toast.style.display = 'block';
-        setTimeout(() => { toast.style.display = 'none'; }, 5000);
-      })
-      .finally(() => {
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fa-solid fa-rocket me-2"></i>Join UnifyHub — ₹4,999 से शुरू करें';
-      });
+  function showPopup(opts) {
+    _ensurePopup();
+    var iconClass = { success:'tslgc-pi-success', error:'tslgc-pi-error', warn:'tslgc-pi-warn', confirm:'tslgc-pi-confirm' };
+    var iconFA    = { success:'fa-circle-check',  error:'fa-circle-xmark', warn:'fa-triangle-exclamation', confirm:'fa-circle-question' };
+    var t = opts.type || 'success';
+    document.getElementById('tslgcIcon').className  = 'tslgc-popup-icon ' + (iconClass[t] || iconClass.success);
+    document.getElementById('tslgcIcon').innerHTML  = '<i class="fa-solid ' + (iconFA[t] || iconFA.success) + '"></i>';
+    document.getElementById('tslgcTitle').textContent = opts.title || '';
+    document.getElementById('tslgcMsg').textContent   = opts.msg   || '';
+    var extra = document.getElementById('tslgcExtra');
+    if (extra) extra.innerHTML = opts.html || '';
+    var actEl = document.getElementById('tslgcActions');
+    actEl.innerHTML = '';
+    var btns = (opts.actions && opts.actions.length) ? opts.actions : [{ label: 'OK', cls: 'tslgc-pbtn-primary', fn: closePopup }];
+    btns.forEach(function (b) {
+      var btn = document.createElement('button');
+      btn.className   = 'tslgc-popup-btn ' + (b.cls || 'tslgc-pbtn-primary');
+      btn.textContent = b.label;
+      btn.addEventListener('click', function () { b.fn && b.fn(); });
+      actEl.appendChild(btn);
     });
+    var card = document.getElementById('tslgcCard');
+    card.classList.remove('pop-in', 'pop-out');
+    document.getElementById('tslgcPopup').style.display = 'flex';
+    void card.offsetWidth;
+    card.classList.add('pop-in');
+    if (opts.autoClose) setTimeout(closePopup, opts.autoClose);
+  }
+
+  function closePopup() {
+    var el   = document.getElementById('tslgcPopup');
+    var card = document.getElementById('tslgcCard');
+    if (!el || el.style.display === 'none') return;
+    card.classList.remove('pop-in');
+    card.classList.add('pop-out');
+    setTimeout(function () { el.style.display = 'none'; card.classList.remove('pop-out'); }, 220);
+  }
+
+  /* ── INLINE FIELD ERROR HELPERS ────────────────────────────────────────────── */
+  function setErr(input, msg) {
+    var wrap = (input && (input.closest('.auth-field-wrap') || input.parentNode)) || null;
+    if (!wrap) return;
+    var s = wrap.querySelector('.auth-err');
+    if (!s) { s = document.createElement('span'); s.className = 'auth-err'; wrap.appendChild(s); }
+    s.textContent = msg;
+    s.style.display = msg ? 'block' : 'none';
+    if (msg) input.classList.add('auth-input-err');
+    else     input.classList.remove('auth-input-err');
+  }
+  function clearErr(input) { setErr(input, ''); }
+  function isEmail(v) { return /^[^s@]+@[^s@]+.[^s@]+$/.test(v); }
+
+  /* ── STORAGE HELPERS ───────────────────────────────────────────────────────── */
+  var USERS_KEY   = 'tslgc_users';
+  var SESSION_KEY = 'tslgc_session';
+  function getUsers()  { try { return JSON.parse(localStorage.getItem(USERS_KEY) || '[]'); } catch (e) { return []; } }
+  function saveUser(u) { var a = getUsers(); a = a.filter(function (x) { return x.mobile !== u.mobile; }); a.push(u); localStorage.setItem(USERS_KEY, JSON.stringify(a)); }
+  function findByEmail(email) { var e = email.toLowerCase(); return getUsers().find(function (u) { return u.email && u.email.toLowerCase() === e; }) || null; }
+  function setSession(u) {
+    localStorage.setItem(SESSION_KEY, JSON.stringify({
+      name: u.full_name, mobile: u.mobile, email: u.email || '',
+      rank: u.rank || 'Bronze', plan: u.plan || '', loginTime: Date.now()
+    }));
+  }
+
+  /* ── SIGNUP VALIDATION ─────────────────────────────────────────────────────── */
+  function validateSignup() {
+    var ok     = true;
+    var name     = document.getElementById('joinName');
+    var mobile   = document.getElementById('joinMobile');
+    var email    = document.getElementById('joinEmail');
+    var password = document.getElementById('joinPassword');
+    var city     = document.getElementById('joinCity');
+    var state    = document.getElementById('joinState');
+    var terms    = document.getElementById('termsCheck');
+    var plan     = document.querySelector('input[name="plan"]:checked');
+    var pe       = document.getElementById('planError');
+
+    [name, mobile, email, password, city, state].forEach(clearErr);
+
+    if (!name.value.trim() || name.value.trim().length < 2) { setErr(name, 'Full name required (min 2 characters)'); ok = false; }
+    if (!/^[6-9][0-9]{9}$/.test(mobile.value.trim()))       { setErr(mobile, 'Enter a valid 10-digit Indian mobile number'); ok = false; }
+    if (!email.value.trim() || !isEmail(email.value.trim())) { setErr(email, 'Enter a valid email address (used for login)'); ok = false; }
+    if (!password.value || password.value.length < 6)        { setErr(password, 'Password must be at least 6 characters'); ok = false; }
+    if (!city.value.trim())  { setErr(city, 'City is required'); ok = false; }
+    if (!state.value)        { setErr(state, 'Please select your state'); ok = false; }
+
+    if (!plan) {
+      if (pe) { pe.textContent = 'Please select a payment plan'; pe.style.setProperty('display', 'block', 'important'); }
+      ok = false;
+    } else {
+      if (pe) pe.style.setProperty('display', 'none', 'important');
+    }
+
+    var te = document.getElementById('termsErr');
+    if (!terms.checked) {
+      if (!te) {
+        te = document.createElement('span'); te.id = 'termsErr'; te.className = 'auth-err';
+        var anchor = terms.closest('label') || terms.parentNode || document.body;
+        anchor.insertAdjacentElement ? anchor.insertAdjacentElement('afterend', te) : anchor.appendChild(te);
+      }
+      te.textContent = 'Please accept the Terms & Conditions'; te.style.display = 'block'; ok = false;
+    } else {
+      if (te) { te.textContent = ''; te.style.display = 'none'; }
+    }
+    return ok;
+  }
+
+  /* ── SIGNUP SUCCESS ────────────────────────────────────────────────────────── */
+  function doSignupLocal(data) {
+    // Duplicate email guard
+    if (findByEmail(data.email)) {
+      showPopup({
+        type: 'warn', title: 'Email Already Registered',
+        msg: 'An account with this email already exists. Please login instead.',
+        actions: [
+          { label: 'Login',     cls: 'tslgc-pbtn-primary', fn: function () { closePopup(); window.switchAuthTab('login'); } },
+          { label: 'Try Again', cls: 'tslgc-pbtn-ghost',   fn: closePopup }
+        ]
+      });
+      return;
+    }
+    var u = {
+      full_name: data.full_name, mobile: data.mobile, email: data.email,
+      city: data.city || '', state: data.state || '', referral_id: data.referral_id || '',
+      plan: data.plan, rank: 'Bronze', joined: new Date().toISOString(),
+      password: data.password
+    };
+    saveUser(u);
+    // Do NOT set session — user must login
+    showPopup({
+      type: 'success',
+      title: 'Account Created Successfully! 🎉',
+      msg: 'Welcome to TSLGC, ' + (data.full_name || 'Member') + '! Your account is ready. Please login with your Email and Password.',
+      actions: [{ label: 'Login Now', cls: 'tslgc-pbtn-primary', fn: function () { closePopup(); window.switchAuthTab('login'); } }]
+    });
+    setTimeout(function () { closePopup(); window.switchAuthTab('login'); }, 2200);
+  }
+
+  /* ── LOGIN ─────────────────────────────────────────────────────────────────── */
+  function doLoginLocal(email, pass) {
+    var user = findByEmail(email);
+    if (user && user.password === pass) {
+      setSession(user);
+      showPopup({ type: 'success', title: 'Welcome Back! 👋', msg: 'Login successful. Taking you to your Dashboard…' });
+      setTimeout(function () { window.location.href = 'franchise/dashboard.html'; }, 1800);
+    } else if (user) {
+      showPopup({
+        type: 'error', title: 'Invalid Credentials',
+        msg: 'Wrong password. Please try again or use Forgot Password to reset it.',
+        actions: [{ label: 'Try Again', cls: 'tslgc-pbtn-primary', fn: closePopup }]
+      });
+    } else {
+      showPopup({
+        type: 'error', title: 'Invalid Credentials',
+        msg: 'No account found with this email address. Please sign up first.',
+        actions: [
+          { label: 'Sign Up',   cls: 'tslgc-pbtn-primary', fn: function () { closePopup(); window.switchAuthTab('signup'); } },
+          { label: 'Try Again', cls: 'tslgc-pbtn-ghost',   fn: closePopup }
+        ]
+      });
+    }
+  }
+
+  /* ── FORGOT PASSWORD ───────────────────────────────────────────────────────── */
+  window.showForgotPwd = function () {
+    showPopup({
+      type: 'warn',
+      title: 'Forgot Password?',
+      msg: 'Enter your registered email address and we’ll send you a reset link.',
+      html: '<div style="margin:.65rem 0 .15rem">' +
+            '<input id="fpEmail" type="email" placeholder="your@email.com" maxlength="200"' +
+            ' style="width:100%;padding:.55rem .85rem;border-radius:9px;border:1.5px solid rgba(139,49,212,.25);' +
+            'font-family:Poppins,sans-serif;font-size:.83rem;outline:none;' +
+            'background:rgba(139,49,212,.06);color:inherit;transition:border-color .2s" />' +
+            '<span id="fpErr" class="auth-err" style="margin-top:5px;display:none"></span>' +
+            '</div>',
+      actions: [
+        { label: 'Send Reset Link', cls: 'tslgc-pbtn-primary', fn: _doForgotSubmit },
+        { label: 'Cancel',          cls: 'tslgc-pbtn-ghost',   fn: closePopup }
+      ]
+    });
+    setTimeout(function () { var el = document.getElementById('fpEmail'); if (el) el.focus(); }, 80);
+  };
+
+  function _doForgotSubmit() {
+    var fpEl  = document.getElementById('fpEmail');
+    var fpErr = document.getElementById('fpErr');
+    if (!fpEl) return;
+    var email = fpEl.value.trim();
+    if (!email || !isEmail(email)) {
+      if (fpErr) { fpErr.textContent = 'Enter a valid email address'; fpErr.style.display = 'block'; }
+      fpEl.style.borderColor = '#dc3545';
+      return;
+    }
+    fpEl.style.borderColor = '';
+    if (fpErr) fpErr.style.display = 'none';
+
+    fetch('backend/forgot-password.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (res) {
+      if (res.status === 'success') {
+        showPopup({
+          type: 'success', title: 'Reset Link Sent! ✉️',
+          msg: 'Password reset instructions have been sent to ' + email + '. Please check your inbox.',
+          autoClose: 5000
+        });
+      } else {
+        showPopup({
+          type: 'error', title: 'Not Found',
+          msg: res.message || 'No account found with this email.',
+          actions: [{ label: 'Try Again', cls: 'tslgc-pbtn-primary', fn: window.showForgotPwd }]
+        });
+      }
+    })
+    .catch(function () {
+      // localStorage fallback (demo mode — no actual email sent)
+      if (findByEmail(email)) {
+        showPopup({
+          type: 'success', title: 'Reset Link Sent! ✉️',
+          msg: 'A password reset link would be emailed to ' + email + '. (Demo: your password = your mobile number)',
+          autoClose: 5000
+        });
+      } else {
+        showPopup({
+          type: 'error', title: 'Email Not Found',
+          msg: 'No account is registered with this email. Please sign up first.',
+          actions: [
+            { label: 'Sign Up', cls: 'tslgc-pbtn-primary', fn: function () { closePopup(); window.switchAuthTab('signup'); } },
+            { label: 'Close',   cls: 'tslgc-pbtn-ghost',   fn: closePopup }
+          ]
+        });
+      }
+    });
+  }
+
+  /* ── TAB SWITCHER ──────────────────────────────────────────────────────────── */
+  window.switchAuthTab = function (tab) {
+    var isL = tab === 'login';
+    document.getElementById('panelLogin').style.display  = isL ? '' : 'none';
+    document.getElementById('panelSignup').style.display = isL ? 'none' : '';
+    document.getElementById('tabLogin').classList.toggle('active', isL);
+    document.getElementById('tabSignup').classList.toggle('active', !isL);
+    var t = document.getElementById('joinToast');
+    if (t) t.style.display = 'none';
+  };
+
+  /* ── PASSWORD TOGGLE ───────────────────────────────────────────────────────── */
+  window.toggleSignupPwd = function () {
+    var inp  = document.getElementById('joinPassword');
+    var icon = document.getElementById('signupPwdEye');
+    if (!inp) return;
+    inp.type = (inp.type === 'password') ? 'text' : 'password';
+    if (icon) icon.className = (inp.type === 'text') ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+  };
+
+  window.togglePwd = function () {
+    var inp  = document.getElementById('loginPassword');
+    var icon = document.getElementById('pwdEyeIcon');
+    if (!inp) return;
+    inp.type = (inp.type === 'password') ? 'text' : 'password';
+    if (icon) icon.className = (inp.type === 'text') ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+  };
+
+  /* ── INIT ──────────────────────────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', function () {
+    _ensurePopup();
+
+    /* ─ SIGNUP ─ */
+    var joinForm = document.getElementById('joinForm');
+    if (joinForm) {
+      joinForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!validateSignup()) return;
+        var btn  = document.getElementById('joinSubmitBtn');
+        var plan = document.querySelector('input[name="plan"]:checked');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing…';
+        var data = {
+          full_name:   document.getElementById('joinName').value.trim(),
+          mobile:      document.getElementById('joinMobile').value.trim(),
+          email:       document.getElementById('joinEmail').value.trim(),
+          password:    document.getElementById('joinPassword').value,
+          city:        document.getElementById('joinCity').value.trim(),
+          state:       document.getElementById('joinState').value,
+          referral_id: document.getElementById('joinReferral').value.trim(),
+          plan:        plan.value
+        };
+        fetch('backend/register.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (res.status === 'success') { doSignupLocal(Object.assign({}, data, res.data || {})); }
+          else { showPopup({ type: 'error', title: 'Registration Failed', msg: res.message || 'Please try again.' }); }
+        })
+        .catch(function () { doSignupLocal(data); })
+        .finally(function () { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-rocket"></i> Join TSLGC — ₹4,999'; });
+      });
+    }
+
+    /* ─ LOGIN ─ */
+    var loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var eEl = document.getElementById('loginEmail');
+        var pEl = document.getElementById('loginPassword');
+        clearErr(eEl); clearErr(pEl);
+        var email = eEl.value.trim();
+        var pass  = pEl.value;
+        var ok = true;
+        if (!email)          { setErr(eEl, 'Email address is required'); ok = false; }
+        else if (!isEmail(email)) { setErr(eEl, 'Enter a valid email address'); ok = false; }
+        if (!pass) { setErr(pEl, 'Password is required'); ok = false; }
+        if (!ok) return;
+        var btn = document.getElementById('loginSubmitBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Logging in…';
+        fetch('backend/login.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, password: pass })
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (res.status === 'success') {
+            setSession(res.data || { full_name: email, email: email });
+            showPopup({ type: 'success', title: 'Welcome Back! 👋', msg: 'Login successful. Taking you to your Dashboard…' });
+            setTimeout(function () { window.location.href = res.redirect || 'franchise/dashboard.html'; }, 1800);
+          } else {
+            showPopup({
+              type: 'error', title: 'Invalid Credentials',
+              msg: res.message || 'Incorrect email or password. Please try again.',
+              actions: [{ label: 'Try Again', cls: 'tslgc-pbtn-primary', fn: closePopup }]
+            });
+          }
+        })
+        .catch(function () { doLoginLocal(email, pass); })
+        .finally(function () { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Login to Dashboard'; });
+      });
+    }
+  });
+
+}());
   </script>
 </body>
 </html>

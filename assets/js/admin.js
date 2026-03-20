@@ -1,5 +1,5 @@
 /* ============================================================
-   UNIFYHUB – Admin Panel JavaScript
+   TSLGC – Admin Panel JavaScript
    ============================================================ */
 'use strict';
 

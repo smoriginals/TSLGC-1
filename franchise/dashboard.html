@@ -1,177 +1,358 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Dashboard – UnifyHub Franchise</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <title>My Dashboard – TSLGC Member Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/franchise.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --pri:#060022; --sec:#8B31D4; --acc1:#FFBB00; --acc2:#00D4AA;
+      --bg:#f7f5ff; --card:#ffffff; --border:rgba(139,49,212,.12);
+      --text:#1a0a2e; --muted:#7c7c9c;
+      --shadow:0 4px 24px rgba(139,49,212,.08);
+      --r:16px; --rsm:10px; --tr:all .2s ease;
+    }
+    [data-theme="dark"] { --bg:#0e0b1f; --card:#1c1733; --border:rgba(139,49,212,.22); --text:#f0ebff; --muted:#9990b8; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; font-size:14px; transition:background .3s,color .3s; }
+    a { text-decoration:none; color:inherit; }
+    button { font-family:'Poppins',sans-serif; cursor:pointer; }
+
+    /* ─ TOP BAR ─ */
+    .db-bar { position:sticky; top:0; z-index:100; background:var(--card); border-bottom:1px solid var(--border);
+      height:58px; padding:0 1.25rem; display:flex; align-items:center; justify-content:space-between;
+      box-shadow:0 2px 12px rgba(0,0,0,.05); }
+    .db-brand { display:flex; align-items:center; gap:.5rem; }
+    .db-brand img { height:34px; }
+    .db-brand-name { font-size:.92rem; font-weight:800; }
+    .db-brand-name span { color:var(--acc1); }
+    .db-bar-right { display:flex; align-items:center; gap:.5rem; }
+    .db-icon-btn { width:36px; height:36px; border-radius:50%; background:transparent; border:1.5px solid var(--border);
+      color:var(--muted); display:flex; align-items:center; justify-content:center; font-size:.8rem; transition:var(--tr); }
+    .db-icon-btn:hover { background:rgba(139,49,212,.08); color:var(--sec); border-color:var(--sec); }
+    .db-logout { display:flex; align-items:center; gap:.35rem; padding:.38rem .85rem; border-radius:8px;
+      background:rgba(220,53,69,.08); border:1.5px solid rgba(220,53,69,.2); color:#dc3545;
+      font-size:.75rem; font-weight:700; transition:var(--tr); }
+    .db-logout:hover { background:rgba(220,53,69,.16); }
+
+    /* ─ PAGE ─ */
+    .db-page { max-width:840px; margin:0 auto; padding:1.75rem 1.2rem 3rem; }
+
+    /* ─ GREETING ─ */
+    .db-greet { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.75rem; margin-bottom:1.75rem; }
+    .db-greet-left { display:flex; align-items:center; gap:.65rem; flex-wrap:wrap; }
+    .db-greet-name { font-size:clamp(1.25rem,4vw,1.7rem); font-weight:800; line-height:1.2; }
+    .db-rank { display:inline-flex; align-items:center; gap:.28rem; padding:.24rem .7rem;
+      border-radius:999px; font-size:.7rem; font-weight:700; letter-spacing:.04em; }
+    .r-bronze { background:rgba(205,127,50,.14); color:#cd7f32; border:1px solid rgba(205,127,50,.3); }
+    .r-silver  { background:rgba(170,170,170,.14); color:#888; border:1px solid rgba(170,170,170,.3); }
+    .r-gold    { background:rgba(255,187,0,.14); color:#e6a800; border:1px solid rgba(255,187,0,.3); }
+    .r-diamond { background:rgba(0,212,170,.12); color:#00b894; border:1px solid rgba(0,212,170,.25); }
+    .r-legend  { background:rgba(139,49,212,.12); color:#8B31D4; border:1px solid rgba(139,49,212,.25); }
+    .db-greet-date { font-size:.75rem; color:var(--muted); }
+
+    /* ─ STAT CARDS ─ */
+    .db-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1.25rem; }
+    .db-stat { background:var(--card); border:1px solid var(--border); border-radius:var(--r);
+      padding:1.2rem 1rem; display:flex; flex-direction:column; gap:.25rem;
+      box-shadow:var(--shadow); transition:var(--tr); }
+    .db-stat:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(139,49,212,.12); }
+    .db-stat-val { font-size:clamp(1.5rem,4vw,1.9rem); font-weight:900; line-height:1; color:var(--sec); }
+    .db-stat-val.c1 { color:var(--acc1); }
+    .db-stat-val.c2 { color:var(--acc2); }
+    .db-stat-lbl { font-size:.72rem; color:var(--muted); font-weight:500; margin-top:2px; }
+
+    /* ─ ACTION BUTTONS ─ */
+    .db-acts { display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem; margin-bottom:1.5rem; }
+    .db-act { background:var(--card); border:1.5px solid var(--border); border-radius:var(--rsm);
+      padding:.85rem .5rem; display:flex; flex-direction:column; align-items:center; gap:.4rem;
+      font-size:.8rem; font-weight:600; color:var(--text); box-shadow:var(--shadow); transition:var(--tr); }
+    .db-act i { font-size:1.3rem; }
+    .db-act:nth-child(1) i { color:var(--sec); }
+    .db-act:nth-child(2) i { color:var(--acc1); }
+    .db-act:nth-child(3) i { color:var(--acc2); }
+    .db-act:hover { border-color:var(--sec); background:rgba(139,49,212,.05); transform:translateY(-2px); }
+
+    /* ─ ACTIVITY ─ */
+    .db-sec-lbl { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:.6rem; }
+    .db-feed { background:var(--card); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow); }
+    .db-feed-item { display:flex; align-items:center; gap:.7rem; padding:.78rem 1rem;
+      border-bottom:1px solid var(--border); font-size:.81rem; transition:background .15s; }
+    .db-feed-item:last-child { border-bottom:none; }
+    .db-feed-item:hover { background:rgba(139,49,212,.04); }
+    .db-feed-em { font-size:1.1rem; flex-shrink:0; width:26px; text-align:center; }
+    .db-feed-txt { flex:1; }
+    .db-feed-time { font-size:.68rem; color:var(--muted); flex-shrink:0; }
+
+    /* ─ POPUP ─ */
+    .tslgc-overlay { position:fixed; inset:0; background:rgba(6,0,34,.74); backdrop-filter:blur(5px);
+      z-index:999999; display:flex; align-items:center; justify-content:center; padding:1rem;
+      animation:popOvIn .18s ease; }
+    @keyframes popOvIn { from{opacity:0} to{opacity:1} }
+    .tslgc-popup-card { background:var(--card); border-radius:18px; padding:2rem 1.75rem 1.5rem;
+      max-width:360px; width:100%; text-align:center; box-shadow:0 32px 80px rgba(0,0,0,.38); }
+    .tslgc-popup-card.pop-in  { animation:popCardIn  .26s cubic-bezier(.34,1.4,.64,1) }
+    .tslgc-popup-card.pop-out { animation:popCardOut .2s ease forwards }
+    @keyframes popCardIn  { from{opacity:0;transform:scale(.8) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes popCardOut { from{opacity:1;transform:scale(1)} to{opacity:0;transform:scale(.9) translateY(8px)} }
+    .tslgc-popup-icon { width:60px; height:60px; border-radius:50%; margin:0 auto 1rem;
+      display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
+    .tslgc-pi-success { background:rgba(0,212,170,.14); color:#00D4AA; }
+    .tslgc-pi-error   { background:rgba(220,53,69,.12);  color:#dc3545; }
+    .tslgc-pi-warn    { background:rgba(255,187,0,.14);  color:#e6a800; }
+    .tslgc-pi-confirm { background:rgba(139,49,212,.12); color:#8B31D4; }
+    .tslgc-popup-title { font-size:1.08rem; font-weight:800; margin-bottom:.4rem; }
+    .tslgc-popup-msg   { font-size:.84rem; color:var(--muted,#7c7c9c); margin-bottom:1.2rem; }
+    .tslgc-popup-actions { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; }
+    .tslgc-popup-btn { flex:1; min-width:110px; padding:.6rem 1rem; border-radius:10px; border:none;
+      font-family:'Poppins',sans-serif; font-size:.82rem; font-weight:700; cursor:pointer; transition:var(--tr,.2s); }
+    .tslgc-pbtn-primary { background:var(--acc1,#FFBB00); color:#1a0a00; }
+    .tslgc-pbtn-danger  { background:rgba(220,53,69,.12); color:#dc3545; border:1.5px solid rgba(220,53,69,.3); }
+    .tslgc-pbtn-ghost   { background:transparent; color:var(--muted,#7c7c9c); border:1.5px solid var(--border,rgba(0,0,0,.12)); }
+
+    /* ─ RESPONSIVE ─ */
+    @media (max-width:620px) {
+      .db-stats { grid-template-columns:1fr 1fr; }
+      .db-stats .db-stat:last-child { grid-column:1/-1; }
+      .db-acts  { grid-template-columns:1fr 1fr; }
+      .db-acts .db-act:last-child  { grid-column:1/-1; }
+    }
+    @media (max-width:380px) {
+      .db-stats,.db-acts { grid-template-columns:1fr; }
+      .db-stats .db-stat:last-child,.db-acts .db-act:last-child { grid-column:auto; }
+    }
+  </style>
 </head>
-<body class="fr-body">
-  <div class="fr-wrapper">
-    <aside class="fr-sidebar" id="frSidebar">
-      <div class="fr-sidebar-brand">
-        <span class="fr-sb-logo">UH</span>
-        <div><strong>UnifyHub</strong><small>Franchise Portal</small></div>
-      </div>
-      <div class="fr-sidebar-user">
-        <div class="fr-su-avatar"><i class="fa-solid fa-store"></i></div>
-        <div>
-          <strong id="frUserName">Loading…</strong>
-          <small id="frFranchiseId">FR-0000</small>
-          <div class="fr-rank-badge fr-rank-gold mt-1" id="frRankBadge"><i class="fa-solid fa-star"></i> Gold</div>
-        </div>
-      </div>
-      <nav class="fr-sidebar-nav">
-        <p class="fr-sidebar-label">Menu</p>
-        <a href="dashboard.html" class="fr-sidebar-link active"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
-        <a href="my-team.html" class="fr-sidebar-link"><i class="fa-solid fa-sitemap"></i> My Team</a>
-        <a href="my-income.html" class="fr-sidebar-link"><i class="fa-solid fa-indian-rupee-sign"></i> My Income</a>
-        <a href="my-leads.html" class="fr-sidebar-link"><i class="fa-solid fa-user-plus"></i> My Leads</a>
-        <a href="profile.html" class="fr-sidebar-link"><i class="fa-solid fa-circle-user"></i> Profile</a>
-        <p class="fr-sidebar-label">System</p>
-        <a href="../index.html" class="fr-sidebar-link" target="_blank"><i class="fa-solid fa-globe"></i> Website</a>
-        <a href="#" class="fr-sidebar-link fr-logout" onclick="frLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-      </nav>
-    </aside>
-    <div class="fr-sidebar-overlay" id="frSidebarOverlay" onclick="closeFrSidebar()"></div>
-    <main class="fr-main">
-      <header class="fr-topbar">
-        <div class="fr-tb-left">
-          <button class="fr-tb-toggle" id="frSidebarToggle"><i class="fa-solid fa-bars"></i></button>
-          <span class="fr-tb-title">Dashboard</span>
-        </div>
-        <div class="fr-tb-right">
-          <button class="fr-tb-btn" id="frThemeToggle"><i class="fa-solid fa-moon"></i></button>
-          <button class="fr-tb-btn" onclick="frLogout()"><i class="fa-solid fa-right-from-bracket"></i></button>
-        </div>
-      </header>
-      <div class="fr-content">
-        <!-- Stat Cards -->
-        <div class="fr-stat-grid">
-          <div class="fr-stat-card">
-            <div class="fr-sc-icon fr-sc-purple"><i class="fa-solid fa-users"></i></div>
-            <div class="fr-sc-info"><span class="fr-sc-value" id="statTeam">–</span><span class="fr-sc-label">My Team</span></div>
-          </div>
-          <div class="fr-stat-card">
-            <div class="fr-sc-icon fr-sc-gold"><i class="fa-solid fa-indian-rupee-sign"></i></div>
-            <div class="fr-sc-info"><span class="fr-sc-value" id="statEarnings">–</span><span class="fr-sc-label">Total Earnings</span></div>
-          </div>
-          <div class="fr-stat-card">
-            <div class="fr-sc-icon fr-sc-teal"><i class="fa-solid fa-briefcase"></i></div>
-            <div class="fr-sc-info"><span class="fr-sc-value" id="statBiz">101</span><span class="fr-sc-label">Active Businesses</span></div>
-          </div>
-          <div class="fr-stat-card">
-            <div class="fr-sc-icon fr-sc-blue"><i class="fa-solid fa-user-plus"></i></div>
-            <div class="fr-sc-info"><span class="fr-sc-value" id="statLeads">–</span><span class="fr-sc-label">New Leads</span></div>
-          </div>
-        </div>
+<body>
 
-        <!-- Charts Row -->
-        <div class="row g-4 mb-4">
-          <div class="col-lg-7">
-            <div class="fr-panel h-100">
-              <div class="fr-panel-header"><h5><i class="fa-solid fa-chart-line me-2"></i>Income Trend (6 Months)</h5></div>
-              <div class="fr-panel-body"><div style="height:260px"><canvas id="frIncomeChart"></canvas></div></div>
-            </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="fr-panel h-100">
-              <div class="fr-panel-header"><h5><i class="fa-solid fa-chart-pie me-2"></i>Team Levels</h5></div>
-              <div class="fr-panel-body"><div style="height:260px"><canvas id="frTeamChart"></canvas></div></div>
-            </div>
-          </div>
-        </div>
+  <!-- TOP BAR -->
+  <header class="db-bar">
+    <div class="db-brand">
+      <img src="../assets/logo.png" alt="TSLGC Logo" onerror="this.style.display='none'" />
+      <span class="db-brand-name">TSLGC <span>Portal</span></span>
+    </div>
+    <div class="db-bar-right">
+      <button class="db-icon-btn" id="dbThemeBtn" title="Toggle theme" onclick="dbToggleTheme()">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <button class="db-logout" onclick="dbLogout()">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </div>
+  </header>
 
-        <!-- Announcements -->
-        <div class="fr-panel mb-4">
-          <div class="fr-panel-header"><h5><i class="fa-solid fa-bullhorn me-2"></i>Latest Announcements</h5></div>
-          <div class="fr-panel-body">
-            <div id="frAnnouncements">
-              <p class="text-center text-muted py-3">Loading…</p>
-            </div>
-          </div>
-        </div>
+  <!-- MAIN -->
+  <main class="db-page">
+
+    <!-- GREETING -->
+    <div class="db-greet">
+      <div class="db-greet-left">
+        <h1 class="db-greet-name" id="dbName">Namaste 👋</h1>
+        <span class="db-rank r-bronze" id="dbRank">
+          <i class="fa-solid fa-medal"></i> Bronze
+        </span>
       </div>
-    </main>
+      <span class="db-greet-date" id="dbDate"></span>
+    </div>
+
+    <!-- STATS -->
+    <div class="db-stats">
+      <div class="db-stat">
+        <span class="db-stat-val c1" id="dbIncome">₹0</span>
+        <span class="db-stat-lbl">Income This Month</span>
+      </div>
+      <div class="db-stat">
+        <span class="db-stat-val" id="dbTeam">0</span>
+        <span class="db-stat-lbl">Team Size</span>
+      </div>
+      <div class="db-stat">
+        <span class="db-stat-val c2" id="dbBiz">101</span>
+        <span class="db-stat-lbl">Active Businesses</span>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="db-acts">
+      <button class="db-act" onclick="dbAct('lead')">
+        <i class="fa-solid fa-user-plus"></i> Add Lead
+      </button>
+      <button class="db-act" onclick="dbAct('team')">
+        <i class="fa-solid fa-users"></i> View Team
+      </button>
+      <button class="db-act" onclick="dbAct('withdraw')">
+        <i class="fa-solid fa-indian-rupee-sign"></i> Withdraw
+      </button>
+    </div>
+
+    <!-- ACTIVITY -->
+    <p class="db-sec-lbl">Recent Activity</p>
+    <div class="db-feed" id="dbFeed"></div>
+
+  </main>
+
+  <!-- POPUP -->
+  <div id="tslgcPopup" class="tslgc-overlay" style="display:none" aria-modal="true" role="dialog">
+    <div class="tslgc-popup-card" id="tslgcCard">
+      <div class="tslgc-popup-icon"   id="tslgcIcon"></div>
+      <p  class="tslgc-popup-title"   id="tslgcTitle"></p>
+      <p  class="tslgc-popup-msg"     id="tslgcMsg"></p>
+      <div class="tslgc-popup-actions" id="tslgcActions"></div>
+    </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/franchise.js"></script>
+
   <script>
-    const mockStats = { name:'Ravi Kumar', franchise_id:'FR-0024', rank:'gold', team:124, earnings:94820, leads:18 };
+    (function () {
+      'use strict';
+      var SESSION_KEY = 'tslgc_session';
 
-    function loadDashboard() {
-      fetch('../backend/franchise-api.php?action=franchise_dashboard')
-        .then(r => r.json())
-        .then(res => { if (res.status === 'success') applyStats(res.data); else applyStats(mockStats); })
-        .catch(() => applyStats(mockStats));
-    }
+      /* ── POPUP ─────────────────────────────────────────────────────────────── */
+      function showPopup(opts) {
+        var ic = {success:'tslgc-pi-success',error:'tslgc-pi-error',warn:'tslgc-pi-warn',confirm:'tslgc-pi-confirm'};
+        var fa = {success:'fa-circle-check',error:'fa-circle-xmark',warn:'fa-triangle-exclamation',confirm:'fa-circle-question'};
+        var t = opts.type||'success';
+        document.getElementById('tslgcIcon').className = 'tslgc-popup-icon '+(ic[t]||ic.success);
+        document.getElementById('tslgcIcon').innerHTML = '<i class="fa-solid '+(fa[t]||fa.success)+'"></i>';
+        document.getElementById('tslgcTitle').textContent = opts.title||'';
+        document.getElementById('tslgcMsg').textContent   = opts.msg||'';
+        var acts = document.getElementById('tslgcActions');
+        acts.innerHTML = '';
+        var btns = opts.actions && opts.actions.length ? opts.actions : [{label:'OK',cls:'tslgc-pbtn-primary',fn:closePopup}];
+        btns.forEach(function(b){
+          var btn = document.createElement('button');
+          btn.className = 'tslgc-popup-btn '+(b.cls||'tslgc-pbtn-primary');
+          btn.textContent = b.label;
+          btn.addEventListener('click',function(){ b.fn && b.fn(); });
+          acts.appendChild(btn);
+        });
+        var card = document.getElementById('tslgcCard');
+        card.classList.remove('pop-in','pop-out');
+        document.getElementById('tslgcPopup').style.display = 'flex';
+        void card.offsetWidth;
+        card.classList.add('pop-in');
+      }
 
-    function applyStats(d) {
-      document.getElementById('frUserName').textContent = d.name || 'Franchise Partner';
-      document.getElementById('frFranchiseId').textContent = d.franchise_id || 'FR-0000';
-      document.getElementById('statTeam').textContent = d.team || 0;
-      document.getElementById('statEarnings').textContent = '₹' + (d.earnings||0).toLocaleString('en-IN');
-      document.getElementById('statLeads').textContent = d.leads || 0;
-      const rb = document.getElementById('frRankBadge');
-      const rankMap = { bronze:'fr-rank-bronze', silver:'fr-rank-silver', gold:'fr-rank-gold', diamond:'fr-rank-diamond', legend:'fr-rank-legend' };
-      const icons = { bronze:'fa-medal', silver:'fa-award', gold:'fa-star', diamond:'fa-gem', legend:'fa-crown' };
-      const rank = (d.rank||'bronze').toLowerCase();
-      rb.className = `fr-rank-badge ${rankMap[rank]||'fr-rank-bronze'}`;
-      rb.innerHTML = `<i class="fa-solid ${icons[rank]||'fa-medal'}"></i> ${rank.charAt(0).toUpperCase()+rank.slice(1)}`;
-    }
+      function closePopup() {
+        var el   = document.getElementById('tslgcPopup');
+        var card = document.getElementById('tslgcCard');
+        if (!el || el.style.display === 'none') return;
+        card.classList.remove('pop-in');
+        card.classList.add('pop-out');
+        setTimeout(function(){ el.style.display='none'; card.classList.remove('pop-out'); }, 220);
+      }
 
-    function buildCharts() {
-      const ic = document.getElementById('frIncomeChart').getContext('2d');
-      new Chart(ic, {
-        type: 'line',
-        data: {
-          labels: ['Sep','Oct','Nov','Dec','Jan','Feb'],
-          datasets: [{ label:'Monthly Earnings (₹)', data:[8200,11400,14800,18200,22500,27600], borderColor:'#00D4AA', backgroundColor:'rgba(0,212,170,.12)', fill:true, tension:.4, pointBackgroundColor:'#00D4AA' }]
-        },
-        options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}}, y:{ticks:{callback:v=>'₹'+v.toLocaleString('en-IN')}} } }
-      });
+      /* ── THEME ────────────────────────────────────────────────────────────── */
+      window.dbToggleTheme = function () {
+        var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+        document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+        localStorage.setItem('tslgc_theme', dark ? 'light' : 'dark');
+        document.getElementById('dbThemeBtn').querySelector('i').className =
+          dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+      };
+      (function applyTheme(){
+        var t = localStorage.getItem('tslgc_theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        var icon = document.getElementById('dbThemeBtn');
+        if (icon) icon.querySelector('i').className = t==='dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      }());
 
-      const tc = document.getElementById('frTeamChart').getContext('2d');
-      new Chart(tc, {
-        type: 'doughnut',
-        data: {
-          labels:['Direct (L1)','Level 2','Level 3','Level 4+'],
-          datasets:[{ data:[28,42,35,19], backgroundColor:['#8B31D4','#FFBB00','#00D4AA','#3a86ff'], borderWidth:0 }]
-        },
-        options: { responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{legend:{position:'bottom',labels:{boxWidth:12}}} }
-      });
-    }
+      /* ── AUTH CHECK ───────────────────────────────────────────────────────── */
+      var session = null;
+      try { session = JSON.parse(localStorage.getItem(SESSION_KEY)); } catch(e) {}
+      if (!session) {
+        showPopup({
+          type:'warn', title:'Session Expired',
+          msg:'Your session has ended. Please login again.',
+          actions:[{label:'Go to Login',cls:'tslgc-pbtn-primary',fn:function(){ window.location.href='../join.html'; }}]
+        });
+      } else {
+        initDashboard(session);
+      }
 
-    function loadAnnouncements() {
-      const mock = [
-        { title:'February Meeting – Jaipur', category:'event', content:'15 Feb 2025 ko Jaipur mein franchise meeting hogi.', publish_date:'2025-02-01' },
-        { title:'New Business Added', category:'update', content:'Organic Farming business ab aapke portfolio mein available hai.', publish_date:'2025-01-15' },
-      ];
-      const wrap = document.getElementById('frAnnouncements');
-      wrap.innerHTML = mock.map(a => `
-        <div class="fr-announce-item">
-          <div class="d-flex justify-content-between align-items-center">
-            <strong>${a.title}</strong>
-            <small style="color:var(--fr-text-muted)">${a.publish_date}</small>
-          </div>
-          <p style="font-size:.88rem;color:var(--fr-text-muted);margin:.3rem 0 0">${a.content}</p>
-        </div>`).join('');
-    }
+      /* ── INIT DASHBOARD ───────────────────────────────────────────────────── */
+      function initDashboard(s) {
+        /* greeting */
+        document.getElementById('dbName').textContent = 'Namaste, ' + (s.name||'Member') + ' 👋';
 
-    function closeFrSidebar() {
-      document.getElementById('frSidebar').classList.remove('open');
-      document.getElementById('frSidebarOverlay').classList.remove('show');
-    }
-    function frLogout() { if (confirm('Logout?')) window.location.href = 'login.html'; }
+        /* date */
+        var d = new Date();
+        var days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        document.getElementById('dbDate').textContent =
+          days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
 
-    loadDashboard();
-    buildCharts();
-    loadAnnouncements();
+        /* rank badge */
+        var rankMap  = {bronze:'r-bronze',silver:'r-silver',gold:'r-gold',diamond:'r-diamond',legend:'r-legend'};
+        var rankIcon = {bronze:'fa-medal',silver:'fa-award',gold:'fa-star',diamond:'fa-gem',legend:'fa-crown'};
+        var r = ((s.rank||'bronze').toLowerCase());
+        var rb = document.getElementById('dbRank');
+        rb.className = 'db-rank ' + (rankMap[r]||'r-bronze');
+        rb.innerHTML = '<i class="fa-solid '+(rankIcon[r]||'fa-medal')+'"></i> '+r.charAt(0).toUpperCase()+r.slice(1);
+
+        /* stats — demo defaults, then try PHP */
+        document.getElementById('dbIncome').textContent = '₹0';
+        document.getElementById('dbTeam').textContent   = '0';
+        document.getElementById('dbBiz').textContent    = '101';
+        fetch('../backend/franchise-api.php?action=franchise_dashboard')
+          .then(function(r){ return r.json(); })
+          .then(function(res){
+            if (res.status==='success' && res.data) {
+              var dd = res.data;
+              if (dd.monthly_income!==undefined) document.getElementById('dbIncome').textContent = '₹'+(dd.monthly_income||0).toLocaleString('en-IN');
+              if (dd.team!==undefined)           document.getElementById('dbTeam').textContent   = dd.team;
+              if (dd.active_businesses!==undefined) document.getElementById('dbBiz').textContent = dd.active_businesses;
+            }
+          })
+          .catch(function(){});
+
+        /* activity feed */
+        var feed = [
+          {e:'✅',t:'Commission received',amt:'₹500',time:'2h ago'},
+          {e:'👤',t:'New member joined your team',amt:'',time:'5h ago'},
+          {e:'🏪',t:'Business activated — Organic Foods',amt:'',time:'Yesterday'},
+          {e:'💰',t:'Referral bonus credited',amt:'₹250',time:'2 days ago'},
+          {e:'📋',t:'Profile verification completed',amt:'',time:'3 days ago'}
+        ];
+        document.getElementById('dbFeed').innerHTML = feed.map(function(a){
+          return '<div class="db-feed-item">' +
+            '<span class="db-feed-em">'+a.e+'</span>' +
+            '<span class="db-feed-txt">'+a.t+(a.amt?' — <strong>'+a.amt+'</strong>':'')+'</span>' +
+            '<span class="db-feed-time">'+a.time+'</span>' +
+            '</div>';
+        }).join('');
+      }
+
+      /* ── ACTIONS ──────────────────────────────────────────────────────────── */
+      window.dbAct = function (type) {
+        if (type === 'lead') {
+          showPopup({type:'success',title:'Add a Lead',
+            msg:'Lead management is coming soon! Our team is actively building it.',
+            actions:[{label:'Got it',cls:'tslgc-pbtn-primary',fn:closePopup}]});
+        } else if (type === 'team') {
+          window.location.href = 'my-team.html';
+        } else if (type === 'withdraw') {
+          showPopup({type:'warn',title:'Withdraw Income',
+            msg:'Withdrawal feature is coming soon. Please contact your sponsor to withdraw.',
+            actions:[{label:'OK',cls:'tslgc-pbtn-primary',fn:closePopup}]});
+        }
+      };
+
+      /* ── LOGOUT ───────────────────────────────────────────────────────────── */
+      window.dbLogout = function () {
+        showPopup({
+          type:'confirm', title:'Logout?',
+          msg:'Are you sure you want to logout from your account?',
+          actions:[
+            {label:'Yes, Logout', cls:'tslgc-pbtn-danger',   fn:function(){ localStorage.removeItem(SESSION_KEY); window.location.href='../join.html'; }},
+            {label:'Cancel',      cls:'tslgc-pbtn-ghost',    fn:closePopup}
+          ]
+        });
+      };
+
+    }());
   </script>
 </body>
 </html>
