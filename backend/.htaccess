@@ -1,0 +1,48 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# TSLGC — backend/.htaccess
+# Protects backend PHP files from direct browser access
+# ══════════════════════════════════════════════════════════════════════════════
+
+# Disable directory listings
+Options -Indexes
+
+# ── Block config.php from ALL direct HTTP access ─────────────────────────────
+# (It contains DB credentials — it should only be require_once'd by other PHP)
+<Files "config.php">
+  Order allow,deny
+  Deny from all
+</Files>
+
+# ── Block session-check inside PHP error log ─────────────────────────────────
+<Files "php_errors.log">
+  Order allow,deny
+  Deny from all
+</Files>
+
+# ── Block sensitive file types ────────────────────────────────────────────────
+<FilesMatch "\.(log|sql|env|bak|sh|md)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# ── Remove PHP version header ─────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header unset X-Powered-By
+</IfModule>
+
+# ── PHP production settings for this folder ──────────────────────────────────
+<IfModule mod_php.c>
+  php_flag  display_errors  Off
+  php_flag  log_errors      On
+  php_value error_reporting 0
+</IfModule>
+<IfModule mod_php7.c>
+  php_flag  display_errors  Off
+  php_flag  log_errors      On
+  php_value error_reporting 0
+</IfModule>
+<IfModule mod_php8.c>
+  php_flag  display_errors  Off
+  php_flag  log_errors      On
+  php_value error_reporting 0
+</IfModule>

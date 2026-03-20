@@ -1,0 +1,80 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# TSLGC — Root .htaccess
+# Hostinger shared hosting (Apache / LiteSpeed with .htaccess support)
+# ══════════════════════════════════════════════════════════════════════════════
+
+# Disable directory listings
+Options -Indexes
+
+# Hide server signature
+ServerSignature Off
+
+# ── Force HTTPS redirect ──────────────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Redirect HTTP → HTTPS (skip if already HTTPS or internal rewrite)
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP_HOST} !^localhost [NC]
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ── Security headers ──────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  # Prevent MIME-type sniffing
+  Header always set X-Content-Type-Options    "nosniff"
+  # Prevent clickjacking
+  Header always set X-Frame-Options           "SAMEORIGIN"
+  # XSS protection for older browsers
+  Header always set X-XSS-Protection          "1; mode=block"
+  # Minimal referrer info
+  Header always set Referrer-Policy           "strict-origin-when-cross-origin"
+  # Restrict browser features
+  Header always set Permissions-Policy        "geolocation=(), microphone=(), camera=()"
+  # Remove PHP version from headers
+  Header unset X-Powered-By
+</IfModule>
+
+# ── Block direct access to sensitive file types ───────────────────────────────
+<FilesMatch "\.(log|sql|env|sh|bak|git|md|json|lock|ini)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# ── Disable PHP error display on live server ──────────────────────────────────
+<IfModule mod_php.c>
+  php_flag  display_errors        Off
+  php_flag  log_errors            On
+  php_value error_reporting       0
+</IfModule>
+<IfModule mod_php7.c>
+  php_flag  display_errors        Off
+  php_flag  log_errors            On
+  php_value error_reporting       0
+</IfModule>
+<IfModule mod_php8.c>
+  php_flag  display_errors        Off
+  php_flag  log_errors            On
+  php_value error_reporting       0
+</IfModule>
+
+# ── Browser caching for static assets ────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css              "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/png             "access plus 3 months"
+  ExpiresByType image/jpg             "access plus 3 months"
+  ExpiresByType image/jpeg            "access plus 3 months"
+  ExpiresByType image/gif             "access plus 3 months"
+  ExpiresByType image/webp            "access plus 3 months"
+  ExpiresByType image/svg+xml        "access plus 1 month"
+  ExpiresByType font/woff2           "access plus 6 months"
+</IfModule>
+
+# ── Gzip compression ─────────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript
+  AddOutputFilterByType DEFLATE application/json text/plain
+</IfModule>
