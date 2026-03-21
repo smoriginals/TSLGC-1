@@ -93,7 +93,7 @@
         <div class="admin-panel">
           <div class="admin-panel-header">
             <h5><i class="fa-solid fa-store me-2"></i>All Franchises</h5>
-            <div class="d-flex gap-2">
+            <div class="d-flex gap-2 flex-wrap align-items-center">
               <input type="text" class="form-control form-control-sm" data-table-search="franchisesTable" placeholder="Search..." style="width:200px" />
               <select class="form-select form-select-sm" data-table-filter="franchisesTable" style="width:150px">
                 <option value="">All Status</option>
@@ -200,12 +200,6 @@
       }).catch(() => showAdminToast('Error creating franchise', 'error'));
     });
 
-    function adminLogout() {
-      if (confirm('Logout?')) {
-        localStorage.removeItem('tslgc_admin_session');
-        window.location.href = '../admin.html';
-      }
-    }
     loadFranchises();
   </script>
 

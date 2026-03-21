@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -10,15 +10,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="admin.css" />
   <script>if(!localStorage.getItem('tslgc_admin_session'))window.location.replace('../admin.html');</script>
-  <style>
-    .installment-dots { display:flex; gap:6px; align-items:center; }
-    .inst-dot { width:14px; height:14px; border-radius:50%; background:var(--admin-border); display:inline-block; }
-    .inst-dot.paid { background:var(--status-active); }
-    .payment-amount { font-weight:700; color:var(--admin-accent); }
-  </style>
 </head>
 <body class="admin-body">
   <div class="admin-wrapper">
+
+    <!-- SIDEBAR -->
     <aside class="admin-sidebar" id="adminSidebar">
       <div class="sidebar-brand"><span class="sb-logo">TSLGC</span><small>Admin Panel</small></div>
       <div class="sidebar-user">
@@ -42,6 +38,8 @@
       </nav>
     </aside>
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- MAIN -->
     <main class="admin-main">
       <header class="admin-topbar">
         <div class="topbar-left">
@@ -55,127 +53,156 @@
           <button class="topbar-btn" id="adminThemeToggle"><i class="fa-solid fa-moon"></i></button>
         </div>
       </header>
+
       <div class="admin-content">
         <div class="content-header">
           <h2>Payment Management</h2>
           <p>Verify payments, track installments, and manage revenue</p>
         </div>
 
-        <!-- Summary Cards -->
+        <!-- SUMMARY STATS -->
         <div class="stat-cards-grid mb-4">
           <div class="stat-card">
-            <div class="sc-icon sc-teal"><i class="fa-solid fa-check-circle"></i></div>
-            <div class="sc-info"><span class="sc-value" id="pyVerified">₹0</span><span class="sc-label">Verified Revenue</span></div>
+            <div class="sc-icon sc-teal"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="sc-info">
+              <span class="sc-label">Verified Revenue</span>
+              <span class="sc-value" id="pyVerified">₹0</span>
+            </div>
           </div>
           <div class="stat-card">
             <div class="sc-icon sc-gold"><i class="fa-solid fa-clock"></i></div>
-            <div class="sc-info"><span class="sc-value" id="pyPending">0</span><span class="sc-label">Pending Verification</span></div>
+            <div class="sc-info">
+              <span class="sc-label">Pending</span>
+              <span class="sc-value" id="pyPending">0</span>
+            </div>
           </div>
           <div class="stat-card">
             <div class="sc-icon sc-purple"><i class="fa-solid fa-layer-group"></i></div>
-            <div class="sc-info"><span class="sc-value" id="pyInstallment">0</span><span class="sc-label">Installment Plans</span></div>
+            <div class="sc-info">
+              <span class="sc-label">Installment Plans</span>
+              <span class="sc-value" id="pyInstallment">0</span>
+            </div>
           </div>
           <div class="stat-card">
-            <div class="sc-icon sc-danger"><i class="fa-solid fa-times-circle"></i></div>
-            <div class="sc-info"><span class="sc-value" id="pyRejected">0</span><span class="sc-label">Rejected</span></div>
+            <div class="sc-icon sc-danger"><i class="fa-solid fa-circle-xmark"></i></div>
+            <div class="sc-info">
+              <span class="sc-label">Rejected</span>
+              <span class="sc-value" id="pyRejected">0</span>
+            </div>
           </div>
         </div>
 
-        <!-- Payments Table -->
+        <!-- PAYMENTS TABLE -->
         <div class="admin-panel">
           <div class="admin-panel-header">
             <h5><i class="fa-solid fa-receipt me-2"></i>All Payments</h5>
-            <div class="d-flex gap-2">
-              <input type="text" class="form-control form-control-sm" data-table-search="paymentsTable" placeholder="Search member..." style="width:200px" />
+            <div class="d-flex gap-2 flex-wrap align-items-center">
+              <input type="text" class="form-control form-control-sm" data-table-search="paymentsTable" placeholder="Search member / txn..." style="width:200px" />
               <select class="form-select form-select-sm" data-table-filter="paymentsTable" style="width:150px">
                 <option value="">All Status</option>
-                <option>verified</option>
-                <option>pending</option>
-                <option>rejected</option>
+                <option value="verified">Verified</option>
+                <option value="pending">Pending</option>
+                <option value="rejected">Rejected</option>
               </select>
+              <button class="btn btn-sm btn-success" onclick="exportTableCSV('paymentsTable','payments.csv')">
+                <i class="fa-solid fa-download me-1"></i>Export
+              </button>
             </div>
           </div>
+
           <div class="admin-panel-body p-0">
-            <table class="admin-table" id="paymentsTable">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Txn ID</th>
-                  <th>Member Name</th>
-                  <th>Amount</th>
-                  <th>Plan</th>
-                  <th>Installment</th>
-                  <th>Method</th>
-                  <th>UPI / Ref</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="paymentsTableBody">
-                <tr><td colspan="11" class="text-center py-4">Loading...</td></tr>
-              </tbody>
-            </table>
+            <div class="table-responsive" style="overflow-x:auto;">
+              <table class="admin-table" id="paymentsTable" style="min-width:860px;">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Txn ID</th>
+                    <th>Member</th>
+                    <th>Amount</th>
+                    <th>Plan</th>
+                    <th>Installment</th>
+                    <th>Method</th>
+                    <th>UPI / Ref</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="paymentsTableBody">
+                  <tr><td colspan="11" class="text-center py-4 text-muted">Loading...</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <!-- Pagination -->
-          <div class="admin-panel-footer d-flex justify-content-between align-items-center px-3 py-2">
-            <span id="pyInfo" class="text-muted" style="font-size:.85rem"></span>
-            <div id="pyPagination" class="d-flex gap-1"></div>
+
+          <div class="admin-panel-footer d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <span id="pyInfo" class="text-muted" style="font-size:.82rem"></span>
+            <div id="pyPagination" class="d-flex gap-1 flex-wrap"></div>
           </div>
         </div>
-      </div>
+
+      </div><!-- /admin-content -->
     </main>
-  </div>
+  </div><!-- /admin-wrapper -->
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="admin.js"></script>
   <script>
-    function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function escHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
 
     const mockPayments = [
-      {id:1, txn:'TXN20250001', member:'Ravi Kumar', amount:'4999', plan:'Full Payment', inst_no:1, inst_total:1, method:'UPI', ref:'ravi@upi', date:'2025-01-10', status:'verified'},
-      {id:2, txn:'TXN20250002', member:'Priya Sharma', amount:'2500', plan:'Installment', inst_no:1, inst_total:2, method:'UPI', ref:'priya@paytm', date:'2025-01-12', status:'verified'},
-      {id:3, txn:'TXN20250003', member:'Priya Sharma', amount:'2500', plan:'Installment', inst_no:2, inst_total:2, method:'Bank Transfer', ref:'NEFT123456', date:'2025-01-25', status:'pending'},
-      {id:4, txn:'TXN20250004', member:'Ajay Gupta', amount:'4999', plan:'Full Payment', inst_no:1, inst_total:1, method:'UPI', ref:'ajay@gpay', date:'2025-01-14', status:'pending'},
-      {id:5, txn:'TXN20250005', member:'Seema Mishra', amount:'2500', plan:'Installment', inst_no:1, inst_total:2, method:'UPI', ref:'seema@phonepe', date:'2025-01-15', status:'rejected'},
+      {id:1, txn:'TXN20250001', member:'Ravi Kumar',    amount:'4999', plan:'Full Payment', inst_no:1, inst_total:1, method:'UPI',           ref:'ravi@upi',       date:'2025-01-10', status:'verified'},
+      {id:2, txn:'TXN20250002', member:'Priya Sharma',  amount:'2500', plan:'Installment',  inst_no:1, inst_total:2, method:'UPI',           ref:'priya@paytm',    date:'2025-01-12', status:'verified'},
+      {id:3, txn:'TXN20250003', member:'Priya Sharma',  amount:'2500', plan:'Installment',  inst_no:2, inst_total:2, method:'Bank Transfer', ref:'NEFT123456',     date:'2025-01-25', status:'pending'},
+      {id:4, txn:'TXN20250004', member:'Ajay Gupta',    amount:'4999', plan:'Full Payment', inst_no:1, inst_total:1, method:'UPI',           ref:'ajay@gpay',      date:'2025-01-14', status:'pending'},
+      {id:5, txn:'TXN20250005', member:'Seema Mishra',  amount:'2500', plan:'Installment',  inst_no:1, inst_total:2, method:'UPI',           ref:'seema@phonepe',  date:'2025-01-15', status:'rejected'},
+      {id:6, txn:'TXN20250006', member:'Mohan Lal',     amount:'4999', plan:'Full Payment', inst_no:1, inst_total:1, method:'UPI',           ref:'mohan@upi',      date:'2025-01-18', status:'verified'},
+      {id:7, txn:'TXN20250007', member:'Sunita Devi',   amount:'2500', plan:'Installment',  inst_no:1, inst_total:2, method:'Cash',          ref:'CASH-007',       date:'2025-01-20', status:'pending'},
     ];
 
     function instDots(no, total) {
-      let html = '<div class="installment-dots">';
+      let dots = '';
       for (let i = 1; i <= total; i++) {
-        html += `<span class="inst-dot${i <= no ? ' paid' : ''}" title="Installment ${i}"></span>`;
+        dots += `<span class="inst-dot${i <= no ? ' paid' : ''}" title="Installment ${i}"></span>`;
       }
-      html += `<span style="font-size:.8rem">${no}/${total}</span></div>`;
-      return html;
+      return `<div class="installment-dots">${dots}<span style="font-size:.78rem;margin-left:2px">${no}/${total}</span></div>`;
     }
 
     function renderPayments(data) {
       const tbody = document.getElementById('paymentsTableBody');
-      if (!data.length) { tbody.innerHTML = '<tr><td colspan="11" class="text-center py-4">No payments found</td></tr>'; return; }
-      tbody.innerHTML = data.map((p,i) => `
+      if (!data.length) {
+        tbody.innerHTML = '<tr><td colspan="11" class="text-center py-5 text-muted"><i class="fa-solid fa-inbox fa-2x mb-2 d-block"></i>No payments found</td></tr>';
+        return;
+      }
+      tbody.innerHTML = data.map((p, i) => `
         <tr data-filter-val="${p.status}">
-          <td>${i+1}</td>
-          <td style="font-size:.8rem">${escHtml(p.txn)}</td>
-          <td>${escHtml(p.member)}</td>
+          <td class="text-muted" style="font-size:.8rem">${i + 1}</td>
+          <td style="font-size:.78rem;font-family:monospace">${escHtml(p.txn)}</td>
+          <td><strong>${escHtml(p.member)}</strong></td>
           <td class="payment-amount">₹${Number(p.amount).toLocaleString('en-IN')}</td>
           <td>${escHtml(p.plan)}</td>
           <td>${instDots(p.inst_no, p.inst_total)}</td>
           <td>${escHtml(p.method)}</td>
-          <td style="font-size:.8rem">${escHtml(p.ref)}</td>
-          <td style="font-size:.8rem">${p.date}</td>
+          <td style="font-size:.78rem;color:var(--amuted)">${escHtml(p.ref)}</td>
+          <td style="font-size:.8rem;white-space:nowrap">${p.date}</td>
           <td><span class="badge-status ${p.status}">${p.status}</span></td>
-          <td>
-            ${p.status === 'pending' ? `
-              <button class="btn btn-xs btn-success me-1" onclick="verifyPay(${p.id})"><i class="fa-solid fa-check"></i></button>
-              <button class="btn btn-xs btn-danger" onclick="rejectPay(${p.id})"><i class="fa-solid fa-x"></i></button>` : '–'}
+          <td style="white-space:nowrap">
+            ${p.status === 'pending'
+              ? `<button class="btn btn-xs btn-success me-1" onclick="verifyPay(${p.id})" title="Verify"><i class="fa-solid fa-check"></i></button>
+                 <button class="btn btn-xs btn-danger" onclick="rejectPay(${p.id})" title="Reject"><i class="fa-solid fa-xmark"></i></button>`
+              : `<span class="text-muted" style="font-size:.8rem">—</span>`}
           </td>
         </tr>`).join('');
+      document.getElementById('pyInfo').textContent = `Showing ${data.length} record${data.length !== 1 ? 's' : ''}`;
     }
 
     function loadPayments() {
       fetch('../backend/admin-api.php?action=list_payments')
         .then(r => r.json())
         .then(res => {
-          const data = res.status === 'success' ? res.data : mockPayments;
+          const data = (res.status === 'success' && res.data) ? res.data : mockPayments;
           renderPayments(data);
           updateSummary(data);
         })
@@ -183,47 +210,43 @@
     }
 
     function updateSummary(data) {
-      const verified = data.filter(p => p.status === 'verified').reduce((s,p) => s + Number(p.amount), 0);
-      const pending = data.filter(p => p.status === 'pending').length;
+      const verified    = data.filter(p => p.status === 'verified').reduce((s, p) => s + Number(p.amount), 0);
+      const pending     = data.filter(p => p.status === 'pending').length;
       const installment = data.filter(p => p.plan === 'Installment').length;
-      const rejected = data.filter(p => p.status === 'rejected').length;
-      document.getElementById('pyVerified').textContent = '₹' + verified.toLocaleString('en-IN');
-      document.getElementById('pyPending').textContent = pending;
+      const rejected    = data.filter(p => p.status === 'rejected').length;
+      document.getElementById('pyVerified').textContent    = '₹' + verified.toLocaleString('en-IN');
+      document.getElementById('pyPending').textContent     = pending;
       document.getElementById('pyInstallment').textContent = installment;
-      document.getElementById('pyRejected').textContent = rejected;
+      document.getElementById('pyRejected').textContent    = rejected;
     }
 
     function verifyPay(id) {
       fetch('../backend/admin-api.php', {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ action: 'verify_payment', id, status: 'verified' })
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({action: 'verify_payment', id, status: 'verified'})
       }).then(() => { showAdminToast('Payment verified!', 'success'); loadPayments(); })
         .catch(() => showAdminToast('Updated (demo mode)', 'info'));
     }
 
     function rejectPay(id) {
-      if (!confirm('Reject this payment?')) return;
-      fetch('../backend/admin-api.php', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ action: 'verify_payment', id, status: 'rejected' })
-      }).then(() => { showAdminToast('Payment rejected', 'warning'); loadPayments(); })
-        .catch(() => showAdminToast('Updated (demo mode)', 'info'));
+      _showAdminConfirm(
+        'Reject Payment?',
+        'This payment will be marked as rejected. This action cannot be undone.',
+        'Yes, Reject',
+        'alm-btn-danger',
+        function () {
+          fetch('../backend/admin-api.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({action: 'verify_payment', id, status: 'rejected'})
+          }).then(() => { showAdminToast('Payment rejected', 'warning'); loadPayments(); })
+            .catch(() => showAdminToast('Updated (demo mode)', 'info'));
+        }
+      );
     }
 
-    function closeSidebar() {
-      document.getElementById('adminSidebar').classList.remove('open');
-      document.getElementById('sidebarOverlay').classList.remove('show');
-    }
-    function adminLogout() {
-      if (confirm('Logout?')) {
-        localStorage.removeItem('tslgc_admin_session');
-        window.location.href = '../admin.html';
-      }
-    }
     loadPayments();
   </script>
-
 </body>
 </html>

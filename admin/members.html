@@ -188,12 +188,6 @@
       document.querySelectorAll('#membersTable tbody input[type=checkbox]').forEach(cb => cb.checked = this.checked);
     });
 
-    function adminLogout() {
-      if (confirm('Logout?')) {
-        localStorage.removeItem('tslgc_admin_session');
-        window.location.href = '../admin.html';
-      }
-    }
 
     loadMembers();
   </script>

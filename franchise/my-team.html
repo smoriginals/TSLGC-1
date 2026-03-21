@@ -194,7 +194,28 @@
       document.getElementById('frSidebar').classList.remove('open');
       document.getElementById('frSidebarOverlay').classList.remove('show');
     }
-    function frLogout() { if (confirm('Logout?')) window.location.href = 'login.html'; }
+    function frLogout() {
+      if (document.getElementById('frLogoutModal')) return;
+      var md = document.createElement('div');
+      md.id = 'frLogoutModal';
+      md.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;';
+      md.innerHTML =
+        '<div id="frLMBack" style="position:absolute;inset:0;background:rgba(6,0,34,.55);"></div>' +
+        '<div style="position:relative;background:#fff;border-radius:16px;padding:2rem 2rem 1.5rem;width:min(340px,90vw);text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);z-index:1;">' +
+        '<div style="width:56px;height:56px;border-radius:50%;background:rgba(255,62,94,.12);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;">' +
+        '<i class="fa-solid fa-right-from-bracket" style="font-size:1.4rem;color:#FF3E5E;"></i></div>' +
+        '<h5 style="margin:0 0 .4rem;font-weight:700;font-size:1rem;color:#060022;">Logout?</h5>' +
+        '<p style="margin:0 0 1.4rem;font-size:.86rem;color:#6b7280;">Are you sure you want to logout from your account?</p>' +
+        '<div style="display:flex;gap:.7rem;justify-content:center;">' +
+        '<button id="frLMYes" style="flex:1;max-width:130px;padding:.52rem 1rem;border:none;border-radius:8px;background:#FF3E5E;color:#fff;font-weight:600;font-size:.86rem;cursor:pointer;">Yes, Logout</button>' +
+        '<button id="frLMNo" style="flex:1;max-width:130px;padding:.52rem 1rem;border:1px solid #d1d5db;border-radius:8px;background:transparent;color:#374151;font-weight:600;font-size:.86rem;cursor:pointer;">No, Cancel</button>' +
+        '</div></div>';
+      document.body.appendChild(md);
+      function close() { md.remove(); }
+      document.getElementById('frLMYes').onclick = function () { close(); window.location.href = 'login.html'; };
+      document.getElementById('frLMNo').onclick = close;
+      document.getElementById('frLMBack').onclick = close;
+    }
 
     renderTeamTree();
     loadTeam();

@@ -14,12 +14,85 @@ var ADMIN_SESSION_KEY = 'tslgc_admin_session';
   }
 }());
 
-/* ── Logout ───────────────────────────────────────────────────── */
+/* ── Logout confirm modal ────────────────────────────────────── */
 function adminLogout() {
-  if (confirm('Are you sure you want to logout?')) {
+  _showAdminLogoutModal(function () {
     localStorage.removeItem(ADMIN_SESSION_KEY);
     window.location.href = '../admin.html';
+  });
+}
+
+function _showAdminLogoutModal(onConfirm) {
+  var existing = document.getElementById('adminLogoutModal');
+  if (existing) { existing.remove(); }
+
+  var modal = document.createElement('div');
+  modal.id = 'adminLogoutModal';
+  modal.innerHTML =
+    '<div class="alm-backdrop"></div>' +
+    '<div class="alm-card" id="almCard">' +
+    '  <div class="alm-icon"><i class="fa-solid fa-right-from-bracket"></i></div>' +
+    '  <h4 class="alm-title">Logout?</h4>' +
+    '  <p class="alm-msg">Are you sure you want to logout from the admin panel?</p>' +
+    '  <div class="alm-actions">' +
+    '    <button class="alm-btn alm-btn-danger" id="almYesBtn">Yes, Logout</button>' +
+    '    <button class="alm-btn alm-btn-ghost" id="almNoBtn">No, Cancel</button>' +
+    '  </div>' +
+    '</div>';
+
+  document.body.appendChild(modal);
+
+  function closeModal() {
+    var card = document.getElementById('almCard');
+    if (card) { card.classList.add('alm-out'); }
+    setTimeout(function () { if (modal.parentNode) { modal.remove(); } }, 220);
   }
+
+  document.getElementById('almYesBtn').addEventListener('click', function () {
+    closeModal();
+    onConfirm();
+  });
+  document.getElementById('almNoBtn').addEventListener('click', closeModal);
+  modal.querySelector('.alm-backdrop').addEventListener('click', closeModal);
+
+  requestAnimationFrame(function () { modal.classList.add('alm-visible'); });
+}
+
+/* Generic styled confirm modal — reuses .alm-* classes from admin.css */
+function _showAdminConfirm(title, msg, confirmText, confirmClass, onConfirm) {
+  var existing = document.getElementById('adminConfirmModal');
+  if (existing) { existing.remove(); }
+
+  var modal = document.createElement('div');
+  modal.id = 'adminConfirmModal';
+  modal.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;';
+  modal.innerHTML =
+    '<div class="alm-backdrop"></div>' +
+    '<div class="alm-card" id="acmCard">' +
+    '  <div class="alm-icon" style="background:rgba(255,187,0,.12)"><i class="fa-solid fa-triangle-exclamation" style="color:var(--agold)"></i></div>' +
+    '  <h4 class="alm-title">' + title + '</h4>' +
+    '  <p class="alm-msg">' + msg + '</p>' +
+    '  <div class="alm-actions">' +
+    '    <button class="alm-btn ' + confirmClass + '" id="acmYesBtn">' + confirmText + '</button>' +
+    '    <button class="alm-btn alm-btn-ghost" id="acmNoBtn">Cancel</button>' +
+    '  </div>' +
+    '</div>';
+
+  document.body.appendChild(modal);
+
+  function closeModal() {
+    var card = document.getElementById('acmCard');
+    if (card) { card.classList.add('alm-out'); }
+    setTimeout(function () { if (modal.parentNode) { modal.remove(); } }, 220);
+  }
+
+  document.getElementById('acmYesBtn').addEventListener('click', function () {
+    closeModal(); onConfirm();
+  });
+  document.getElementById('acmNoBtn').addEventListener('click', closeModal);
+  modal.querySelector('.alm-backdrop').addEventListener('click', closeModal);
+
+  requestAnimationFrame(function () { modal.classList.add('alm-visible'); });
 }
 
 /* ── Sidebar open / close ─────────────────────────────────────── */
