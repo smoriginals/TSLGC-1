@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings – TSLGC Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+  <script>if(!localStorage.getItem('tslgc_admin_session'))window.location.replace('../admin.html');</script>
+</head>
+<body class="admin-body">
+
+  <div class="admin-wrapper">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-brand">
+        <span class="sb-logo">TSLGC</span>
+        <small>Admin Panel</small>
+      </div>
+      <div class="sidebar-user">
+        <div class="su-avatar"><i class="fa-solid fa-user-shield"></i></div>
+        <div><strong>Super Admin</strong><small>admin@tslgc.in</small></div>
+      </div>
+      <nav class="sidebar-nav">
+        <p class="sidebar-label">Main</p>
+        <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a href="members.html" class="sidebar-link"><i class="fa-solid fa-users"></i> Members</a>
+        <a href="franchises.html" class="sidebar-link"><i class="fa-solid fa-store"></i> Franchises</a>
+        <p class="sidebar-label">Finance</p>
+        <a href="payments.html" class="sidebar-link"><i class="fa-solid fa-indian-rupee-sign"></i> Payments</a>
+        <a href="reports.html" class="sidebar-link"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+        <p class="sidebar-label">Communication</p>
+        <a href="announcements.html" class="sidebar-link"><i class="fa-solid fa-bullhorn"></i> Announcements</a>
+        <p class="sidebar-label">System</p>
+        <a href="settings.html" class="sidebar-link active"><i class="fa-solid fa-gear"></i> Settings</a>
+        <a href="../index.html" class="sidebar-link" target="_blank"><i class="fa-solid fa-globe"></i> View Website</a>
+        <a href="#" class="sidebar-link logout-link" onclick="adminLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+      <!-- TOPBAR -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="topbar-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+              <li class="breadcrumb-item active">Settings</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="topbar-right">
+          <button class="topbar-btn" id="adminThemeToggle" title="Toggle dark mode">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <div class="topbar-admin-info">
+            <i class="fa-solid fa-circle-user"></i>
+            <span>Super Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <div class="admin-content">
+        <div class="content-header">
+          <h2><i class="fa-solid fa-gear me-2 text-muted"></i>Settings</h2>
+          <p>Manage company information, contact details, and panel preferences.</p>
+        </div>
+
+        <!-- Site Logo -->
+        <div class="admin-panel">
+          <div class="admin-panel-header">
+            <h5><i class="fa-solid fa-image"></i> Site Logo</h5>
+            <span class="settings-save-msg" id="msg-logo"><i class="fa-solid fa-check"></i> Saved</span>
+          </div>
+          <div class="admin-panel-body">
+            <div class="logo-upload-area" id="logoUploadArea">
+              <div class="logo-preview-wrap">
+                <img id="logoPreviewImg" src="../assets/logo.png" alt="Site Logo" />
+              </div>
+              <div class="logo-upload-info">
+                <p>Upload a new logo for your site. It will appear in the navigation bar across all pages.</p>
+                <label class="logo-upload-btn" for="logoFileInput">
+                  <i class="fa-solid fa-upload"></i> Choose Image
+                </label>
+                <button type="button" class="logo-reset-btn" onclick="resetLogo()">
+                  <i class="fa-solid fa-rotate-left"></i> Reset to Default
+                </button>
+                <input type="file" id="logoFileInput" class="logo-file-input" accept="image/*" onchange="previewLogo(event)" />
+                <small>Accepted: PNG, JPG, SVG, WEBP &bull; Recommended size: 160 &times; 60 px</small>
+              </div>
+            </div>
+            <div class="mt-3 text-end">
+              <button class="btn btn-primary btn-sm" onclick="saveLogo()">
+                <i class="fa-solid fa-floppy-disk me-1"></i> Save Logo
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Company Info -->
+        <div class="admin-panel">
+          <div class="admin-panel-header">
+            <h5><i class="fa-solid fa-building"></i> Company Information</h5>
+            <span class="settings-save-msg" id="msg-company"><i class="fa-solid fa-check"></i> Saved</span>
+          </div>
+          <div class="admin-panel-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Company Name</label>
+                <input type="text" class="form-control" id="s-company-name" placeholder="TSLGC Service Pvt.Ltd." />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Tagline</label>
+                <input type="text" class="form-control" id="s-tagline" placeholder="Your Business Tagline" />
+              </div>
+              <div class="col-12">
+                <label class="form-label">Registered Address</label>
+                <textarea class="form-control" id="s-address" rows="2" placeholder="Full address..."></textarea>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" id="s-city" placeholder="City" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">State</label>
+                <input type="text" class="form-control" id="s-state" placeholder="State" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">PIN Code</label>
+                <input type="text" class="form-control" id="s-pin" placeholder="000000" maxlength="6" />
+              </div>
+              <div class="col-12 text-end">
+                <button class="btn btn-primary btn-sm" onclick="saveSection('company')">
+                  <i class="fa-solid fa-floppy-disk me-1"></i> Save Company Info
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Details -->
+        <div class="admin-panel">
+          <div class="admin-panel-header">
+            <h5><i class="fa-solid fa-phone"></i> Contact Details</h5>
+            <span class="settings-save-msg" id="msg-contact"><i class="fa-solid fa-check"></i> Saved</span>
+          </div>
+          <div class="admin-panel-body">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="s-phone" placeholder="+91 00000 00000" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">WhatsApp Number</label>
+                <input type="tel" class="form-control" id="s-whatsapp" placeholder="+91 00000 00000" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Support Email</label>
+                <input type="email" class="form-control" id="s-email" placeholder="support@company.com" />
+              </div>
+              <div class="col-12 text-end">
+                <button class="btn btn-primary btn-sm" onclick="saveSection('contact')">
+                  <i class="fa-solid fa-floppy-disk me-1"></i> Save Contact
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="admin-panel">
+          <div class="admin-panel-header">
+            <h5><i class="fa-solid fa-share-nodes"></i> Social Media Links</h5>
+            <span class="settings-save-msg" id="msg-social"><i class="fa-solid fa-check"></i> Saved</span>
+          </div>
+          <div class="admin-panel-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label"><i class="fa-brands fa-facebook text-primary me-1"></i> Facebook</label>
+                <input type="url" class="form-control" id="s-facebook" placeholder="https://facebook.com/page" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label"><i class="fa-brands fa-instagram me-1" style="color:#E1306C"></i> Instagram</label>
+                <input type="url" class="form-control" id="s-instagram" placeholder="https://instagram.com/page" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label"><i class="fa-brands fa-youtube me-1" style="color:#FF0000"></i> YouTube</label>
+                <input type="url" class="form-control" id="s-youtube" placeholder="https://youtube.com/channel" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label"><i class="fa-brands fa-x-twitter me-1"></i> Twitter / X</label>
+                <input type="url" class="form-control" id="s-twitter" placeholder="https://twitter.com/handle" />
+              </div>
+              <div class="col-12 text-end">
+                <button class="btn btn-primary btn-sm" onclick="saveSection('social')">
+                  <i class="fa-solid fa-floppy-disk me-1"></i> Save Social Links
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing & Plan Config -->
+        <div class="admin-panel">
+          <div class="admin-panel-header">
+            <h5><i class="fa-solid fa-indian-rupee-sign"></i> Pricing Configuration</h5>
+            <span class="settings-save-msg" id="msg-pricing"><i class="fa-solid fa-check"></i> Saved</span>
+          </div>
+          <div class="admin-panel-body">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label class="form-label">Membership Fee (₹)</label>
+                <input type="number" class="form-control" id="s-membership-fee" placeholder="2999" min="0" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Franchise Fee (₹)</label>
+                <input type="number" class="form-control" id="s-franchise-fee" placeholder="0" min="0" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">GST (%)</label>
+                <input type="number" class="form-control" id="s-gst" placeholder="18" min="0" max="100" />
+              </div>
+              <div class="col-12 text-end">
+                <button class="btn btn-primary btn-sm" onclick="saveSection('pricing')">
+                  <i class="fa-solid fa-floppy-disk me-1"></i> Save Pricing
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Welcome Message -->
+        <div class="admin-panel">
+          <div class="admin-panel-header">
+            <h5><i class="fa-solid fa-message"></i> Welcome Message</h5>
+            <span class="settings-save-msg" id="msg-welcome"><i class="fa-solid fa-check"></i> Saved</span>
+          </div>
+          <div class="admin-panel-body">
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label">Welcome / Home Banner Headline</label>
+                <input type="text" class="form-control" id="s-headline" placeholder="Welcome headline text..." />
+              </div>
+              <div class="col-12">
+                <label class="form-label">Welcome Sub-text</label>
+                <textarea class="form-control" id="s-subtext" rows="3" placeholder="Sub-text displayed on the homepage banner..."></textarea>
+              </div>
+              <div class="col-12 text-end">
+                <button class="btn btn-primary btn-sm" onclick="saveSection('welcome')">
+                  <i class="fa-solid fa-floppy-disk me-1"></i> Save Welcome Message
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /admin-content -->
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="admin.js"></script>
+  <script>
+    var SETTINGS_KEY = 'tslgc_admin_settings';
+
+    var FIELDS = {
+      company: ['company-name','tagline','address','city','state','pin'],
+      contact: ['phone','whatsapp','email'],
+      social:  ['facebook','instagram','youtube','twitter'],
+      pricing: ['membership-fee','franchise-fee','gst'],
+      welcome: ['headline','subtext']
+    };
+
+    function loadSettings() {
+      var data = {};
+      try { data = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}'); } catch(e) {}
+      Object.keys(FIELDS).forEach(function(section) {
+        FIELDS[section].forEach(function(field) {
+          var el = document.getElementById('s-' + field);
+          if (el && data[field] !== undefined) { el.value = data[field]; }
+        });
+      });
+    }
+
+    function saveSection(section) {
+      var data = {};
+      try { data = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}'); } catch(e) {}
+      FIELDS[section].forEach(function(field) {
+        var el = document.getElementById('s-' + field);
+        if (el) { data[field] = el.value.trim(); }
+      });
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(data));
+      var msg = document.getElementById('msg-' + section);
+      if (msg) {
+        msg.classList.add('visible');
+        setTimeout(function() { msg.classList.remove('visible'); }, 2500);
+      }
+    }
+
+    loadSettings();
+
+    /* ── Logo Upload ── */
+    var LOGO_KEY      = 'tslgc_site_logo';
+    var _pendingLogo  = null;   // base64 of newly selected file (unsaved)
+
+    // On page load: show stored logo if any
+    (function initLogo() {
+      var stored = localStorage.getItem(LOGO_KEY);
+      if (stored) { document.getElementById('logoPreviewImg').src = stored; }
+    }());
+
+    function previewLogo(event) {
+      var file = event.target.files && event.target.files[0];
+      if (!file) { return; }
+      if (!file.type.startsWith('image/')) {
+        showAdminToast('Please select a valid image file.', 'error');
+        return;
+      }
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        _pendingLogo = e.target.result;
+        document.getElementById('logoPreviewImg').src = _pendingLogo;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function saveLogo() {
+      if (!_pendingLogo) {
+        showAdminToast('Please choose an image first.', 'warning');
+        return;
+      }
+      localStorage.setItem(LOGO_KEY, _pendingLogo);
+      _pendingLogo = null;
+      document.getElementById('logoFileInput').value = '';
+      var msg = document.getElementById('msg-logo');
+      if (msg) { msg.classList.add('visible'); setTimeout(function(){ msg.classList.remove('visible'); }, 2500); }
+      showAdminToast('Logo saved — will appear on all site pages.', 'success');
+    }
+
+    function resetLogo() {
+      if (!confirm('Reset logo back to the default image?')) { return; }
+      localStorage.removeItem(LOGO_KEY);
+      _pendingLogo = null;
+      document.getElementById('logoPreviewImg').src = '../assets/logo.png';
+      document.getElementById('logoFileInput').value = '';
+      showAdminToast('Logo reset to default.', 'info');
+    }
+  </script>
+</body>
+</html>

@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-  <link rel="stylesheet" href="../assets/css/admin.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <script>if(!localStorage.getItem('tslgc_admin_session'))window.location.replace('../admin.html');</script>
 </head>
 <body class="admin-body">
 
@@ -35,6 +36,7 @@
         <p class="sidebar-label">Communication</p>
         <a href="announcements.html" class="sidebar-link"><i class="fa-solid fa-bullhorn"></i> Announcements</a>
         <p class="sidebar-label">System</p>
+        <a href="settings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i> Settings</a>
         <a href="../index.html" class="sidebar-link" target="_blank"><i class="fa-solid fa-globe"></i> View Website</a>
         <a href="#" class="sidebar-link logout-link" onclick="adminLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
       </nav>
@@ -163,7 +165,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/admin.js"></script>
+  <script src="admin.js"></script>
   <script>
     // Load dashboard stats
     fetch('../backend/admin-api.php?action=dashboard_stats')
@@ -237,40 +239,12 @@
     }
 
     function adminLogout() {
-      if (confirm('Logout करना चाहते हैं?')) {
-        fetch('../backend/auth.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'logout' })
-        }).finally(() => window.location.href = 'login.html');
+      if (confirm('Logout?')) {
+        localStorage.removeItem('tslgc_admin_session');
+        window.location.href = '../admin.html';
       }
     }
   </script>
 
-  <!-- FLOATING LANG TOGGLE -->
-  <div class="floating-lang" id="floatingLang" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:1050;display:flex;flex-direction:column-reverse;align-items:flex-end;gap:0.5rem;">
-    <div class="floating-lang-dropdown" id="floatingLangDropdown" style="display:flex;flex-direction:column;gap:0.4rem;align-items:flex-end;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .18s,transform .18s;">
-      <button onclick="switchLangOption('hi')" style="background:#fff;color:#060022;border:1px solid rgba(139,49,212,.25);border-radius:2rem;padding:.35rem 1rem;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.1);">🇮🇳 हिन्दी</button>
-      <button onclick="switchLangOption('en')" style="background:#fff;color:#060022;border:1px solid rgba(139,49,212,.25);border-radius:2rem;padding:.35rem 1rem;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.1);">🇬🇧 English</button>
-    </div>
-    <button onclick="toggleLangDropdown()" title="Language" style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#8B31D4,#060022);color:#fff;border:none;cursor:pointer;font-size:.8rem;font-weight:700;box-shadow:0 4px 16px rgba(139,49,212,.45);display:flex;align-items:center;justify-content:center;">
-      <span id="floatingLangLabel">हि</span>
-    </button>
-  </div>
-  <script>
-    (function(){
-      var KEY='uh-lang';
-      var drop=document.getElementById('floatingLangDropdown');
-      var lbl=document.getElementById('floatingLangLabel');
-      var isOpen=false;
-      function syncLabel(){var l=localStorage.getItem(KEY)||'en';if(lbl)lbl.textContent=l==='hi'?'हि':'EN';}
-      function toggleLangDropdown(){isOpen=!isOpen;drop.style.opacity=isOpen?'1':'0';drop.style.pointerEvents=isOpen?'all':'none';drop.style.transform=isOpen?'translateY(0)':'translateY(8px)';}
-      function switchLangOption(l){localStorage.setItem(KEY,l);document.documentElement.lang=l;syncLabel();toggleLangDropdown();}
-      window.toggleLangDropdown=toggleLangDropdown;
-      window.switchLangOption=switchLangOption;
-      document.addEventListener('click',function(e){if(isOpen&&!e.target.closest('#floatingLang')){toggleLangDropdown();}});
-      syncLabel();
-    })();
-  </script>
 </body>
 </html>

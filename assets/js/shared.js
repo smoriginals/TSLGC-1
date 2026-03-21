@@ -233,3 +233,14 @@ function showToast(message, type = 'success', title = '') {
     });
   });
 })();
+
+// ============================================================
+// SITE LOGO OVERRIDE (set from Admin → Settings)
+// ============================================================
+(function applySiteLogo() {
+  var stored = localStorage.getItem('tslgc_site_logo');
+  if (!stored) { return; }
+  document.querySelectorAll('img.nav-logo, img.auth-logo-img').forEach(function (img) {
+    img.src = stored;
+  });
+})();

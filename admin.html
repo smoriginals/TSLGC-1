@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login – TSLGC Service Pvt.Ltd.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="admin/admin.css" />
+  <script>
+    // Redirect already-logged-in admin straight to dashboard
+    if (localStorage.getItem('tslgc_admin_session')) {
+      window.location.replace('admin/dashboard.html');
+    }
+  </script>
+</head>
+<body class="admin-login-page">
+
+  <!-- Welcome / Error popup -->
+  <div class="admin-popup" id="adminPopup" style="display:none">
+    <div class="admin-popup-box">
+      <div class="apb-icon success" id="popupIcon"><i class="fa-solid fa-shield-check"></i></div>
+      <h4 id="popupTitle">Welcome Admin!</h4>
+      <p id="popupMsg">Loading Control Panel…</p>
+    </div>
+  </div>
+
+  <div class="admin-login-wrap">
+    <div class="admin-login-card">
+
+      <div class="alc-brand">
+        <span class="alc-logo">TSLGC<span> Service Pvt.Ltd.</span></span>
+        <p class="alc-panel-label">Admin Control Panel</p>
+      </div>
+
+      <h4 class="alc-title">Welcome Back</h4>
+      <p class="alc-sub">Sign in to access the admin dashboard</p>
+
+      <div id="loginAlert" class="alc-alert" style="display:none"></div>
+
+      <form id="adminLoginForm" novalidate>
+        <label class="alc-label">Email Address</label>
+        <div class="alc-field-wrap mb-3">
+          <i class="fa-solid fa-envelope alc-field-icon"></i>
+          <input type="email" class="alc-input" id="adminEmail"
+                 placeholder="admin@email.com" required autocomplete="username" />
+        </div>
+
+        <label class="alc-label">Password</label>
+        <div class="alc-field-wrap mb-4">
+          <i class="fa-solid fa-lock alc-field-icon"></i>
+          <input type="password" class="alc-input" id="adminPassword"
+                 placeholder="••••••••" required autocomplete="current-password" />
+          <button type="button" class="alc-eye" onclick="togglePwd()">
+            <i class="fa-solid fa-eye" id="eyeIcon"></i>
+          </button>
+        </div>
+
+        <button type="submit" class="alc-submit" id="loginSubmitBtn">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          Sign In to Panel
+        </button>
+      </form>
+
+      <div class="alc-back">
+        <a href="index.html"><i class="fa-solid fa-arrow-left me-1"></i>Back to Website</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Hardcoded admin credentials — replace with PHP backend later
+    var _AE  = 'user@admin.com';
+    var _AP  = 'Admin@123';
+    var _KEY = 'tslgc_admin_session';
+
+    function togglePwd() {
+      var inp  = document.getElementById('adminPassword');
+      var icon = document.getElementById('eyeIcon');
+      var hide = inp.type === 'password';
+      inp.type = hide ? 'text' : 'password';
+      icon.className = hide ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+    }
+
+    function showPopup(title, msg, type) {
+      var popup = document.getElementById('adminPopup');
+      var icon  = document.getElementById('popupIcon');
+      document.getElementById('popupTitle').textContent = title;
+      document.getElementById('popupMsg').textContent   = msg;
+      icon.className = 'apb-icon ' + type;
+      icon.innerHTML = type === 'success'
+        ? '<i class="fa-solid fa-shield-check"></i>'
+        : '<i class="fa-solid fa-shield-xmark"></i>';
+      popup.style.display = 'flex';
+    }
+
+    function showAlert(msg) {
+      var el = document.getElementById('loginAlert');
+      el.textContent    = msg;
+      el.style.display  = 'block';
+      setTimeout(function() { el.style.display = 'none'; }, 4500);
+    }
+
+    document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn  = document.getElementById('loginSubmitBtn');
+      var em   = document.getElementById('adminEmail').value.trim().toLowerCase();
+      var pass = document.getElementById('adminPassword').value;
+
+      btn.disabled  = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in…';
+
+      setTimeout(function() {
+        if (em === _AE && pass === _AP) {
+          // Set admin session (separate from user session)
+          localStorage.setItem(_KEY, JSON.stringify({
+            email : em,
+            role  : 'super_admin',
+            ts    : Date.now()
+          }));
+          showPopup('Welcome Admin!', 'Loading Control Panel…', 'success');
+          setTimeout(function() { window.location.href = 'admin/dashboard.html'; }, 2000);
+        } else {
+          showPopup('Access Denied', 'Invalid Credentials. Please try again.', 'error');
+          setTimeout(function() {
+            document.getElementById('adminPopup').style.display = 'none';
+          }, 3000);
+          btn.disabled  = false;
+          btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Sign In to Panel';
+        }
+      }, 600);
+    });
+  </script>
+</body>
+</html>
