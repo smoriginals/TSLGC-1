@@ -56,7 +56,7 @@
       <div class="auth-header">
         <img src="assets/logo.png" alt="TSLGC" class="auth-logo-img">
         <div class="auth-header-text">
-          <p class="auth-brand-name">TSLGC <span class="auth-brand-pvt">Pvt.Ltd.</span></p>
+          <p class="auth-brand-name">TSLGC <span class="auth-brand-pvt">Service Pvt.Ltd.</span></p>
           <p class="auth-brand-sub">Alliance Market — Member Portal</p>
         </div>
       </div>
@@ -160,16 +160,14 @@
                 placeholder="Referral ID (opt.)" maxlength="50" />
             </div>
           </div>
-          <div class="auth-plan-pills">
-            <label class="auth-plan-pill">
-              <input type="radio" name="plan" value="full" id="planFull" required />
-              <span><strong>₹4,999</strong> Full Pay</span>
-              <span class="auth-plan-badge">BEST</span>
-            </label>
-            <label class="auth-plan-pill">
-              <input type="radio" name="plan" value="installment" />
-              <span><strong>₹2,500×2</strong> EMI</span>
-            </label>
+          <div class="auth-plan-selected">
+            <input type="radio" name="plan" value="full" id="planFull" checked style="display:none" />
+            <div class="auth-plan-badge-row">
+              <i class="fa-solid fa-circle-check"></i>
+              <span class="auth-plan-price">₹2,999</span>
+              <span class="auth-plan-label">One-time Full Payment</span>
+              <span class="auth-plan-badge">BEST VALUE</span>
+            </div>
           </div>
           <div id="planError" style="display:none!important;font-size:.73rem;color:#dc3545;margin-bottom:.5rem"></div>
           <label class="auth-terms-row">
@@ -178,7 +176,7 @@
             &amp; <a href="#" class="text-secondary" onclick="return false">Income Disclaimer</a>
           </label>
           <button type="submit" class="auth-submit" id="joinSubmitBtn">
-            <i class="fa-solid fa-rocket"></i> Join TSLGC — ₹4,999
+            <i class="fa-solid fa-rocket"></i> Join TSLGC — ₹2,999
           </button>
           <p class="auth-security"><i class="fa-solid fa-shield-halved"></i> 100% Secure — Your data is safe</p>
           <p class="auth-switch-link">Already a member? <a href="#" onclick="switchAuthTab('login');return false">Login →</a></p>
@@ -199,8 +197,8 @@
       <div class="row g-5 pt-5">
         <div class="col-lg-4">
           <div class="footer-brand">
-            <span class="brand-logo">TSLGC<span class="brand-accent"> Pvt.Ltd.</span></span>
-            <p class="footer-tagline">Pvt.Ltd.</p>
+            <span class="brand-logo">TSLGC<span class="brand-accent"> Service Pvt.Ltd.</span></span>
+            <p class="footer-tagline">Service Pvt.Ltd.</p>
             <p class="footer-motto"><i class="fa-solid fa-infinity me-2"></i><span data-en="Unstoppable Income" data-hi="कभी न रुकने वाली इनकम">कभी न रुकने वाली इनकम</span></p>
             <p class="footer-desc"><span data-en="India's Biggest Alliance Market — 1 ID, 101 Businesses, Infinite Possibilities." data-hi="भारत का सबसे बड़ा Alliance Market — 1 ID, 101 Businesses, अनंत संभावनाएं।">भारत का सबसे बड़ा Alliance Market — 1 ID, 101 Businesses, अनंत संभावनाएं।</span></p>
           </div>
@@ -240,7 +238,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 TSLGC Pvt.Ltd. All Rights Reserved.</p>
+        <p>© 2023 - 2026 TSLGC Service Pvt.Ltd. All Rights Reserved.</p>
         <p class="footer-legal-note">TSLGC is a legal direct selling company. Income depends on individual effort.</p>
       </div>
     </div>
@@ -587,7 +585,7 @@
           else { showPopup({ type: 'error', title: 'Registration Failed', msg: res.message || 'Please try again.' }); }
         })
         .catch(function () { doSignupLocal(data); })
-        .finally(function () { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-rocket"></i> Join TSLGC — ₹4,999'; });
+        .finally(function () { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-rocket"></i> Join TSLGC — ₹2,999'; });
       });
     }
 

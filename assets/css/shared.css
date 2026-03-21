@@ -310,7 +310,7 @@
    ============================================================ */
 .stats-teaser-bar {
   background: var(--gradient-hero);
-  padding: 2rem 0;
+  padding: 2rem 0 5rem;
 }
 .stats-teaser-bar .stat-t-item {
   text-align: center;
@@ -506,6 +506,22 @@ select.auth-input {
   column-gap: 0.6rem;
 }
 /* ── Plan pills ── */
+/* \u2500\u2500 Single plan (no choice) display \u2500\u2500 */
+.auth-plan-selected { margin-bottom: 0.75rem; }
+.auth-plan-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(0,212,170,0.08);
+  border: 1.5px solid rgba(0,212,170,0.3);
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  font-family: var(--font-main);
+}
+.auth-plan-badge-row i { color: var(--accent2,#00D4AA); font-size: 1.1rem; flex-shrink: 0; }
+.auth-plan-price { font-size: 1.15rem; font-weight: 900; color: var(--text-dark); }
+.auth-plan-label { font-size: 0.78rem; color: var(--text-muted); flex: 1; }
+
 .auth-plan-pills {
   display: flex;
   gap: 0.55rem;
