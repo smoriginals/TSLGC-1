@@ -155,13 +155,13 @@ body::before {
 }
 /* Logo image in navbar */
 .nav-logo {
-  height: 64px;
+  height: 90px;
   width: auto;
   object-fit: contain;
   display: block;
 }
 @media (max-width: 576px) {
-  .nav-logo { height: 52px; }
+  .nav-logo { height: 70px; }
 }
 
 /* Brand text fallback (kept for admin/franchise pages) */
